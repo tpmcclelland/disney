@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPCOT — Touring Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Outfit:wght@300..700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4ecd8;
+    --cream-soft: #ede4c8;
+    --ink: #1c2d3f;
+    --ink-soft: #4a5d70;
+    --ink-mute: #7a8a9a;
+    --paper-edge: #d8cfb5;
+    --orange: #d96a2c;
+    --orange-soft: #e8854a;
+    --teal: #2e7d80;
+    --teal-soft: #4ea0a4;
+    --gold: #d4a23a;
+    --rose: #c46c5a;
+    --mint: #88b09a;
+
+    /* Neighborhood accents */
+    --nbh-celebration: #d4a23a;
+    --nbh-discovery: #d96a2c;
+    --nbh-nature: #88b09a;
+    --nbh-showcase: #2e7d80;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 15% 12%, rgba(217, 106, 44, 0.06) 0px, transparent 50%),
+      radial-gradient(circle at 85% 75%, rgba(46, 125, 128, 0.05) 0px, transparent 50%);
+    color: var(--ink);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Subtle dot grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(28, 45, 63, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 90px 0 70px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+
+  /* Geometric decoration - geodesic-inspired */
+  header::after {
+    content: '';
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 180px;
+    height: 180px;
+    background:
+      conic-gradient(from 30deg at 50% 50%,
+        var(--orange) 0deg 60deg,
+        transparent 60deg 120deg,
+        var(--teal) 120deg 180deg,
+        transparent 180deg 240deg,
+        var(--gold) 240deg 300deg,
+        transparent 300deg 360deg);
+    border-radius: 50%;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  @media (max-width: 700px) { header::after { display: none; } }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--orange);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 2px;
+    background: var(--orange);
+  }
+
+  h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: clamp(56px, 11vw, 140px);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 96;
+  }
+  h1 em {
+    font-style: normal;
+    font-weight: 400;
+    color: var(--orange);
+    font-variation-settings: "opsz" 96;
+  }
+
+  .subtitle {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin-top: 24px;
+    max-width: 680px;
+    line-height: 1.4;
+    font-variation-settings: "opsz" 24;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--paper-edge);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+  }
+  .meta-row span strong {
+    display: block;
+    color: var(--ink);
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 72px 0;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 12px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 56;
+  }
+  h2 em {
+    font-style: normal;
+    color: var(--orange);
+    font-weight: 400;
+  }
+
+  .section-intro {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-bottom: 48px;
+    max-width: 700px;
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* === CALLOUTS === */
+  .callout {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .callout::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(217, 106, 44, 0.25) 0%, transparent 65%);
+  }
+  .callout-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--orange-soft);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .callout h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 18px;
+    line-height: 1.15;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+  .callout p {
+    color: rgba(244, 236, 216, 0.82);
+    max-width: 740px;
+    margin-bottom: 14px;
+  }
+  .callout .price-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(244, 236, 216, 0.15);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(244, 236, 216, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .callout .price-row strong {
+    display: block;
+    color: var(--orange-soft);
+    font-size: 20px;
+    margin-top: 6px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  /* World Showcase opening callout - special */
+  .ws-callout {
+    background: linear-gradient(135deg, var(--teal) 0%, #1f5e60 100%);
+    color: var(--cream);
+    padding: 36px 40px;
+    margin-top: 32px;
+    border-left: 4px solid var(--gold);
+    position: relative;
+  }
+  .ws-callout::before {
+    content: '11:00';
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    font-weight: 500;
+  }
+  .ws-callout h4 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .ws-callout p {
+    color: rgba(244, 236, 216, 0.85);
+    font-size: 15px;
+    max-width: 720px;
+  }
+
+  /* === NEIGHBORHOOD MAP === */
+  .nbh-map {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .nbh-pill {
+    padding: 22px 24px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--paper-edge);
+    border-top: 4px solid var(--orange);
+    transition: all 0.25s ease;
+  }
+  .nbh-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(28, 45, 63, 0.08);
+  }
+  .nbh-pill[data-nbh="celebration"] { border-top-color: var(--nbh-celebration); }
+  .nbh-pill[data-nbh="discovery"] { border-top-color: var(--nbh-discovery); }
+  .nbh-pill[data-nbh="nature"] { border-top-color: var(--nbh-nature); }
+  .nbh-pill[data-nbh="showcase"] { border-top-color: var(--nbh-showcase); }
+
+  .nbh-pill .nbh-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .nbh-pill .nbh-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .nbh-pill .nbh-rides {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* === TIMELINE === */
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+  .progress-track {
+    flex: 1;
+    height: 2px;
+    background: var(--paper-edge);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-fill {
+    position: absolute;
+    inset: 0 100% 0 0;
+    background: var(--orange);
+    transition: right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nbh-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin: 56px 0 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+    flex-wrap: wrap;
+  }
+  .nbh-header:first-of-type { margin-top: 0; }
+  .nbh-header h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 32;
+  }
+  .nbh-header[data-nbh="discovery"] h3 { color: var(--nbh-discovery); }
+  .nbh-header[data-nbh="nature"] h3 { color: var(--nbh-nature); }
+  .nbh-header[data-nbh="celebration"] h3 { color: var(--nbh-celebration); }
+  .nbh-header[data-nbh="showcase"] h3 { color: var(--nbh-showcase); }
+
+  .nbh-header .nbh-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+
+  .zone-shift {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 20px 0;
+    padding: 10px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+  .zone-shift::before, .zone-shift::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--paper-edge);
+  }
+  .zone-shift .arrow { color: var(--orange); font-size: 14px; }
+
+  .stop {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 28px;
+    padding: 24px 0;
+    border-top: 1px solid var(--paper-edge);
+    cursor: pointer;
+    transition: padding 0.3s ease;
+  }
+  .stop:hover { padding-left: 8px; }
+  .stop:first-of-type { border-top: none; }
+
+  .stop.done .stop-title,
+  .stop.done .stop-detail {
+    color: var(--ink-mute);
+    text-decoration: line-through;
+    text-decoration-color: var(--orange);
+    text-decoration-thickness: 1.5px;
+  }
+  .stop.done .stop-number {
+    background: var(--orange);
+    color: var(--cream);
+    border-color: var(--orange);
+  }
+
+  .stop-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    padding-top: 4px;
+    font-weight: 500;
+  }
+  .stop-time strong {
+    display: block;
+    color: var(--ink);
+    font-size: 17px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .stop-body { display: flex; gap: 20px; align-items: flex-start; }
+
+  .stop-number {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+    background: var(--cream);
+  }
+
+  .stop-content { flex: 1; }
+  .stop-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.18;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: -0.018em;
+  }
+  .stop-detail {
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  .timing-breakdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 16px;
+    margin-bottom: 14px;
+    max-width: 480px;
+    border: 1px solid var(--ink);
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .timing-chip {
+    padding: 10px 12px;
+    border-right: 1px solid var(--paper-edge);
+    text-align: center;
+  }
+  .timing-chip:last-child { border-right: none; }
+  .timing-chip .chip-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    margin-bottom: 4px;
+    display: block;
+    font-weight: 500;
+  }
+  .timing-chip .chip-value {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .timing-chip.walk .chip-value { color: var(--mint); }
+  .timing-chip.wait .chip-value { color: var(--rose); }
+  .timing-chip.total {
+    background: var(--ink);
+  }
+  .timing-chip.total .chip-label { color: rgba(244, 236, 216, 0.6); }
+  .timing-chip.total .chip-value { color: var(--orange-soft); }
+  .stop.done .timing-breakdown { opacity: 0.4; }
+
+  .stop-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    margin-top: 4px;
+    margin-right: 6px;
+    background: rgba(28, 45, 63, 0.06);
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .stop-tag.priority { background: rgba(217, 106, 44, 0.15); color: var(--orange); }
+  .stop-tag.lp { background: rgba(46, 125, 128, 0.15); color: var(--teal); }
+  .stop-tag.sr { background: rgba(136, 176, 154, 0.2); color: #5a8270; }
+  .stop-tag.vq { background: rgba(212, 162, 58, 0.2); color: #8a6a1d; }
+
+  /* === RIDES === */
+  .ride {
+    border-top: 1px solid var(--paper-edge);
+    padding: 26px 0;
+    cursor: pointer;
+    transition: padding 0.25s ease;
+  }
+  .ride:hover { padding-left: 8px; }
+  .ride:last-child { border-bottom: 1px solid var(--paper-edge); }
+
+  .ride-header {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .ride-rank {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--orange);
+    font-weight: 500;
+  }
+  .ride-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: -0.018em;
+  }
+  .ride-name .land {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+    margin-top: 6px;
+  }
+  .wait-display { text-align: right; font-family: 'IBM Plex Mono', monospace; }
+  .wait-display .wait-num {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+    display: block;
+    letter-spacing: -0.025em;
+  }
+  .wait-display .wait-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .wait-bar {
+    height: 3px;
+    background: var(--paper-edge);
+    margin-top: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wait-bar-fill {
+    position: absolute;
+    inset: 0 100% 0 0;
+    background: linear-gradient(90deg, var(--mint), var(--gold) 50%, var(--orange));
+    transition: right 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;
+  }
+
+  .ride-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+  }
+  .ride.expanded .ride-details {
+    max-height: 800px;
+    margin-top: 24px;
+  }
+
+  .ride-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 20px 0;
+    border-top: 1px solid var(--paper-edge);
+    margin-bottom: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+  .ride-meta strong {
+    display: block;
+    color: var(--ink);
+    font-size: 14px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+
+  .ride-description {
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    max-width: 720px;
+  }
+  .ride-tip {
+    background: rgba(217, 106, 44, 0.08);
+    border-left: 3px solid var(--orange);
+    padding: 16px 20px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    max-width: 720px;
+    line-height: 1.4;
+  }
+  .ride-tip::before {
+    content: 'TIP — ';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--orange);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  /* === GRID/CARDS === */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--paper-edge);
+    padding: 28px;
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(28, 45, 63, 0.08);
+    border-color: var(--ink);
+  }
+  .card h4 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: -0.018em;
+  }
+  .card .card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .card p { color: var(--ink-soft); font-size: 14px; }
+  .card .card-time {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--paper-edge);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .note {
+    padding: 22px;
+    background: rgba(217, 106, 44, 0.05);
+    border-left: 3px solid var(--orange);
+  }
+  .note.warn { background: rgba(212, 162, 58, 0.08); border-left-color: var(--gold); }
+  .note.info { background: rgba(46, 125, 128, 0.06); border-left-color: var(--teal); }
+  .note.heat { background: rgba(196, 108, 90, 0.08); border-left-color: var(--rose); }
+  .note-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .note p { font-size: 14px; color: var(--ink-soft); }
+
+  footer {
+    padding: 70px 0 90px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--orange);
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .stop { grid-template-columns: 70px 1fr; gap: 14px; }
+    .ride-header { grid-template-columns: 32px 1fr; }
+    .wait-display { grid-column: 2; text-align: left; margin-top: 8px; }
+    .callout { padding: 28px 24px; }
+    .timing-chip .chip-value { font-size: 14px; }
+    .timing-chip { padding: 8px 6px; }
+    .ride-meta { gap: 18px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="eyebrow">Walt Disney World · Park 03 of 04 · June 2026</div>
+    <h1>EP<em>COT</em></h1>
+    <p class="subtitle">The split-park puzzle. Morning locked to the front half until 11 AM, when World Showcase unlocks the back ring and Norway, France, and Mexico open for business.</p>
+    <div class="meta-row">
+      <span>Arrival<strong>30–45 min pre-open</strong></span>
+      <span>Park hours<strong>~9am – 9/10pm</strong></span>
+      <span>World Showcase<strong>Opens 11:00 AM</strong></span>
+      <span>June flag<strong>Flower &amp; Garden Festival</strong></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Four <em>neighborhoods</em></h2>
+    <p class="section-intro">EPCOT used to be split into "Future World" and "World Showcase." The 2023 rebrand carved Future World into three smaller neighborhoods. Morning routes through the front three, afternoon belongs to the back ring.</p>
+    <div class="nbh-map">
+      <div class="nbh-pill" data-nbh="celebration">
+        <div class="nbh-tag">01 · Entry</div>
+        <div class="nbh-name">World Celebration</div>
+        <div class="nbh-rides">Spaceship Earth · Imagination · CommuniCore Hall</div>
+      </div>
+      <div class="nbh-pill" data-nbh="discovery">
+        <div class="nbh-tag">02 · Right · Open</div>
+        <div class="nbh-name">World Discovery</div>
+        <div class="nbh-rides">Cosmic Rewind · Test Track · Mission: SPACE</div>
+      </div>
+      <div class="nbh-pill" data-nbh="nature">
+        <div class="nbh-tag">03 · Left · Open</div>
+        <div class="nbh-name">World Nature</div>
+        <div class="nbh-rides">Soarin' · Living with the Land · The Seas</div>
+      </div>
+      <div class="nbh-pill" data-nbh="showcase">
+        <div class="nbh-tag">04 · Back · 11 AM</div>
+        <div class="nbh-name">World Showcase</div>
+        <div class="nbh-rides">Frozen Ever After · Remy's · Gran Fiesta · 11 pavilions</div>
+      </div>
+    </div>
+
+    <div class="ws-callout">
+      <h4>The 11 AM unlock</h4>
+      <p>World Showcase pavilions don't open until 11 AM. Don't try to walk back there in the morning — it's all walled or roped off. Use the front three neighborhoods for everything until then, then sweep into Showcase for the rest of the day.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="callout">
+      <div class="callout-label">Lightning Lane Strategy</div>
+      <h3>Try Virtual Queue for Cosmic Rewind. Buy Multi Pass. Skip the Single Pass.</h3>
+      <p>Cosmic Rewind has the longest waits at EPCOT (~101 min average). It uses a Virtual Queue system — free, but you need to be ready at the 7 AM and 1 PM drops with the Disney app. If you score a VQ slot, you save the $20 Single Pass. If not, the Single Pass is the backup.</p>
+      <p>Multi Pass at EPCOT is genuinely useful since Frozen Ever After, Remy's, and Test Track all run 50–90 min standby and Multi Pass covers all three. Rope drop Soarin' to skip its 40-min mid-day buildup.</p>
+      <div class="price-row">
+        <span>Multi Pass<strong>$32–39 / person</strong></span>
+        <span>Cosmic Rewind Single Pass<strong>$15–25 / person</strong></span>
+        <span>Virtual Queue drops<strong>7:00 AM &amp; 1:00 PM</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The <em>plan</em></h2>
+    <p class="section-intro">Counter-clockwise sweep starting at World Nature, looping through World Discovery, then unlocking World Showcase at 11. Walk · wait · ride math shown for each stop.</p>
+
+    <div class="progress-bar">
+      <span>Progress</span>
+      <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+      <span id="progressText">0 / 14</span>
+    </div>
+
+    <!-- ARRIVAL + WORLD NATURE -->
+    <div class="nbh-header" data-nbh="nature">
+      <h3>World Nature</h3>
+      <span class="nbh-meta">Phase 01 · Rope drop Soarin'</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">8:15 AM<strong>Arrive</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">1</div>
+        <div class="stop-content">
+          <div class="stop-title">Park entry — Front entrance</div>
+          <div class="stop-detail">Use the main entrance (south side, near the parking lot). Skip International Gateway unless you're staying at a Skyliner resort. Through security, walk past Spaceship Earth and bear left toward World Nature. At 7 AM sharp, have someone in your group request a Cosmic Rewind Virtual Queue spot in the Disney app.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Parking</span><span class="chip-value">8 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Security</span><span class="chip-value">10 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Hold</span><span class="chip-value">25 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Tap in</span><span class="chip-value">9:00 AM</span></div>
+          </div>
+          <span class="stop-tag priority">7 AM: Request VQ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">9:05 AM<strong>Stop 01</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">2</div>
+        <div class="stop-content">
+          <div class="stop-title">Soarin' Around the World</div>
+          <div class="stop-detail">Biggest rope-drop time savings in the park — 25 min wait at open vs. 60–80 min by noon. New "Soarin' Across America" film debuted summer 2026 if your trip catches the new version.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~25 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">9:35 AM</span></div>
+          </div>
+          <span class="stop-tag priority">Rope drop priority</span>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> World Discovery (across the park)</span>
+      <span>~10 min walk</span>
+    </div>
+
+    <!-- WORLD DISCOVERY -->
+    <div class="nbh-header" data-nbh="discovery">
+      <h3>World Discovery</h3>
+      <span class="nbh-meta">Phase 02 · Thrills cluster</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">9:45 AM<strong>Stop 02</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">3</div>
+        <div class="stop-content">
+          <div class="stop-title">Test Track — Single Rider line</div>
+          <div class="stop-detail">Posted wait builds fast (peaks 100+ min by noon). Use the Single Rider line — it's the most powerful free shortcut at EPCOT. Group rides separately but within the same cycle. The pre-ride design station is fun but the SR line skips it.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">10 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">SR line</span><span class="chip-value">~20 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">10:20 AM</span></div>
+          </div>
+          <span class="stop-tag sr">Single Rider</span>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">10:25 AM<strong>Stop 03</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">4</div>
+        <div class="stop-content">
+          <div class="stop-title">Mission: SPACE (Green or Orange)</div>
+          <div class="stop-detail">Right next to Test Track. Green = gentle orbital view. Orange = spinning centrifuge that has made grown adults sick (literally — barf bags in seatbacks). Pick your team. Waits rarely exceed 20–30 min.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~18 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">10:51 AM</span></div>
+          </div>
+          <span class="stop-tag">44″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">~Variable<strong>Stop 04</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">5</div>
+        <div class="stop-content">
+          <div class="stop-title">Guardians of the Galaxy: Cosmic Rewind</div>
+          <div class="stop-detail">If you got VQ at 7 AM, return time will be morning or early afternoon. If not, use Single Pass return window. Backward-launching dark coaster with rotating cars — best ride at EPCOT, full stop. Standby is brutal (~101 min avg) so don't queue without LL or VQ.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">2 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">LL/VQ</span><span class="chip-value">~15 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride + show</span><span class="chip-value">10 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">+30 min</span></div>
+          </div>
+          <span class="stop-tag vq">Virtual Queue or SP</span>
+          <span class="stop-tag">42″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> World Celebration (back through center)</span>
+      <span>~5 min walk</span>
+    </div>
+
+    <!-- WORLD CELEBRATION -->
+    <div class="nbh-header" data-nbh="celebration">
+      <h3>World Celebration</h3>
+      <span class="nbh-meta">Phase 03 · The icon</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">~11:00 AM<strong>Stop 05</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">6</div>
+        <div class="stop-content">
+          <div class="stop-title">Spaceship Earth</div>
+          <div class="stop-detail">The geodesic sphere. 15 min dark ride through the history of communication. High capacity, ~20 min wait. Slot here as a transition into the World Showcase opening at 11. Air-conditioned 15-min break.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~20 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">15 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">11:40 AM</span></div>
+          </div>
+          <span class="stop-tag">AC break</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> World Showcase NOW OPEN</span>
+      <span>~7 min walk to Norway</span>
+    </div>
+
+    <!-- WORLD SHOWCASE -->
+    <div class="nbh-header" data-nbh="showcase">
+      <h3>World Showcase</h3>
+      <span class="nbh-meta">Phase 04 · The back ring</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">11:47 AM<strong>Stop 06</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">7</div>
+        <div class="stop-content">
+          <div class="stop-title">Frozen Ever After — Norway</div>
+          <div class="stop-detail">Boat ride through Arendelle. Re-opened February 2026 with updated animatronics. Multi Pass priority — standby gets to 50–75 min by mid-afternoon. Walk clockwise from Mexico through Norway.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">7 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">LL queue</span><span class="chip-value">~15 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">12:14 PM</span></div>
+          </div>
+          <span class="stop-tag lp">Multi Pass</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">12:20 PM<strong>Stop 07</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">8</div>
+        <div class="stop-content">
+          <div class="stop-title">Lunch — Regal Eagle or World Showcase booths</div>
+          <div class="stop-detail">Two strategies. Sit-down option: Regal Eagle Smokehouse in American Adventure (BBQ, fast, big portions). Festival option: graze through Flower &amp; Garden Festival booths around World Showcase (~$6–10 small plates each, hit 4–5 different pavilions). The latter is the EPCOT play.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">8 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Order</span><span class="chip-value">10 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Graze</span><span class="chip-value">45 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">1:23 PM</span></div>
+          </div>
+          <span class="stop-tag">Flower &amp; Garden</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">1:30 PM<strong>Stop 08</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">9</div>
+        <div class="stop-content">
+          <div class="stop-title">Remy's Ratatouille Adventure — France</div>
+          <div class="stop-detail">Trackless dark ride that shrinks you to rat-size through Gusteau's kitchen. Multi Pass it. Updated 2026 with new 2D visuals. Also has a Single Rider line if Multi Pass is unavailable.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">10 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">LL queue</span><span class="chip-value">~15 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">2:00 PM</span></div>
+          </div>
+          <span class="stop-tag lp">Multi Pass</span>
+          <span class="stop-tag sr">Single Rider</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">2:05 PM<strong>Stop 09</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">10</div>
+        <div class="stop-content">
+          <div class="stop-title">Gran Fiesta Tour — Mexico</div>
+          <div class="stop-detail">Boat ride inside the Mexico pavilion's indoor pyramid. The Three Caballeros chase each other through animated scenes. Indoor and cool, walk-on most of the day. Stop in La Cava del Tequila next door after.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">12 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~10 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">8 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">2:35 PM</span></div>
+          </div>
+          <span class="stop-tag">AC break</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">2:40 PM<strong>Stop 10</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">11</div>
+        <div class="stop-content">
+          <div class="stop-title">World Showcase wander + The American Adventure</div>
+          <div class="stop-detail">This is the part most people skip. Walk the pavilions counter-clockwise — Japan (Mitsukoshi store), Morocco (markets), American Adventure (theater show with 35 animatronics — genuinely one of the best things at EPCOT). Hit pavilions that look interesting; the cultural detail is exceptional.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Roam</span><span class="chip-value">flex</span></div>
+            <div class="timing-chip"><span class="chip-label">Pavilions</span><span class="chip-value">~75 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Am Adv show</span><span class="chip-value">30 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">~4:30 PM</span></div>
+          </div>
+          <span class="stop-tag">Cultural</span>
+          <span class="stop-tag">AC theater</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">4:30 PM+<strong>Open</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">12</div>
+        <div class="stop-content">
+          <div class="stop-title">Storm break + dinner + Luminous</div>
+          <div class="stop-detail">June afternoon thunderstorm typically rolls in 3–5 PM. Use it to duck into a pavilion (Norway church, Italy gelato shop, Japan torii). Then dinner — Le Cellier in Canada is a steakhouse legend if you booked it 60 days out. Stake out a Luminous fireworks spot 45 min before showtime, anywhere along the lagoon.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Storm buffer</span><span class="chip-value">~60 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Dinner</span><span class="chip-value">90 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Fireworks hold</span><span class="chip-value">45 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Luminous</span><span class="chip-value">~9:00 PM</span></div>
+          </div>
+          <span class="stop-tag">Evening flex</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Every <em>major ride</em>, ranked</h2>
+    <p class="section-intro">By average wait time. Tap any ride for detail.</p>
+
+    <div class="rides-grid">
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">01</div>
+          <div class="ride-name">Guardians of the Galaxy: Cosmic Rewind<span class="land">World Discovery · Launched coaster</span></div>
+          <div class="wait-display"><span class="wait-num">101</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="92"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>42″ min</strong></span>
+            <span>Duration<strong>~3 min ride</strong></span>
+            <span>Lightning Lane<strong>Single Pass + Virtual Queue</strong></span>
+            <span>Standby range<strong>85–115 min</strong></span>
+          </div>
+          <p class="ride-description">Backward-launching dark coaster with cars that rotate 360° to face whichever screen scene is happening. Brand-new tech that no other Disney park has. Rolling Stones, Earth Wind &amp; Fire, Disco Inferno on the soundtrack. Pre-show is a Wakanda-style theater piece.</p>
+          <div class="ride-tip">Set a 7 AM alarm. Have multiple phones ready in the Disney app at 6:59. Tap "Join" the second the clock hits 7:00. If you score, you ride this for free. If not, the Single Pass is the backup at ~$20.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">02</div>
+          <div class="ride-name">Test Track<span class="land">World Discovery · High-speed simulator</span></div>
+          <div class="wait-display"><span class="wait-num">99</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="88"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>40″ min</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass</strong></span>
+            <span>Standby range<strong>80–115 min</strong></span>
+          </div>
+          <p class="ride-description">Design your own concept car, then test it on a high-speed track that ends with an outdoor 65 mph blast. The reveal at the end (when you go from indoor pre-show to outdoor speedway) is one of the best moments at EPCOT.</p>
+          <div class="ride-tip">Single Rider line is the move — drops the 100 min wait to ~20. Group rides separately but on adjacent cycles. The pre-ride car design station gets skipped but it's worth the trade.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">03</div>
+          <div class="ride-name">Frozen Ever After<span class="land">World Showcase · Norway · Boat ride</span></div>
+          <div class="wait-display"><span class="wait-num">62</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="68"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass</strong></span>
+            <span>Standby range<strong>50–75 min</strong></span>
+          </div>
+          <p class="ride-description">Boat ride retelling Frozen's story through Arendelle. Updated animatronics in 2026. Songs from the film. Surprisingly long backward drop section that catches first-timers off guard.</p>
+          <div class="ride-tip">If you have kids in the group, this is your top Multi Pass priority. Riders without Frozen affinity can sit this out at the Norway pavilion gift shop.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">04</div>
+          <div class="ride-name">Remy's Ratatouille Adventure<span class="land">World Showcase · France · Trackless dark ride</span></div>
+          <div class="wait-display"><span class="wait-num">55</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="58"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~4 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass + Single Rider</strong></span>
+            <span>Standby range<strong>40–70 min</strong></span>
+          </div>
+          <p class="ride-description">Trackless vehicles shrink you to rat-size and dart through Gusteau's kitchen. Trackless system means the cars dart and dodge unpredictably — each ride feels slightly different. Updated 2026 with new 2D visuals.</p>
+          <div class="ride-tip">Both Single Rider AND Multi Pass available — rare combo. If you Multi Pass Frozen, single-rider this one.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">05</div>
+          <div class="ride-name">Soarin' Around the World<span class="land">World Nature · Hang-glider simulator</span></div>
+          <div class="wait-display"><span class="wait-num">48</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="52"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>40″ min</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass (Tier 2)</strong></span>
+            <span>Standby range<strong>25–80 min</strong></span>
+          </div>
+          <p class="ride-description">You're lifted onto a hang-glider seat that swings out in front of a giant IMAX screen. Soar over global landmarks (or America, with the new 2026 film) with wind, scent, and tilt effects. Disney's most universally beloved attraction.</p>
+          <div class="ride-tip">The 40-min spread between rope drop (25 min) and noon (80+ min) is the biggest at EPCOT. Rope drop wins.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">06</div>
+          <div class="ride-name">Spaceship Earth<span class="land">World Celebration · Dark ride</span></div>
+          <div class="wait-display"><span class="wait-num">22</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="24"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~15 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass (Tier 2)</strong></span>
+            <span>Standby range<strong>15–30 min</strong></span>
+          </div>
+          <p class="ride-description">Inside the iconic geodesic sphere. 15-min slow climb through dioramas tracing the history of human communication. Narrated by Judi Dench. Genuinely educational, surprisingly affecting, very AC.</p>
+          <div class="ride-tip">Use this as a midday cooldown. Don't waste Multi Pass on it.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">07</div>
+          <div class="ride-name">Mission: SPACE<span class="land">World Discovery · Centrifuge simulator</span></div>
+          <div class="wait-display"><span class="wait-num">18</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="20"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>44″ min</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass</strong></span>
+            <span>Standby range<strong>15–25 min</strong></span>
+          </div>
+          <p class="ride-description">Two versions. Green = gentle orbital sim. Orange = real centrifuge that pulls 2.5 G's. Orange has caused medical incidents. Each pod seats 4 in close quarters. Choose wisely.</p>
+          <div class="ride-tip">Ride Orange BEFORE eating, not after. Multiple people in your party have to want to try it — solo Orange in a cramped pod is rough.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">08</div>
+          <div class="ride-name">Living with the Land<span class="land">World Nature · Boat tour</span></div>
+          <div class="wait-display"><span class="wait-num">14</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="15"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~14 min</strong></span>
+            <span>Lightning Lane<strong>None</strong></span>
+            <span>Standby range<strong>10–20 min</strong></span>
+          </div>
+          <p class="ride-description">Slow boat through actual working greenhouses where Disney grows food served at park restaurants. Hydroponics, aquaponics, 9-pound lemons. Underrated, calming, educational.</p>
+          <div class="ride-tip">Hidden gem. Great cooldown after Soarin' — they're in the same building.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">09</div>
+          <div class="ride-name">Gran Fiesta Tour<span class="land">World Showcase · Mexico · Boat ride</span></div>
+          <div class="wait-display"><span class="wait-num">10</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="11"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~8 min</strong></span>
+            <span>Lightning Lane<strong>None</strong></span>
+            <span>Standby range<strong>5–15 min</strong></span>
+          </div>
+          <p class="ride-description">Boat ride inside the indoor Mexican pyramid following Donald Duck and the Three Caballeros. Mostly walk-on. Dim, cool, surprisingly charming.</p>
+          <div class="ride-tip">Pair with La Cava del Tequila (the adjacent bar) for the most pleasant 30 minutes at EPCOT.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>The food <em>play</em></h2>
+    <p class="section-intro">EPCOT's food is the strongest at Disney World, especially during festivals. Plan to graze, not commit to one big meal.</p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">Festival booths · World Showcase</div>
+        <h4>Flower &amp; Garden Festival graze</h4>
+        <p>Festival typically runs March–early July. Small plates ($6–10) at booths between pavilions — pierogi at Poland, fish &amp; chips at UK, lobster roll at Hops &amp; Barley. Hit 5+ for a full lunch under $40/person.</p>
+        <div class="card-time">June play · Verify dates in app</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Quick service · American Adventure</div>
+        <h4>Regal Eagle Smokehouse</h4>
+        <p>BBQ done well — brisket, pulled pork, ribs. Big portions, fast line, indoor seating. Best non-festival quick service at EPCOT.</p>
+        <div class="card-time">Indoor lunch fallback</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Table service · Canada</div>
+        <h4>Le Cellier Steakhouse</h4>
+        <p>Underground steakhouse vibe, cheese soup is legendary, filet mignon is the move. Hard reservation to score — book 60 days out at 6 AM ET. Dinner-worthy.</p>
+        <div class="card-time">Advance reservation essential</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Bar / snack · Mexico</div>
+        <h4>La Cava del Tequila</h4>
+        <p>200+ tequilas, real margaritas (not slushie). Sit at the bar in the AC, chat with the bartenders. Adult escape spot.</p>
+        <div class="card-time">Anytime AC break</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Shows &amp; <em>nighttime</em></h2>
+    <p class="section-intro">Two shows are worth scheduling around.</p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">~12 minutes · Lagoon</div>
+        <h4>Luminous: The Symphony of Us</h4>
+        <p>Nighttime fireworks + water + light show on World Showcase Lagoon. Replaced Harmonious in 2023. Stake out a viewing spot 45 min before showtime, anywhere along the lagoon. Best spots: between Italy and American Adventure, or near UK.</p>
+        <div class="card-time">Usually 9:00 or 9:30 PM</div>
+      </div>
+      <div class="card">
+        <div class="card-label">~30 minutes · American Adventure</div>
+        <h4>The American Adventure</h4>
+        <p>35 animatronics, rotating stage, narrated American history. Disney's most ambitious indoor theater show. Air-conditioned. Most people skip it; they shouldn't.</p>
+        <div class="card-time">Multiple daily showings</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Performances · Various pavilions</div>
+        <h4>World Showcase live acts</h4>
+        <p>Each pavilion has rotating cultural performances — Japanese taiko drums, Moroccan dancers, British comedy, etc. Check Times Guide. Usually 4–6 acts per day per pavilion.</p>
+        <div class="card-time">Throughout afternoon</div>
+      </div>
+      <div class="card">
+        <div class="card-label">~12 minutes · Imagination!</div>
+        <h4>Journey Into Imagination with Figment</h4>
+        <p>Dark ride starring Figment, a small purple dragon with a cult following. Mostly nostalgia at this point. Walk-on. Skip unless you have a 90s Disney fan in the group.</p>
+        <div class="card-time">Continuous · Walk-on</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>June-specific <em>notes</em></h2>
+    <p class="section-intro">Florida summer changes the strategy. Plan around heat and storms.</p>
+    <div class="notes">
+      <div class="note heat">
+        <div class="note-title">Heat is real (avg high 91°F)</div>
+        <p>Refillable water bottle non-negotiable. Refill stations throughout the park. Cooling neck towel + portable fan are worth packing. World Showcase walking between pavilions has the least shade.</p>
+      </div>
+      <div class="note warn">
+        <div class="note-title">Afternoon thunderstorms 3–5 PM</div>
+        <p>Daily June occurrence in Orlando — fast, hard, brief. Build the storm break into your day. Use the time for an AC pavilion stop (Norway, Japan, Mexico) or AC ride (Spaceship Earth, Frozen).</p>
+      </div>
+      <div class="note info">
+        <div class="note-title">Virtual Queue strategy is critical</div>
+        <p>Set a 7 AM alarm. Multiple devices in the app at 6:59. Tap "Join" the moment the clock hits 7:00. If you fail, retry at 1 PM drop. Both fail = pay for Single Pass or skip Cosmic Rewind. Don't queue standby.</p>
+      </div>
+      <div class="note">
+        <div class="note-title">Single Rider lines = free Lightning Lane</div>
+        <p>Test Track and Remy's both have Single Rider. The lines run 15–25 min vs. 60–100+ for standby. If your group doesn't mind separate rides, this is the single best free trick at EPCOT.</p>
+      </div>
+      <div class="note warn">
+        <div class="note-title">Skyliner vs. main entrance</div>
+        <p>International Gateway (back entrance between France &amp; UK) is the Skyliner stop — useful if staying at a Skyliner resort. Otherwise enter main south entrance to hit World Discovery rides first.</p>
+      </div>
+      <div class="note info">
+        <div class="note-title">Flower &amp; Garden Festival</div>
+        <p>Verify dates in app — typically runs late February through early July. June trips usually catch the tail end. Adds dozens of food booths, topiaries, character gardens around World Showcase. Free with park admission.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    03 / 04 · Low Gear Studio Trip Plan · EPCOT
+  </footer>
+
+</div>
+
+<script>
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.wait-bar-fill').forEach(el => {
+      const fill = parseInt(el.dataset.fill, 10);
+      el.style.right = (100 - fill) + '%';
+    });
+  });
+
+  const stops = document.querySelectorAll('[data-stop]');
+  const progressFill = document.getElementById('progress');
+  const progressText = document.getElementById('progressText');
+  const totalStops = stops.length;
+
+  function updateProgress() {
+    const done = document.querySelectorAll('[data-stop].done').length;
+    const pct = (done / totalStops) * 100;
+    progressFill.style.right = (100 - pct) + '%';
+    progressText.textContent = done + ' / ' + totalStops;
+  }
+
+  stops.forEach(stop => {
+    stop.addEventListener('click', () => {
+      stop.classList.toggle('done');
+      updateProgress();
+    });
+  });
+
+  document.querySelectorAll('[data-ride]').forEach(ride => {
+    ride.addEventListener('click', () => {
+      ride.classList.toggle('expanded');
+    });
+  });
+</script>
+
+</body>
+</html>

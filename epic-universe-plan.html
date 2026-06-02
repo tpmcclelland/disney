@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epic Universe — Saturday Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cosmos: #15102a;
+    --cosmos-deep: #0c0820;
+    --cosmos-soft: #221a3c;
+    --pale: #f0eadd;
+    --pale-dim: rgba(240, 234, 221, 0.72);
+    --pale-mute: rgba(240, 234, 221, 0.42);
+    --pale-edge: rgba(240, 234, 221, 0.1);
+    --cyan: #5ee0e8;
+    --gold: #f4c441;
+    --violet: #b870e0;
+    --rose: #e673a0;
+    --emerald: #6ed99c;
+
+    /* World accents */
+    --world-celestial: #f4c441;
+    --world-nintendo: #ee5050;
+    --world-dragon: #6ed99c;
+    --world-dark: #b870e0;
+    --world-potter: #5ee0e8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cosmos);
+    background-image:
+      radial-gradient(ellipse at 18% 8%, rgba(94, 224, 232, 0.1) 0px, transparent 50%),
+      radial-gradient(ellipse at 82% 92%, rgba(184, 112, 224, 0.08) 0px, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(244, 196, 65, 0.04) 0px, transparent 65%);
+    color: var(--pale);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Cosmic starfield */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 12% 18%, rgba(240, 234, 221, 0.55) 50%, transparent 100%),
+      radial-gradient(1px 1px at 71% 22%, rgba(94, 224, 232, 0.4) 50%, transparent 100%),
+      radial-gradient(1px 1px at 88% 52%, rgba(240, 234, 221, 0.5) 50%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 32% 78%, rgba(244, 196, 65, 0.5) 50%, transparent 100%),
+      radial-gradient(1px 1px at 57% 39%, rgba(184, 112, 224, 0.45) 50%, transparent 100%),
+      radial-gradient(1px 1px at 11% 67%, rgba(240, 234, 221, 0.3) 50%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 78% 88%, rgba(94, 224, 232, 0.35) 50%, transparent 100%),
+      radial-gradient(1px 1px at 45% 8%, rgba(240, 234, 221, 0.5) 50%, transparent 100%);
+    background-size: 700px 700px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 100px 0 70px;
+    border-bottom: 1px solid var(--pale-edge);
+    position: relative;
+  }
+
+  /* Cosmic orbit decoration */
+  header::after {
+    content: '';
+    position: absolute;
+    top: 100px;
+    right: -100px;
+    width: 280px;
+    height: 280px;
+    border: 1px solid var(--cyan);
+    border-radius: 50%;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    right: -180px;
+    width: 380px;
+    height: 380px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+  @media (max-width: 800px) { header::before, header::after { display: none; } }
+
+  .eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--cyan);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  h1 {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px, 11vw, 132px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: var(--pale);
+    margin-bottom: 4px;
+  }
+  h1 em {
+    font-style: normal;
+    font-weight: 400;
+    color: var(--gold);
+    background: linear-gradient(135deg, var(--gold), var(--rose));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--pale-dim);
+    margin-top: 24px;
+    max-width: 680px;
+    line-height: 1.4;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--pale-edge);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--pale-mute);
+  }
+  .meta-row span strong {
+    display: block;
+    color: var(--pale);
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Familjen Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 72px 0;
+    border-bottom: 1px dashed var(--pale-edge);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 12px;
+    color: var(--pale);
+  }
+  h2 em {
+    font-style: normal;
+    color: var(--cyan);
+    font-weight: 400;
+  }
+
+  .section-intro {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 19px;
+    color: var(--pale-dim);
+    margin-bottom: 48px;
+    max-width: 720px;
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* === WHY THIS PARK === */
+  .verdict {
+    background: linear-gradient(135deg, var(--cosmos-soft) 0%, var(--cosmos-deep) 100%);
+    border: 1px solid var(--pale-edge);
+    border-left: 4px solid var(--cyan);
+    padding: 44px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(94, 224, 232, 0.18) 0%, transparent 70%);
+  }
+  .verdict-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--cyan);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .verdict h3 {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    color: var(--pale);
+    letter-spacing: -0.022em;
+  }
+  .verdict h3 em { font-style: italic; color: var(--cyan); }
+  .verdict p {
+    color: var(--pale-dim);
+    max-width: 740px;
+    margin-bottom: 12px;
+  }
+  .verdict-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--pale-edge);
+  }
+  .verdict-option .opt-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--pale-mute);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .verdict-option .opt-park {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--pale);
+    margin-bottom: 4px;
+    letter-spacing: -0.015em;
+  }
+  .verdict-option.recommended .opt-park { color: var(--cyan); }
+  .verdict-option .opt-desc {
+    font-size: 13px;
+    color: var(--pale-mute);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 700px) {
+    .verdict-options { grid-template-columns: 1fr; }
+  }
+
+  /* === FIVE WORLDS MAP === */
+  .worlds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .world {
+    padding: 24px 24px;
+    background: rgba(240, 234, 221, 0.03);
+    border: 1px solid var(--pale-edge);
+    border-top: 4px solid var(--cyan);
+    transition: all 0.25s ease;
+  }
+  .world:hover {
+    transform: translateY(-3px);
+    background: rgba(240, 234, 221, 0.06);
+  }
+  .world[data-world="celestial"] { border-top-color: var(--world-celestial); }
+  .world[data-world="nintendo"] { border-top-color: var(--world-nintendo); }
+  .world[data-world="dragon"] { border-top-color: var(--world-dragon); }
+  .world[data-world="dark"] { border-top-color: var(--world-dark); }
+  .world[data-world="potter"] { border-top-color: var(--world-potter); }
+
+  .world .world-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    color: var(--pale-mute);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .world .world-name {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--pale);
+    margin-bottom: 8px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .world .world-rides {
+    font-size: 13px;
+    color: var(--pale-mute);
+    line-height: 1.4;
+  }
+
+  /* === EXPRESS PASS CALLOUT === */
+  .pass-callout {
+    background: var(--cosmos-deep);
+    border: 1px solid var(--gold);
+    padding: 40px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pass-callout::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(244, 196, 65, 0.15) 0%, transparent 70%);
+  }
+  .pass-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .pass-callout h3 {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    color: var(--pale);
+    letter-spacing: -0.022em;
+  }
+  .pass-callout h3 em { font-style: italic; color: var(--gold); }
+  .pass-callout p { color: var(--pale-dim); max-width: 740px; margin-bottom: 12px; }
+  .pass-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--pale-edge);
+  }
+  .pass-tier {
+    padding: 18px;
+    background: rgba(244, 196, 65, 0.05);
+    border: 1px solid rgba(244, 196, 65, 0.2);
+  }
+  .pass-tier .pass-name {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--pale);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .pass-tier .pass-price {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .pass-tier .pass-family {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--pale-mute);
+    font-weight: 500;
+  }
+  .pass-tier .pass-desc {
+    font-size: 12px;
+    color: var(--pale-mute);
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 700px) {
+    .pass-tiers { grid-template-columns: 1fr; }
+    .pass-callout { padding: 28px 24px; }
+  }
+
+  /* === TIMELINE === */
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pale-mute);
+    font-weight: 500;
+  }
+  .progress-track {
+    flex: 1;
+    height: 2px;
+    background: var(--pale-edge);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-fill {
+    position: absolute;
+    inset: 0 100% 0 0;
+    background: var(--cyan);
+    transition: right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .world-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin: 56px 0 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--pale);
+    flex-wrap: wrap;
+  }
+  .world-header:first-of-type { margin-top: 0; }
+  .world-header h3 {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    color: var(--pale);
+    letter-spacing: -0.025em;
+  }
+  .world-header[data-world="celestial"] h3 { color: var(--world-celestial); }
+  .world-header[data-world="nintendo"] h3 { color: var(--world-nintendo); }
+  .world-header[data-world="dragon"] h3 { color: var(--world-dragon); }
+  .world-header[data-world="dark"] h3 { color: var(--world-dark); }
+  .world-header[data-world="potter"] h3 { color: var(--world-potter); }
+
+  .world-header .world-meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .zone-shift {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 20px 0;
+    padding: 10px 0;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--pale-mute);
+    font-weight: 500;
+  }
+  .zone-shift::before, .zone-shift::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--pale-edge);
+  }
+  .zone-shift .arrow { color: var(--cyan); font-size: 14px; }
+
+  .stop {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 28px;
+    padding: 24px 0;
+    border-top: 1px solid var(--pale-edge);
+    cursor: pointer;
+    transition: padding 0.3s ease;
+  }
+  .stop:hover { padding-left: 8px; }
+  .stop:first-of-type { border-top: none; }
+
+  .stop.done .stop-title,
+  .stop.done .stop-detail {
+    color: var(--pale-mute);
+    text-decoration: line-through;
+    text-decoration-color: var(--cyan);
+    text-decoration-thickness: 1.5px;
+  }
+  .stop.done .stop-number {
+    background: var(--cyan);
+    color: var(--cosmos);
+    border-color: var(--cyan);
+  }
+
+  .stop-time {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    padding-top: 4px;
+    font-weight: 500;
+  }
+  .stop-time strong {
+    display: block;
+    color: var(--pale);
+    font-size: 17px;
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.015em;
+  }
+
+  .stop-body { display: flex; gap: 20px; align-items: flex-start; }
+
+  .stop-number {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--pale);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--pale);
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+    background: var(--cosmos);
+  }
+
+  .stop-content { flex: 1; }
+  .stop-title {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--pale);
+    letter-spacing: -0.022em;
+  }
+  .stop-detail {
+    color: var(--pale-dim);
+    font-size: 15px;
+  }
+
+  .timing-breakdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 16px;
+    margin-bottom: 14px;
+    max-width: 480px;
+    border: 1px solid var(--pale-edge);
+    background: rgba(240, 234, 221, 0.02);
+  }
+  .timing-chip {
+    padding: 10px 12px;
+    border-right: 1px solid var(--pale-edge);
+    text-align: center;
+  }
+  .timing-chip:last-child { border-right: none; }
+  .timing-chip .chip-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--pale-mute);
+    margin-bottom: 4px;
+    display: block;
+    font-weight: 500;
+  }
+  .timing-chip .chip-value {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--pale);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .timing-chip.walk .chip-value { color: var(--emerald); }
+  .timing-chip.wait .chip-value { color: var(--rose); }
+  .timing-chip.total {
+    background: var(--cyan);
+  }
+  .timing-chip.total .chip-label { color: rgba(21, 16, 42, 0.6); }
+  .timing-chip.total .chip-value { color: var(--cosmos); }
+  .stop.done .timing-breakdown { opacity: 0.4; }
+
+  .stop-tag {
+    display: inline-block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    margin-top: 4px;
+    margin-right: 6px;
+    background: rgba(240, 234, 221, 0.06);
+    color: var(--pale-dim);
+    font-weight: 500;
+  }
+  .stop-tag.priority { background: rgba(94, 224, 232, 0.18); color: var(--cyan); }
+  .stop-tag.sr { background: rgba(110, 217, 156, 0.18); color: var(--emerald); }
+  .stop-tag.express { background: rgba(244, 196, 65, 0.18); color: var(--gold); }
+  .stop-tag.headliner { background: rgba(230, 115, 160, 0.18); color: var(--rose); }
+
+  /* === RIDES === */
+  .ride {
+    border-top: 1px solid var(--pale-edge);
+    padding: 26px 0;
+    cursor: pointer;
+    transition: padding 0.25s ease;
+  }
+  .ride:hover { padding-left: 8px; }
+  .ride:last-child { border-bottom: 1px solid var(--pale-edge); }
+
+  .ride-header {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .ride-rank {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .ride-name {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--pale);
+    letter-spacing: -0.022em;
+  }
+  .ride-name .world-loc {
+    display: block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--pale-mute);
+    margin-top: 6px;
+  }
+  .wait-display { text-align: right; font-family: 'Geist Mono', monospace; }
+  .wait-display .wait-num {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--pale);
+    line-height: 1;
+    display: block;
+    letter-spacing: -0.025em;
+  }
+  .wait-display .wait-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--pale-mute);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .wait-bar {
+    height: 3px;
+    background: var(--pale-edge);
+    margin-top: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wait-bar-fill {
+    position: absolute;
+    inset: 0 100% 0 0;
+    background: linear-gradient(90deg, var(--emerald), var(--gold) 50%, var(--rose));
+    transition: right 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;
+  }
+
+  .ride-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+  }
+  .ride.expanded .ride-details {
+    max-height: 800px;
+    margin-top: 24px;
+  }
+
+  .ride-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 20px 0;
+    border-top: 1px solid var(--pale-edge);
+    margin-bottom: 18px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--pale-mute);
+    font-weight: 500;
+  }
+  .ride-meta strong {
+    display: block;
+    color: var(--pale);
+    font-size: 14px;
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+
+  .ride-description {
+    color: var(--pale-dim);
+    margin-bottom: 18px;
+    max-width: 720px;
+  }
+  .ride-tip {
+    background: rgba(94, 224, 232, 0.08);
+    border-left: 3px solid var(--cyan);
+    padding: 16px 20px;
+    color: var(--pale);
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    max-width: 720px;
+    line-height: 1.4;
+  }
+  .ride-tip::before {
+    content: 'TIP — ';
+    font-style: normal;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--cyan);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  /* Notes */
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .note {
+    padding: 22px;
+    background: rgba(94, 224, 232, 0.05);
+    border-left: 2px solid var(--cyan);
+  }
+  .note.warn { background: rgba(244, 196, 65, 0.08); border-left-color: var(--gold); }
+  .note.tip { background: rgba(184, 112, 224, 0.06); border-left-color: var(--violet); }
+  .note-title {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--pale);
+    letter-spacing: -0.015em;
+  }
+  .note p { font-size: 14px; color: var(--pale-dim); }
+
+  footer {
+    padding: 70px 0 90px;
+    text-align: center;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--pale-mute);
+    font-weight: 500;
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--cyan);
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .stop { grid-template-columns: 70px 1fr; gap: 14px; }
+    .ride-header { grid-template-columns: 32px 1fr; }
+    .wait-display { grid-column: 2; text-align: left; margin-top: 8px; }
+    .verdict { padding: 28px 24px; }
+    .timing-chip .chip-value { font-size: 14px; }
+    .timing-chip { padding: 8px 6px; }
+    .ride-meta { gap: 18px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="eyebrow">Saturday June 13 · Bonus park 01</div>
+    <h1>Epic <em>Universe</em></h1>
+    <p class="subtitle">Universal's newest park, opened May 2025. Five immersive worlds, six headline rides, and a touring strategy built around the reality that Lightning Lane doesn't exist here — but Single Rider lines and rope drop do.</p>
+    <div class="meta-row">
+      <span>Park<strong>Universal Epic Universe</strong></span>
+      <span>Hours<strong>9am – 9pm</strong></span>
+      <span>Lightning Lane equivalent<strong>Express Pass (paid)</strong></span>
+      <span>Single-day ticket<strong>$139–199 / person</strong></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="verdict">
+      <div class="verdict-label">Which Universal park to pick</div>
+      <h3>For one day, Epic <em>Universe</em>.</h3>
+      <p>Universal Orlando now has three parks. The right answer for a single-day Universal trip depends on what you want, but Epic Universe wins for first-time visitors because it's the most differentiated theme park experience anywhere in Orlando — five fully immersive worlds you can't replicate at Disney, all opened in the past 12 months.</p>
+      <p>Single-day tickets to Epic Universe run $139–199 per person depending on date. For a family of 5, expect ~$700–1,000 for park admission alone (before Express Pass).</p>
+
+      <div class="verdict-options">
+        <div class="verdict-option recommended">
+          <div class="opt-tag">Recommended</div>
+          <div class="opt-park">Epic Universe</div>
+          <div class="opt-desc">Newest, most differentiated. Five immersive worlds, brand-new rides, Super Nintendo World, Wizarding Ministry of Magic, How to Train Your Dragon's Berk.</div>
+        </div>
+        <div class="verdict-option">
+          <div class="opt-tag">If coaster-focused</div>
+          <div class="opt-park">Islands of Adventure</div>
+          <div class="opt-desc">Best coaster lineup at Universal — Velocicoaster, Hulk, Hagrid's. Classic park with Spider-Man and Hogsmeade Harry Potter. The veteran's pick.</div>
+        </div>
+        <div class="verdict-option">
+          <div class="opt-tag">If huge HP fan</div>
+          <div class="opt-park">Universal Studios FL</div>
+          <div class="opt-desc">Has Diagon Alley + Gringotts ride — the best Harry Potter land. Movie-themed rides. Older but still strong.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Five <em>worlds</em></h2>
+    <p class="section-intro">Epic Universe's layout is unique: a central hub (Celestial Park) with four "portals" branching off to themed worlds. You can't walk between worlds directly — you always return to Celestial Park first. Plan routes carefully.</p>
+    <div class="worlds">
+
+      <div class="world" data-world="celestial">
+        <div class="world-tag">Hub · Entrance</div>
+        <div class="world-name">Celestial Park</div>
+        <div class="world-rides">Stardust Racers · Constellation Carousel · Dining hub</div>
+      </div>
+
+      <div class="world" data-world="nintendo">
+        <div class="world-tag">Right portal · Family</div>
+        <div class="world-name">Super Nintendo World</div>
+        <div class="world-rides">Mario Kart · Yoshi's Adventure · Mine Cart Madness</div>
+      </div>
+
+      <div class="world" data-world="potter">
+        <div class="world-tag">Back right · Headliner</div>
+        <div class="world-name">Ministry of Magic</div>
+        <div class="world-rides">Battle at the Ministry · 1920s Paris streets</div>
+      </div>
+
+      <div class="world" data-world="dragon">
+        <div class="world-tag">Back left · Family-thrill</div>
+        <div class="world-name">Isle of Berk</div>
+        <div class="world-rides">Hiccup's Wing Gliders · Fyre Drill · Dragon Racer's Rally</div>
+      </div>
+
+      <div class="world" data-world="dark">
+        <div class="world-tag">Left portal · Edgier</div>
+        <div class="world-name">Dark Universe</div>
+        <div class="world-rides">Monsters Unchained · Curse of the Werewolf</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="pass-callout">
+      <div class="pass-label">Express Pass strategy</div>
+      <h3>Skip Express Pass. Use rope drop + <em>Single Rider</em> lines.</h3>
+      <p>Universal's paid line-skipping tier (Express Pass) is way more expensive than Disney's. At Epic Universe, basic Express runs $89–279 per person per day; for your family of 5, that's $445–1,395 on top of the $700–1,000 in tickets. Hard to justify for one day.</p>
+      <p>The free workaround: Universal's Single Rider lines on the major rides typically run 15–30 min vs. 60–120+ min standby. Combine with rope drop (arrive 45 min before park open) and you can do everything in one day without paying for Express. Worst case, you skip 1–2 rides.</p>
+
+      <div class="pass-tiers">
+        <div class="pass-tier">
+          <div class="pass-name">Universal Express</div>
+          <div class="pass-price">$89–279</div>
+          <div class="pass-family">$445–1395 / family of 5</div>
+          <div class="pass-desc">One use per attraction · Set return windows</div>
+        </div>
+        <div class="pass-tier">
+          <div class="pass-name">Universal Express Unlimited</div>
+          <div class="pass-price">$129–349</div>
+          <div class="pass-family">$645–1745 / family of 5</div>
+          <div class="pass-desc">Unlimited use · No time restrictions</div>
+        </div>
+        <div class="pass-tier">
+          <div class="pass-name">Single Rider lines</div>
+          <div class="pass-price">FREE</div>
+          <div class="pass-family">$0 / family of 5</div>
+          <div class="pass-desc">Available on most major rides · Riders split</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The <em>plan</em></h2>
+    <p class="section-intro">Rope drop Mario Kart, sweep Super Nintendo World, push to Ministry of Magic before the crowds, then loop counter-clockwise through the remaining worlds. Walking back through Celestial Park costs you 5–8 min each transition; don't backtrack.</p>
+
+    <div class="progress-bar">
+      <span>Progress</span>
+      <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+      <span id="progressText">0 / 12</span>
+    </div>
+
+    <!-- CELESTIAL PARK ENTRY -->
+    <div class="world-header" data-world="celestial">
+      <h3>Celestial Park</h3>
+      <span class="world-meta">Phase 01 · Entry &amp; rope drop</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">8:15 AM<strong>Arrive</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">1</div>
+        <div class="stop-content">
+          <div class="stop-title">Park entry &amp; portal position</div>
+          <div class="stop-detail">Park is 15 minutes south of Universal's other parks at 1001 Epic Blvd. Free parking, easy access from I-4. Through security, walk to Celestial Park hub. Position yourself near the Super Nintendo World portal entrance for rope drop — Mario Kart is the most-demanded ride at the park.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Parking</span><span class="chip-value">12 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Security</span><span class="chip-value">8 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Hold</span><span class="chip-value">25 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Rope drops</span><span class="chip-value">9:00 AM</span></div>
+          </div>
+          <span class="stop-tag">Free parking</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> Super Nintendo World portal</span>
+      <span>~4 min walk</span>
+    </div>
+
+    <!-- SUPER NINTENDO WORLD -->
+    <div class="world-header" data-world="nintendo">
+      <h3>Super Nintendo World</h3>
+      <span class="world-meta">Phase 02 · The headliner trio</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">9:04 AM<strong>Stop 01</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">2</div>
+        <div class="stop-content">
+          <div class="stop-title">Mario Kart: Bowser's Challenge</div>
+          <div class="stop-detail">The park's most-demanded ride. AR-overlay dark ride where you collect coins and throw shells while racing through Mario Kart tracks. Rope drop puts you on within 25 min; midday standby exceeds 120.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~25 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">9:37 AM</span></div>
+          </div>
+          <span class="stop-tag priority">Rope drop priority</span>
+          <span class="stop-tag sr">Single Rider available</span>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">9:42 AM<strong>Stop 02</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">3</div>
+        <div class="stop-content">
+          <div class="stop-title">Mine Cart Madness</div>
+          <div class="stop-detail">Donkey Kong-themed coaster with a "disappearing track" gimmick — cars jump gaps in the rails. Low capacity means waits build fast. Get here second.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">4 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~30 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">10:19 AM</span></div>
+          </div>
+          <span class="stop-tag headliner">Low capacity</span>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">10:25 AM<strong>Stop 03</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">4</div>
+        <div class="stop-content">
+          <div class="stop-title">Yoshi's Adventure</div>
+          <div class="stop-detail">Gentle omnimover ride on Yoshi's back through Mushroom Kingdom scenery. Best for younger kids; adults can skip if waits are over 20. Beautiful elevated views of the land.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~20 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">4 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">10:52 AM</span></div>
+          </div>
+          <span class="stop-tag">No height req</span>
+          <span class="stop-tag">Optional</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> Back to Celestial Park, then Ministry of Magic portal</span>
+      <span>~10 min walk</span>
+    </div>
+
+    <!-- MINISTRY OF MAGIC -->
+    <div class="world-header" data-world="potter">
+      <h3>Wizarding World — Ministry of Magic</h3>
+      <span class="world-meta">Phase 03 · The best ride</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">11:02 AM<strong>Stop 04</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">5</div>
+        <div class="stop-content">
+          <div class="stop-title">Harry Potter and the Battle at the Ministry</div>
+          <div class="stop-detail">Widely considered the best ride at Epic Universe — multi-system dark ride combining omnidirectional lifts, cutting-edge screens, and animatronics. You're traveling via Floo Network to witness Umbridge's trial. The land itself is themed to 1920s Paris streets leading to a British Ministry.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">10 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~40 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">8 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">12:00 PM</span></div>
+          </div>
+          <span class="stop-tag headliner">Best ride at park</span>
+          <span class="stop-tag express">Express Pass available</span>
+          <span class="stop-tag">42″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> Lunch at Oak &amp; Star Tavern (Celestial Park)</span>
+      <span>~7 min walk</span>
+    </div>
+
+    <!-- LUNCH -->
+    <div class="world-header" data-world="celestial">
+      <h3>Lunch — Celestial Park</h3>
+      <span class="world-meta">Phase 04 · Midday reset</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">12:07 PM<strong>Stop 05</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">6</div>
+        <div class="stop-content">
+          <div class="stop-title">Lunch — Oak &amp; Star Tavern</div>
+          <div class="stop-detail">Rustic BBQ-and-bourbon spot in the Celestial Park hub. Central location for easy access to all four portals after lunch. Plate-style mains, generous portions. Mobile order in the Universal app to skip the order line.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">7 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Order</span><span class="chip-value">10 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Eat</span><span class="chip-value">45 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">1:09 PM</span></div>
+          </div>
+          <span class="stop-tag">Mobile order</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> How to Train Your Dragon portal</span>
+      <span>~6 min walk</span>
+    </div>
+
+    <!-- HOW TO TRAIN YOUR DRAGON -->
+    <div class="world-header" data-world="dragon">
+      <h3>Isle of Berk</h3>
+      <span class="world-meta">Phase 05 · Family thrill</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">1:15 PM<strong>Stop 06</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">7</div>
+        <div class="stop-content">
+          <div class="stop-title">Hiccup's Wing Gliders</div>
+          <div class="stop-detail">Family coaster soaring through Berk on the back of a dragon. Smoother than the name suggests — feels like flight. The land is recreated from the films down to the boats and dragons.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">6 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~35 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">1:59 PM</span></div>
+          </div>
+          <span class="stop-tag sr">Single Rider available</span>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">2:05 PM<strong>Stop 07</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">8</div>
+        <div class="stop-content">
+          <div class="stop-title">Fyre Drill</div>
+          <div class="stop-detail">Interactive water ride where you battle dragons using water cannons. Will you get wet? Yes. Skip if you don't want to be soaked, or save for after Dark Universe if it's hot. Bring a poncho or accept fate.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~25 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">2:38 PM</span></div>
+          </div>
+          <span class="stop-tag">You WILL get wet</span>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> Dark Universe portal (back through Celestial)</span>
+      <span>~12 min walk</span>
+    </div>
+
+    <!-- DARK UNIVERSE -->
+    <div class="world-header" data-world="dark">
+      <h3>Dark Universe</h3>
+      <span class="world-meta">Phase 06 · Monsters</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">2:50 PM<strong>Stop 08</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">9</div>
+        <div class="stop-content">
+          <div class="stop-title">Monsters Unchained: The Frankenstein Experiment</div>
+          <div class="stop-detail">Combined dark ride and coaster sequence themed to classic Universal monsters — Dracula, Wolfman, Frankenstein. The land itself is a brooding Darkmoor village. More atmospheric than scary; PG-13 in tone.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">12 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~40 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">3:47 PM</span></div>
+          </div>
+          <span class="stop-tag express">Express Pass available</span>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">3:52 PM<strong>Stop 09</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">10</div>
+        <div class="stop-content">
+          <div class="stop-title">Curse of the Werewolf</div>
+          <div class="stop-detail">Spinning family coaster (think Mad Tea Party crossed with a coaster track). Less intense than Monsters Unchained. Lower wait, walk-on most of the day.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~15 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">4:13 PM</span></div>
+          </div>
+          <span class="stop-tag">40″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-shift">
+      <span>Zone shift <span class="arrow">→</span> Celestial Park (final stops)</span>
+      <span>~5 min walk</span>
+    </div>
+
+    <!-- CELESTIAL FINALE -->
+    <div class="world-header" data-world="celestial">
+      <h3>Celestial Park</h3>
+      <span class="world-meta">Phase 07 · Hub finale</span>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">4:18 PM<strong>Stop 10</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">11</div>
+        <div class="stop-content">
+          <div class="stop-title">Stardust Racers</div>
+          <div class="stop-detail">Dueling launch coaster — two trains race on parallel tracks. 62 mph top speed. One of the best coasters in Florida. Save this for after the headliners since rope-drop demand pushes others up the priority list.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">5 min</span></div>
+            <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~30 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">3 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">4:56 PM</span></div>
+          </div>
+          <span class="stop-tag sr">Single Rider available</span>
+          <span class="stop-tag">48″ minimum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop" data-stop>
+      <div class="stop-time">5:00 PM+<strong>Open</strong></div>
+      <div class="stop-body">
+        <div class="stop-number">12</div>
+        <div class="stop-content">
+          <div class="stop-title">Flex time + re-rides + Constellation Carousel at dusk</div>
+          <div class="stop-detail">By 5 PM you've hit every major ride. Use the rest of the day for: re-riding favorites (Mario Kart and Battle at the Ministry are best the second time), exploring details in each world you raced through, Constellation Carousel after dark (genuinely magical when lit up). Park typically closes 9 PM in summer.</div>
+          <div class="timing-breakdown">
+            <div class="timing-chip walk"><span class="chip-label">Buffer</span><span class="chip-value">flex</span></div>
+            <div class="timing-chip"><span class="chip-label">Re-rides</span><span class="chip-value">~90 min</span></div>
+            <div class="timing-chip"><span class="chip-label">Dinner</span><span class="chip-value">60 min</span></div>
+            <div class="timing-chip total"><span class="chip-label">Park close</span><span class="chip-value">~9:00 PM</span></div>
+          </div>
+          <span class="stop-tag">Re-rides + exploration</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Every <em>headliner</em>, ranked</h2>
+    <p class="section-intro">By demand. Six rides you can't miss; tap for details.</p>
+
+    <div class="rides-grid">
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">01</div>
+          <div class="ride-name">Harry Potter and the Battle at the Ministry<span class="world-loc">Wizarding World · Multi-system dark ride</span></div>
+          <div class="wait-display"><span class="wait-num">95</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="88"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>42″ min</strong></span>
+            <span>Duration<strong>~8 min</strong></span>
+            <span>Express Pass<strong>Available</strong></span>
+            <span>Standby range<strong>75–130 min</strong></span>
+          </div>
+          <p class="ride-description">Considered the best ride at Epic Universe and one of the most advanced dark rides ever built. Travel via simulated Floo Network fireplaces to the British Ministry of Magic, witness Dolores Umbridge's trial, escape. Uses omnidirectional lifts, cutting-edge screen technology, and animatronics that are virtually indistinguishable from screen elements.</p>
+          <div class="ride-tip">Ride this once early via standby. Re-ride at the end of the day if you can — the detail is staggering and you'll catch things you missed.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">02</div>
+          <div class="ride-name">Mario Kart: Bowser's Challenge<span class="world-loc">Super Nintendo World · AR dark ride</span></div>
+          <div class="wait-display"><span class="wait-num">90</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="85"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>40″ min</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Express Pass<strong>Available · Single Rider</strong></span>
+            <span>Standby range<strong>75–130 min</strong></span>
+          </div>
+          <p class="ride-description">Race through iconic Mario Kart tracks alongside Mario, Luigi, and Princess Peach. AR overlay headsets let you collect coins and throw shells at Team Bowser. Your score competes against the opposing team across the full ride.</p>
+          <div class="ride-tip">Rope drop priority — gets you on within 25 min and you can re-ride later. Single Rider line is the only fast alternative; expect 20–30 min there vs. 90+ standby.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">03</div>
+          <div class="ride-name">Stardust Racers<span class="world-loc">Celestial Park · Dueling launch coaster</span></div>
+          <div class="wait-display"><span class="wait-num">62</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="65"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>48″ min</strong></span>
+            <span>Duration<strong>~3 min</strong></span>
+            <span>Express Pass<strong>Available · Single Rider</strong></span>
+            <span>Standby range<strong>50–80 min</strong></span>
+          </div>
+          <p class="ride-description">Twin launch coasters racing on parallel tracks. 62 mph top speed, dramatic near-misses between the two trains. Ride twice (once on each track) — the experiences are different. Best at sunset when the metallic track reflections glow.</p>
+          <div class="ride-tip">Single Rider drops 60 min to ~15. Ride right side first, then come back for left.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">04</div>
+          <div class="ride-name">Monsters Unchained: The Frankenstein Experiment<span class="world-loc">Dark Universe · Dark ride / coaster</span></div>
+          <div class="wait-display"><span class="wait-num">58</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="62"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>40″ min</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Express Pass<strong>Available</strong></span>
+            <span>Standby range<strong>45–75 min</strong></span>
+          </div>
+          <p class="ride-description">Combination dark ride and coaster sequence featuring classic Universal monsters — Dracula, Wolfman, Frankenstein. The land itself (Darkmoor Village) is brooding and atmospheric. Tone is closer to gothic horror than scary — kids handle it fine.</p>
+          <div class="ride-tip">Best at night when the lighting fully sets the mood. If you can, save this for late afternoon or evening.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">05</div>
+          <div class="ride-name">Hiccup's Wing Gliders<span class="world-loc">Isle of Berk · Family coaster</span></div>
+          <div class="wait-display"><span class="wait-num">52</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="55"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>40″ min</strong></span>
+            <span>Duration<strong>~3 min</strong></span>
+            <span>Express Pass<strong>Available · Single Rider</strong></span>
+            <span>Standby range<strong>40–70 min</strong></span>
+          </div>
+          <p class="ride-description">Family coaster styled as flying on a dragon over the Isle of Berk. Smoother than the launch coasters, more story-driven. Strong appeal to kids who loved the films. The launch sequence simulates dragon takeoff.</p>
+          <div class="ride-tip">Single Rider line drops waits significantly. The Berk land itself is worth slow exploration — the dragon animatronics throughout are excellent.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">06</div>
+          <div class="ride-name">Mine Cart Madness<span class="world-loc">Super Nintendo World · Family coaster</span></div>
+          <div class="wait-display"><span class="wait-num">48</span><span class="wait-label">min avg</span></div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="52"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>40″ min</strong></span>
+            <span>Duration<strong>~3 min</strong></span>
+            <span>Express Pass<strong>Available</strong></span>
+            <span>Standby range<strong>40–70 min</strong></span>
+          </div>
+          <p class="ride-description">Donkey Kong-themed mine cart coaster with a unique "disappearing track" mechanism — cars jump short gaps in the rails. Low capacity means wait builds quickly. Excellent theming through Donkey Kong Country.</p>
+          <div class="ride-tip">Hit second after Mario Kart at rope drop. Low capacity is the issue — there's no fast way to ride this without standing in line.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Universal-specific <em>notes</em></h2>
+    <p class="section-intro">Things that differ from Disney — both for the better and worse.</p>
+    <div class="notes">
+
+      <div class="note">
+        <div class="note-title">Lightning Lane doesn't exist here</div>
+        <p>Universal's equivalent is paid Express Pass at much higher prices than Disney's Multi Pass. For one day, skip it. Use rope drop + Single Rider lines. If the day goes off the rails, you can buy Express same-day inside the park.</p>
+      </div>
+
+      <div class="note tip">
+        <div class="note-title">Single Rider lines are everywhere</div>
+        <p>Mario Kart, Stardust Racers, Hiccup's Wing Gliders all have Single Rider. Mine Cart Madness and Monsters Unchained don't. The lines run 15–30 min vs. 60–120 standby. Group splits up but cycles within minutes of each other.</p>
+      </div>
+
+      <div class="note warn">
+        <div class="note-title">Free parking (unlike Disney)</div>
+        <p>Universal parking is free if you arrive early. Goes paid ($30+) after 6 PM. Counterintuitive but: arrive 8 AM, leave by 6 PM, you save $30/day. The 6 PM dynamic exists to incentivize hotel guests, since hotel guests get free parking always.</p>
+      </div>
+
+      <div class="note">
+        <div class="note-title">Get the Universal app</div>
+        <p>The Universal Orlando app has live wait times, mobile order for dining, virtual queue management (occasionally for new rides), and an interactive park map. Functionally similar to My Disney Experience but separate. Install before you go.</p>
+      </div>
+
+      <div class="note tip">
+        <div class="note-title">Power-Up Bands (Super Nintendo World)</div>
+        <p>$40 wearable Mario-themed band that interacts with the land — collect coins by hitting blocks, complete mini-games, fight Bowser Jr. mini-bosses. Tracks scores leaderboard-style. Highly engaging for kids; somewhat optional for adults. Buy at Mario Motors shop in the land.</p>
+      </div>
+
+      <div class="note warn">
+        <div class="note-title">Hub-and-spoke routing matters</div>
+        <p>You can't walk between themed worlds directly — only via Celestial Park. Each transition is 5–10 min back through the hub. Don't bounce between worlds; commit to finishing one before moving.</p>
+      </div>
+
+      <div class="note">
+        <div class="note-title">Lockers required on some rides</div>
+        <p>Stardust Racers, Mario Kart, Mine Cart Madness require loose items in lockers. Free for ride duration; bring quarters or use credit card. Built into the queue at most attractions.</p>
+      </div>
+
+      <div class="note tip">
+        <div class="note-title">If you bring the kids early</div>
+        <p>Super Nintendo World has free interactive elements throughout — kick Goombas, hit ? blocks, complete pipe puzzles. With a Power-Up Band, this can occupy 60–90 min on its own. The land is also where most kids will want to spend extra time anyway.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Bonus park · Low Gear Studio Trip Plan · Epic Universe
+  </footer>
+
+</div>
+
+<script>
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.wait-bar-fill').forEach(el => {
+      const fill = parseInt(el.dataset.fill, 10);
+      el.style.right = (100 - fill) + '%';
+    });
+  });
+
+  const stops = document.querySelectorAll('[data-stop]');
+  const progressFill = document.getElementById('progress');
+  const progressText = document.getElementById('progressText');
+  const totalStops = stops.length;
+
+  function updateProgress() {
+    const done = document.querySelectorAll('[data-stop].done').length;
+    const pct = (done / totalStops) * 100;
+    progressFill.style.right = (100 - pct) + '%';
+    progressText.textContent = done + ' / ' + totalStops;
+  }
+
+  stops.forEach(stop => {
+    stop.addEventListener('click', () => {
+      stop.classList.toggle('done');
+      updateProgress();
+    });
+  });
+
+  document.querySelectorAll('[data-ride]').forEach(ride => {
+    ride.addEventListener('click', () => {
+      ride.classList.toggle('expanded');
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disney + Universal · June 8–13, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300..700&family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f3eb;
+    --paper-soft: #efe9dc;
+    --ink: #1c1d22;
+    --ink-soft: #44464d;
+    --ink-mute: #797b82;
+    --paper-edge: #ddd5c0;
+    --amber: #b08940;
+    --cream: #faf6ed;
+
+    /* Document accents — matching source docs */
+    --doc-ak: #5b6f3f;       /* forest sage */
+    --doc-mk: #2d3a5f;       /* deep navy */
+    --doc-epcot: #d96a2c;    /* orange */
+    --doc-hs: #c4395e;       /* magenta */
+    --doc-ll: #2d5a3d;       /* forest green */
+    --doc-res: #7a2f3f;      /* wine */
+    --doc-epic: #2d8a9a;     /* cosmic teal */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    background-image:
+      radial-gradient(at 15% 5%, rgba(176, 137, 64, 0.05) 0px, transparent 50%),
+      radial-gradient(at 85% 95%, rgba(28, 29, 34, 0.04) 0px, transparent 50%);
+    color: var(--ink);
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* === HEADER / COVER === */
+  header {
+    padding: 110px 0 80px;
+    border-bottom: 2px solid var(--ink);
+    text-align: left;
+    position: relative;
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--amber);
+    margin-bottom: 36px;
+  }
+
+  .eyebrow {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: var(--amber);
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(64px, 12vw, 156px);
+    line-height: 0.88;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 0;
+    font-variation-settings: "opsz" 96;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--amber);
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--paper-edge);
+  }
+  .cover-meta-block {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+    font-weight: 700;
+  }
+  .cover-meta-block strong {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Bodoni Moda', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    text-transform: none;
+    font-variation-settings: "opsz" 24;
+  }
+  .cover-meta-block em { font-style: italic; color: var(--amber); }
+
+  @media (max-width: 700px) {
+    .cover-meta { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 72px 0;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 56;
+  }
+  h2 em { font-style: italic; color: var(--amber); }
+
+  .section-intro {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--ink-soft);
+    margin-bottom: 44px;
+    max-width: 720px;
+    line-height: 1.4;
+    font-variation-settings: "opsz" 24;
+  }
+
+  /* === WEEK AT A GLANCE === */
+  .week-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border: 1px solid var(--ink);
+    background: var(--cream);
+  }
+  .week-day {
+    border-right: 1px solid var(--paper-edge);
+    padding: 24px 18px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    position: relative;
+    cursor: pointer;
+  }
+  .week-day:last-child { border-right: none; }
+  .week-day:hover {
+    background: var(--paper-soft);
+    transform: translateY(-2px);
+  }
+  .week-day.today {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .week-day.today .day-label,
+  .week-day.today .day-num,
+  .week-day.today .park-name {
+    color: var(--cream);
+  }
+  .week-day.today .park-detail {
+    color: rgba(247, 243, 235, 0.7);
+  }
+  .week-day.today .today-marker {
+    display: flex;
+  }
+  .day-label {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .day-num {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 0.85;
+    color: var(--ink);
+    margin-bottom: 24px;
+    font-variation-settings: "opsz" 72;
+  }
+  .park-name {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .park-detail {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.35;
+    flex: 1;
+  }
+  .today-marker {
+    display: none;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    font-weight: 700;
+    align-items: center;
+    gap: 4px;
+  }
+  .today-marker::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Accent stripe per day */
+  .week-day .accent-stripe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--amber);
+  }
+  .week-day[data-park="ak"] .accent-stripe { background: var(--doc-ak); }
+  .week-day[data-park="hs"] .accent-stripe { background: var(--doc-hs); }
+  .week-day[data-park="mk"] .accent-stripe { background: var(--doc-mk); }
+  .week-day[data-park="epcot"] .accent-stripe { background: var(--doc-epcot); }
+  .week-day[data-park="rest"] .accent-stripe { background: var(--amber); }
+  .week-day[data-park="flex"] .accent-stripe { background: var(--doc-epic); }
+
+  @media (max-width: 800px) {
+    .week-strip { grid-template-columns: repeat(3, 1fr); }
+    .week-day { min-height: 180px; padding: 18px 14px; }
+    .week-day:nth-child(3) { border-right: none; }
+    .week-day:nth-child(-n+3) { border-bottom: 1px solid var(--paper-edge); }
+    .day-num { font-size: 42px; }
+    .park-name { font-size: 16px; }
+  }
+  @media (max-width: 500px) {
+    .week-strip { grid-template-columns: repeat(2, 1fr); }
+    .week-day:nth-child(odd) { border-right: 1px solid var(--paper-edge); }
+    .week-day:nth-child(even) { border-right: none; }
+    .week-day:nth-child(-n+4) { border-bottom: 1px solid var(--paper-edge); }
+  }
+
+  /* === DOC GRID === */
+  .docs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .doc {
+    background: var(--cream);
+    border: 1px solid var(--paper-edge);
+    border-left: 4px solid var(--amber);
+    padding: 28px 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+  }
+  .doc:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(28, 29, 34, 0.1);
+    border-color: var(--ink-mute);
+  }
+  .doc[data-doc="ak"] { border-left-color: var(--doc-ak); }
+  .doc[data-doc="hs"] { border-left-color: var(--doc-hs); }
+  .doc[data-doc="mk"] { border-left-color: var(--doc-mk); }
+  .doc[data-doc="epcot"] { border-left-color: var(--doc-epcot); }
+  .doc[data-doc="ll"] { border-left-color: var(--doc-ll); }
+  .doc[data-doc="res"] { border-left-color: var(--doc-res); }
+  .doc[data-doc="epic"] { border-left-color: var(--doc-epic); }
+
+  .doc-num {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .doc-title {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 32;
+  }
+  .doc-title em { font-style: italic; }
+  .doc-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .doc-meta {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+    font-weight: 700;
+    padding-top: 14px;
+    border-top: 1px solid var(--paper-edge);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .doc-meta::after {
+    content: '→';
+    font-size: 18px;
+    color: var(--ink-mute);
+    transition: transform 0.25s ease;
+  }
+  .doc:hover .doc-meta::after { transform: translateX(4px); color: var(--ink); }
+
+  @media (max-width: 700px) {
+    .docs { grid-template-columns: 1fr; }
+  }
+
+  /* === REMINDERS === */
+  .reminders {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .reminders::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(176, 137, 64, 0.18) 0%, transparent 70%);
+  }
+  .reminders-label {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .reminders h3 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: 32px;
+    margin-bottom: 32px;
+    line-height: 1.1;
+    color: var(--cream);
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 36;
+  }
+  .reminders h3 em { font-style: italic; color: var(--amber); }
+  .reminder-list {
+    display: grid;
+    gap: 0;
+  }
+  .reminder {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-top: 1px solid rgba(247, 243, 235, 0.15);
+  }
+  .reminder:first-child { border-top: none; padding-top: 0; }
+  .reminder:last-child { padding-bottom: 0; }
+  .reminder-num {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--amber);
+    line-height: 1;
+    font-variation-settings: "opsz" 48;
+  }
+  .reminder-title {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--cream);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .reminder-detail {
+    font-size: 14px;
+    color: rgba(247, 243, 235, 0.72);
+    max-width: 600px;
+  }
+
+  /* === BUDGET BLOCK === */
+  .budget-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--paper-edge);
+    align-items: baseline;
+  }
+  .budget-row:last-of-type { border-bottom: none; }
+  .budget-row.total {
+    margin-top: 8px;
+    padding-top: 18px;
+    border-top: 2px solid var(--ink);
+    border-bottom: none;
+  }
+  .budget-label {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .budget-label small {
+    display: block;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+  .budget-amt {
+    font-family: 'Anonymous Pro', monospace;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--amber);
+  }
+  .budget-row.total .budget-label {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 700;
+  }
+  .budget-row.total .budget-amt {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--ink);
+    font-variation-settings: "opsz" 48;
+  }
+
+  /* === CHECKLIST === */
+  .checklist {
+    display: grid;
+    gap: 0;
+  }
+  .checklist-section {
+    border-top: 1px solid var(--paper-edge);
+    padding: 24px 0;
+  }
+  .checklist-section:first-child { border-top: none; }
+  .checklist-section h4 {
+    font-family: 'Bodoni Moda', serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+  }
+  .checklist-section h4 em { font-style: italic; color: var(--amber); }
+  .checklist-items {
+    display: grid;
+    gap: 10px;
+  }
+  .checklist-item {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 12px;
+    align-items: start;
+    cursor: pointer;
+  }
+  .checklist-item .check {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--ink-mute);
+    margin-top: 3px;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .checklist-item:hover .check { border-color: var(--ink); }
+  .checklist-item.checked .check {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .checklist-item.checked .check::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--cream);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .checklist-item-text {
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .checklist-item.checked .checklist-item-text {
+    color: var(--ink-mute);
+    text-decoration: line-through;
+  }
+
+  /* Footer */
+  footer {
+    padding: 70px 0 90px;
+    text-align: center;
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 700;
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--amber);
+    margin: 0 auto 24px;
+  }
+  footer .signature {
+    font-family: 'Bodoni Moda', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .reminders { padding: 28px 24px; }
+    .reminder { grid-template-columns: 50px 1fr; gap: 14px; }
+    .reminder-num { font-size: 24px; }
+    .doc { padding: 22px 24px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="cover-rule"></div>
+    <div class="eyebrow">Low Gear Studio · Trip Planner</div>
+    <h1>Disney<br>&amp; <em>Universal</em></h1>
+    <div class="cover-meta">
+      <div class="cover-meta-block">
+        Dates<strong>June 8 – 13, <em>2026</em></strong>
+      </div>
+      <div class="cover-meta-block">
+        Party<strong>Family of <em>5</em></strong>
+      </div>
+      <div class="cover-meta-block">
+        Tickets<strong>4-day Park Hopper <em>Plus</em></strong>
+      </div>
+      <div class="cover-meta-block">
+        Bonus<strong>Water park &amp; <em>mini golf</em></strong>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>The <em>week</em></h2>
+    <p class="section-intro">Tap any day to open the full plan. The current day highlights automatically when the trip starts.</p>
+
+    <div class="week-strip">
+
+      <a class="week-day" data-park="ak" data-date="2026-06-08" href="animal-kingdom-plan.html">
+        <div class="accent-stripe"></div>
+        <div class="today-marker">Today</div>
+        <div class="day-label">Monday</div>
+        <div class="day-num">8</div>
+        <div class="park-name">Animal Kingdom</div>
+        <div class="park-detail">Ease in. Shorter park day. FoP Single Pass.</div>
+      </a>
+
+      <a class="week-day" data-park="hs" data-date="2026-06-09" href="hollywood-studios-plan.html">
+        <div class="accent-stripe"></div>
+        <div class="today-marker">Today</div>
+        <div class="day-label">Tuesday</div>
+        <div class="day-num">9</div>
+        <div class="park-name">Hollywood Studios</div>
+        <div class="park-detail">Muppets coaster + Rise of the Resistance. Fantasmic at 9 PM.</div>
+      </a>
+
+      <a class="week-day" data-park="rest" data-date="2026-06-10" href="reservations-schedule.html#water">
+        <div class="accent-stripe"></div>
+        <div class="today-marker">Today</div>
+        <div class="day-label">Wednesday</div>
+        <div class="day-num">10</div>
+        <div class="park-name">Water park + Mini golf</div>
+        <div class="park-detail">Rest day. Typhoon Lagoon or Blizzard Beach + mini golf evening.</div>
+      </a>
+
+      <a class="week-day" data-park="mk" data-date="2026-06-11" href="magic-kingdom-plan.html">
+        <div class="accent-stripe"></div>
+        <div class="today-marker">Today</div>
+        <div class="day-label">Thursday</div>
+        <div class="day-num">11</div>
+        <div class="park-name">Magic Kingdom</div>
+        <div class="park-detail">The big one. TRON Single Pass + Happily Ever After fireworks.</div>
+      </a>
+
+      <a class="week-day" data-park="epcot" data-date="2026-06-12" href="epcot-plan.html">
+        <div class="accent-stripe"></div>
+        <div class="today-marker">Today</div>
+        <div class="day-label">Friday</div>
+        <div class="day-num">12</div>
+        <div class="park-name">EPCOT</div>
+        <div class="park-detail">Festival graze + Cosmic Rewind VQ. Luminous fireworks finale.</div>
+      </a>
+
+      <a class="week-day" data-park="flex" data-date="2026-06-13" href="reservations-schedule.html#saturday">
+        <div class="accent-stripe"></div>
+        <div class="today-marker">Today</div>
+        <div class="day-label">Saturday</div>
+        <div class="day-num">13</div>
+        <div class="park-name">Flex day</div>
+        <div class="park-detail">Universal, Disney Springs, Kennedy Space Center, or head home.</div>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Seven <em>guides</em></h2>
+    <p class="section-intro">Each park has a detailed touring plan with walk-wait-ride math. Trip-level guides cover Lightning Lane strategy and reservations.</p>
+
+    <div class="docs">
+
+      <a class="doc" data-doc="ak" href="animal-kingdom-plan.html">
+        <div class="doc-num">01 · Monday</div>
+        <div class="doc-title">Animal <em>Kingdom</em></div>
+        <div class="doc-desc">Flight of Passage Single Pass strategy, walking trails, Lion King show. Plan ends around 3 PM with 4+ hours open afternoon.</div>
+        <div class="doc-meta">9 stops · Field journal aesthetic</div>
+      </a>
+
+      <a class="doc" data-doc="hs" href="hollywood-studios-plan.html">
+        <div class="doc-num">02 · Tuesday</div>
+        <div class="doc-title">Hollywood <em>Studios</em></div>
+        <div class="doc-desc">Rise of the Resistance Single Pass + Multi Pass for the rest. Brand-new Muppets coaster. Closes with Fantasmic at 9 PM.</div>
+        <div class="doc-meta">13 stops · Cinema marquee aesthetic</div>
+      </a>
+
+      <a class="doc" data-doc="mk" href="magic-kingdom-plan.html">
+        <div class="doc-num">03 · Thursday</div>
+        <div class="doc-title">Magic <em>Kingdom</em></div>
+        <div class="doc-desc">Counter-clockwise sweep through six lands. TRON, Seven Dwarfs, Peter Pan. Fireworks finale. The 12-hour park day.</div>
+        <div class="doc-meta">14 stops · Castle night aesthetic</div>
+      </a>
+
+      <a class="doc" data-doc="epcot" href="epcot-plan.html">
+        <div class="doc-num">04 · Friday</div>
+        <div class="doc-title">EP<em>COT</em></div>
+        <div class="doc-desc">Four neighborhoods, World Showcase opens at 11 AM. Festival booth grazing, Luminous fireworks. Cosmic Rewind via free Virtual Queue.</div>
+        <div class="doc-meta">12 stops · Retro-futurist aesthetic</div>
+      </a>
+
+      <a class="doc" data-doc="ll" href="lightning-lane-guide.html">
+        <div class="doc-num">05 · Reference</div>
+        <div class="doc-title">Lightning Lane <em>guide</em></div>
+        <div class="doc-desc">How Multi Pass, Single Pass, and Premier Pass work. The 7 AM ritual, refresh-stalking, and eight tactical tricks. Budget breakdown for the family.</div>
+        <div class="doc-meta">Concierge notebook aesthetic</div>
+      </a>
+
+      <a class="doc" data-doc="res" href="reservations-schedule.html">
+        <div class="doc-num">06 · Reference</div>
+        <div class="doc-title">Reservations &amp; <em>schedule</em></div>
+        <div class="doc-desc">Dining playbook for late bookings, top picks per park, Saturday flex options, water park comparison, mini golf locations.</div>
+        <div class="doc-meta">Trip schedule + dining guide</div>
+      </a>
+
+      <a class="doc" data-doc="epic" href="epic-universe-plan.html">
+        <div class="doc-num">07 · Saturday option</div>
+        <div class="doc-title">Epic <em>Universe</em></div>
+        <div class="doc-desc">Universal's newest park (opened May 2025). Five immersive worlds, six headline rides. Single Rider strategy beats paying for Express Pass.</div>
+        <div class="doc-meta">12 stops · Cosmic aesthetic</div>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="reminders">
+      <div class="reminders-label">The high-leverage moments</div>
+      <h3>Five things you cannot <em>forget</em></h3>
+
+      <div class="reminder-list">
+
+        <div class="reminder">
+          <div class="reminder-num">01</div>
+          <div>
+            <div class="reminder-title">7:00 AM, every park day</div>
+            <div class="reminder-detail">Wake up. Open My Disney Experience. At 7:00:00 sharp, tap into your Multi Pass booking and Single Pass purchase for that day's headliner. On EPCOT day (Friday), have multiple phones ready on the Cosmic Rewind Virtual Queue page — it sells out in seconds.</div>
+          </div>
+        </div>
+
+        <div class="reminder">
+          <div class="reminder-num">02</div>
+          <div>
+            <div class="reminder-title">Sunday night prep ritual</div>
+            <div class="reminder-detail">Verify all 5 family tickets are linked in MDX. Payment method saved. Phone unlocked, app open, biometric login confirmed. Set 6:55 AM alarm for Monday's 7 AM booking.</div>
+          </div>
+        </div>
+
+        <div class="reminder">
+          <div class="reminder-num">03</div>
+          <div>
+            <div class="reminder-title">Refresh-stalk dining all week</div>
+            <div class="reminder-detail">Open MDX → Dining → search your dates each morning. Cancellations open up slots daily. Sci-Fi Dine-In, 50's Prime Time, Be Our Guest, Le Cellier are the targets.</div>
+          </div>
+        </div>
+
+        <div class="reminder">
+          <div class="reminder-num">04</div>
+          <div>
+            <div class="reminder-title">Mobile order every quick service</div>
+            <div class="reminder-detail">Pecos Bill, Satu'li Canteen, Docking Bay 7, Regal Eagle — all in the MDX app. Pick a pickup window 30 min ahead. Saves 15–30 min per meal for a family of 5.</div>
+          </div>
+        </div>
+
+        <div class="reminder">
+          <div class="reminder-num">05</div>
+          <div>
+            <div class="reminder-title">Single Rider lines are free time</div>
+            <div class="reminder-detail">Test Track + Remy's at EPCOT, Smugglers Run at HS. At Epic Universe Saturday, Mario Kart + Stardust Racers + Hiccup's all have Single Rider. Cuts 60–100 min waits down to 15–25.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Trip <em>budget</em></h2>
+    <p class="section-intro">Lightning Lane and add-on costs for the family. Park admission already paid.</p>
+
+    <div class="budget-row">
+      <div class="budget-label">
+        Animal Kingdom — Monday
+        <small>FoP Single Pass × 5</small>
+      </div>
+      <div class="budget-amt">$75</div>
+    </div>
+
+    <div class="budget-row">
+      <div class="budget-label">
+        Hollywood Studios — Tuesday
+        <small>Multi Pass × 5 + Rise Single Pass × 5</small>
+      </div>
+      <div class="budget-amt">$285</div>
+    </div>
+
+    <div class="budget-row">
+      <div class="budget-label">
+        Wednesday water + golf
+        <small>Included in Park Hopper Plus</small>
+      </div>
+      <div class="budget-amt">$0</div>
+    </div>
+
+    <div class="budget-row">
+      <div class="budget-label">
+        Magic Kingdom — Thursday
+        <small>Multi Pass × 5 + TRON Single Pass × 5 (if no rope drop)</small>
+      </div>
+      <div class="budget-amt">$175–275</div>
+    </div>
+
+    <div class="budget-row">
+      <div class="budget-label">
+        EPCOT — Friday
+        <small>Multi Pass × 5 + Cosmic Rewind SP (if no VQ)</small>
+      </div>
+      <div class="budget-amt">$175–275</div>
+    </div>
+
+    <div class="budget-row">
+      <div class="budget-label">
+        Saturday flex
+        <small>$0 (Disney Springs) up to $1,150 (Epic Universe)</small>
+      </div>
+      <div class="budget-amt">$0–1,150</div>
+    </div>
+
+    <div class="budget-row total">
+      <div class="budget-label">Trip-level extras · total range</div>
+      <div class="budget-amt">$710–2,060</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pre-trip <em>checklist</em></h2>
+    <p class="section-intro">Tap items to mark them done. Resets when you reload the page.</p>
+
+    <div class="checklist">
+
+      <div class="checklist-section">
+        <h4>This <em>week</em></h4>
+        <div class="checklist-items">
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Sign up for MouseDining or DVC Reservation Finder alerts for top dining priorities</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Refresh MDX dining search daily — cancellations drop constantly</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Verify all 5 tickets linked in My Disney Experience app</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Confirm Park Hopper Plus visits remaining (4 water park / mini golf entries each)</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Decide on Saturday flex day (Universal? Disney Springs? Kennedy Space Center?)</div></div>
+        </div>
+      </div>
+
+      <div class="checklist-section">
+        <h4>Sunday <em>prep</em></h4>
+        <div class="checklist-items">
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Set 6:55 AM alarm for Monday's Lightning Lane booking</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Save payment method in MDX app for fast LL purchase</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Charge phones + portable battery packs</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Confirm parking plan for Monday (Disney parking opens 30 min before park)</div></div>
+        </div>
+      </div>
+
+      <div class="checklist-section">
+        <h4>Bag <em>essentials</em></h4>
+        <div class="checklist-items">
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">5 refillable water bottles + filter station map</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Portable phone chargers (you'll live in the app)</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Ponchos or rain jackets (June afternoon thunderstorms are daily)</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Sunscreen + cooling towels + hats</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Snacks for kids — Disney park prices are real</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Comfortable broken-in shoes (avg 20,000+ steps per park day)</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Change of clothes / shoes for Kali River Rapids (Monday) and Fyre Drill (Saturday if Epic Universe)</div></div>
+        </div>
+      </div>
+
+      <div class="checklist-section">
+        <h4>Each park <em>morning</em></h4>
+        <div class="checklist-items">
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">7:00 AM: Book Multi Pass + Single Pass (or Virtual Queue)</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">7:02 AM: Refresh-stalk for better return times</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Check that day's plan one more time</div></div>
+          <div class="checklist-item" data-check><div class="check"></div><div class="checklist-item-text">Mobile order lunch reservation window 30 min before eating</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Trip planner · 7 documents · 5 parks · 1 family
+    <div class="signature">Made with care for the McClelland family.</div>
+  </footer>
+
+</div>
+
+<script>
+  // Highlight today if within trip window
+  const tripStart = new Date('2026-06-08');
+  const tripEnd = new Date('2026-06-13');
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (today >= tripStart && today <= tripEnd) {
+    const todayStr = today.toISOString().split('T')[0];
+    document.querySelectorAll('.week-day').forEach(day => {
+      if (day.dataset.date === todayStr) {
+        day.classList.add('today');
+      }
+    });
+  }
+
+  // Checklist toggle
+  document.querySelectorAll('[data-check]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      item.classList.toggle('checked');
+    });
+  });
+</script>
+
+</body>
+</html>

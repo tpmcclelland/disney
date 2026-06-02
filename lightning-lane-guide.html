@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lightning Lane Guide — Disney World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Onest:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f3eb;
+    --paper-soft: #efe9dc;
+    --ink: #1f2024;
+    --ink-soft: #4a4d54;
+    --ink-mute: #7a7d85;
+    --paper-edge: #ddd5c0;
+    --forest: #2d5a3d;
+    --forest-soft: #4a7d5f;
+    --rust: #c47844;
+    --olive: #8c8945;
+    --cream: #faf6ed;
+    --crimson: #a04848;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    background-image:
+      radial-gradient(at 12% 8%, rgba(45, 90, 61, 0.05) 0px, transparent 50%),
+      radial-gradient(at 88% 92%, rgba(196, 120, 68, 0.04) 0px, transparent 50%);
+    color: var(--ink);
+    font-family: 'Onest', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 90px 0 60px;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--forest);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--forest);
+  }
+
+  h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(46px, 8vw, 92px);
+    line-height: 1;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-variation-settings: "opsz" 72;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--forest);
+    font-weight: 300;
+  }
+
+  .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin-top: 18px;
+    max-width: 660px;
+    line-height: 1.45;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--paper-edge);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-mute);
+  }
+  .meta-row span strong {
+    display: block;
+    color: var(--ink);
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Newsreader', serif;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 64px 0;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 48;
+  }
+  h2 em { font-style: italic; color: var(--forest); font-weight: 300; }
+
+  .section-intro {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+    max-width: 720px;
+    line-height: 1.45;
+  }
+
+  /* === PRODUCTS TABLE === */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--paper-edge);
+    border: 1px solid var(--paper-edge);
+  }
+  .product {
+    background: var(--cream);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+  .product.highlight { background: var(--ink); color: var(--cream); }
+  .product .product-name {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .product.highlight .product-name { color: var(--cream); }
+  .product .product-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--forest);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .product.highlight .product-tag { color: var(--rust); }
+  .product .product-price {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin-bottom: 6px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 28;
+  }
+  .product.highlight .product-price { color: var(--cream); }
+  .product .product-price-unit {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 18px;
+  }
+  .product.highlight .product-price-unit { color: rgba(247, 243, 235, 0.55); }
+  .product .product-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .product.highlight .product-desc { color: rgba(247, 243, 235, 0.78); }
+  .product .product-feature {
+    font-size: 13px;
+    padding: 8px 0;
+    border-top: 1px solid var(--paper-edge);
+    color: var(--ink-soft);
+    display: flex;
+    gap: 8px;
+  }
+  .product.highlight .product-feature {
+    border-top-color: rgba(247, 243, 235, 0.12);
+    color: rgba(247, 243, 235, 0.78);
+  }
+  .product .product-feature::before {
+    content: '→';
+    color: var(--forest);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .product.highlight .product-feature::before { color: var(--rust); }
+
+  @media (max-width: 800px) {
+    .products { grid-template-columns: 1fr; }
+  }
+
+  /* === 7AM RITUAL TIMELINE === */
+  .ritual {
+    background: var(--cream);
+    border: 1px solid var(--paper-edge);
+    padding: 40px 44px;
+    position: relative;
+  }
+  .ritual-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    padding: 18px 0;
+    border-top: 1px solid var(--paper-edge);
+  }
+  .ritual-step:first-child { border-top: none; padding-top: 0; }
+  .ritual-step:last-child { padding-bottom: 0; }
+  .ritual-time {
+    font-family: 'Geist Mono', monospace;
+    font-size: 14px;
+    color: var(--rust);
+    font-weight: 600;
+    padding-top: 2px;
+  }
+  .ritual-action {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+  .ritual-detail {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* === TRICK LIST === */
+  .tricks {
+    display: grid;
+    gap: 0;
+  }
+  .trick {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--paper-edge);
+  }
+  .trick:first-child { border-top: none; }
+  .trick:last-child { border-bottom: 1px solid var(--paper-edge); }
+  .trick-num {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 48px;
+    color: var(--forest);
+    line-height: 1;
+    font-variation-settings: "opsz" 72;
+  }
+  .trick-content { padding-top: 8px; }
+  .trick-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .trick-body {
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 720px;
+  }
+  .trick-tag {
+    display: inline-block;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--rust);
+    margin-top: 10px;
+    font-weight: 500;
+  }
+
+  /* === PARK STRATEGY TABLE === */
+  .park-strategy {
+    border: 1px solid var(--paper-edge);
+    background: var(--cream);
+  }
+  .park-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 120px;
+    gap: 0;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+  .park-row:last-child { border-bottom: none; }
+  .park-row.header {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .park-row.header .park-cell {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(247, 243, 235, 0.85);
+    font-weight: 600;
+  }
+  .park-cell {
+    padding: 18px 22px;
+    border-right: 1px solid var(--paper-edge);
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .park-row.header .park-cell { border-right-color: rgba(247, 243, 235, 0.15); }
+  .park-cell:last-child { border-right: none; }
+  .park-cell strong {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    margin-bottom: 2px;
+  }
+  .park-row.header .park-cell strong { color: var(--cream); }
+  .park-cell.cost { font-family: 'Geist Mono', monospace; color: var(--forest); font-weight: 600; }
+
+  @media (max-width: 800px) {
+    .park-row { grid-template-columns: 1fr 1fr; }
+    .park-cell { padding: 12px 14px; font-size: 13px; }
+  }
+
+  /* === BUDGET BREAKDOWN === */
+  .budget {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 44px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .budget::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(196, 120, 68, 0.18) 0%, transparent 70%);
+  }
+  .budget-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--rust);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .budget h3 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 30px;
+    margin-bottom: 12px;
+    line-height: 1.15;
+    color: var(--cream);
+    font-variation-settings: "opsz" 36;
+  }
+  .budget h3 em { font-style: italic; color: var(--rust); }
+  .budget p {
+    color: rgba(247, 243, 235, 0.78);
+    max-width: 700px;
+    margin-bottom: 28px;
+  }
+  .budget-lines {
+    display: grid;
+    gap: 0;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .budget-line {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(247, 243, 235, 0.12);
+    align-items: baseline;
+  }
+  .budget-line .park-name {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--cream);
+    letter-spacing: -0.005em;
+  }
+  .budget-line .detail {
+    font-size: 13px;
+    color: rgba(247, 243, 235, 0.6);
+  }
+  .budget-line .amount {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--rust);
+    font-variation-settings: "opsz" 24;
+  }
+  .budget-total {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding-top: 18px;
+    border-top: 2px solid var(--rust);
+    align-items: baseline;
+  }
+  .budget-total .total-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(247, 243, 235, 0.7);
+    font-weight: 600;
+  }
+  .budget-total .total-amount {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 38px;
+    color: var(--rust);
+    font-variation-settings: "opsz" 48;
+  }
+
+  /* === FAQ === */
+  .faqs { display: grid; gap: 0; }
+  .faq {
+    border-top: 1px solid var(--paper-edge);
+    padding: 24px 0;
+    cursor: pointer;
+    transition: padding 0.25s ease;
+  }
+  .faq:hover { padding-left: 8px; }
+  .faq:last-child { border-bottom: 1px solid var(--paper-edge); }
+  .faq-q {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-q::after {
+    content: '+';
+    font-family: 'Geist Mono', monospace;
+    font-size: 22px;
+    color: var(--forest);
+    transition: transform 0.3s ease;
+  }
+  .faq.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    color: var(--ink-soft);
+    font-size: 15px;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+    max-width: 720px;
+  }
+  .faq.open .faq-a { max-height: 400px; margin-top: 16px; }
+
+  /* Footer */
+  footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-mute);
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--forest);
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .ritual { padding: 28px 24px; }
+    .ritual-step { grid-template-columns: 60px 1fr; gap: 14px; }
+    .budget { padding: 28px 24px; }
+    .budget-line { grid-template-columns: 1fr auto; }
+    .budget-line .detail { grid-column: 1; }
+    .trick { grid-template-columns: 40px 1fr; gap: 14px; }
+    .trick-num { font-size: 36px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="eyebrow">Trip Reference · 05 of 06</div>
+    <h1>Lightning Lane <em>guide</em></h1>
+    <p class="subtitle">How Disney's three line-skipping products work, what they actually cost for a family of five, and the tactics that recover the most time without overpaying.</p>
+    <div class="meta-row">
+      <span>Family<strong>5 people · 2 adults + 3 kids</strong></span>
+      <span>Trip<strong>Mon June 8 – Sat June 13</strong></span>
+      <span>Park days<strong>4 of 4 covered</strong></span>
+      <span>Total LL budget<strong>~$700–900</strong></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Three <em>products</em></h2>
+    <p class="section-intro">Disney offers three distinct line-skipping products, all sold inside the My Disney Experience app. They're priced very differently and serve different purposes.</p>
+    <div class="products">
+
+      <div class="product">
+        <div class="product-tag">The workhorse</div>
+        <div class="product-name">Multi Pass</div>
+        <div class="product-price">$15–39</div>
+        <div class="product-price-unit">per person · per day</div>
+        <div class="product-desc">Three advance ride reservations with 1-hour return windows. After using each, immediately book another in the app. Covers most rides but not the four park-headlining attractions.</div>
+        <div class="product-feature">3 advance picks + rolling re-books</div>
+        <div class="product-feature">7-day window for resort guests</div>
+        <div class="product-feature">Day-of at 7 AM for off-property</div>
+      </div>
+
+      <div class="product highlight">
+        <div class="product-tag">The headliner buy</div>
+        <div class="product-name">Single Pass</div>
+        <div class="product-price">$15–25</div>
+        <div class="product-price-unit">per person · per ride</div>
+        <div class="product-desc">Sold separately from Multi Pass. Covers exactly four rides — the park-defining headliners that Multi Pass doesn't include. Buy per-ride, per-person.</div>
+        <div class="product-feature">TRON · Magic Kingdom</div>
+        <div class="product-feature">Cosmic Rewind · EPCOT</div>
+        <div class="product-feature">Rise of the Resistance · Hollywood Studios</div>
+        <div class="product-feature">Flight of Passage · Animal Kingdom</div>
+      </div>
+
+      <div class="product">
+        <div class="product-tag">The splurge</div>
+        <div class="product-name">Premier Pass</div>
+        <div class="product-price">$119–449</div>
+        <div class="product-price-unit">per person · per park · per day</div>
+        <div class="product-desc">Every Lightning Lane in one park for one day, no return windows to manage. One use per attraction. Includes Single Pass rides. Limited daily availability — sells out on peak days.</div>
+        <div class="product-feature">Walk-up access (no booking)</div>
+        <div class="product-feature">One tap-in per ride per day</div>
+        <div class="product-feature">Does not park-hop</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>The 7 AM <em>ritual</em></h2>
+    <p class="section-intro">The single highest-leverage moment of any park day. Off-property guests can't book Lightning Lane until 7 AM on the day of their visit. The first 90 seconds matter.</p>
+    <div class="ritual">
+
+      <div class="ritual-step">
+        <div class="ritual-time">6:55 AM</div>
+        <div>
+          <div class="ritual-action">Wake up. Open My Disney Experience.</div>
+          <div class="ritual-detail">Phone unlocked, app open, biometric login done. Don't fumble passwords at 7:00:00.</div>
+        </div>
+      </div>
+
+      <div class="ritual-step">
+        <div class="ritual-time">6:58 AM</div>
+        <div>
+          <div class="ritual-action">Pre-select your three Multi Pass picks.</div>
+          <div class="ritual-detail">Navigate to the booking page. Have Tier 1 selection and two Tier 2 selections in your head. For EPCOT, also queue up Cosmic Rewind Virtual Queue on a second device.</div>
+        </div>
+      </div>
+
+      <div class="ritual-step">
+        <div class="ritual-time">7:00:00</div>
+        <div>
+          <div class="ritual-action">Tap. Don't think. Tap.</div>
+          <div class="ritual-detail">Multi Pass booking AND Virtual Queue both drop at 7:00:00. Each tap goes through in order — accept the first time offered, you can modify later. Speed beats optimization.</div>
+        </div>
+      </div>
+
+      <div class="ritual-step">
+        <div class="ritual-time">7:00:30</div>
+        <div>
+          <div class="ritual-action">Buy Single Pass for your headliner.</div>
+          <div class="ritual-detail">Rise of the Resistance, TRON, Flight of Passage, Cosmic Rewind — buy Single Pass for the headliner that matches today's park. These sell out by mid-morning on busy days.</div>
+        </div>
+      </div>
+
+      <div class="ritual-step">
+        <div class="ritual-time">7:02 AM</div>
+        <div>
+          <div class="ritual-action">Refresh-stalk for better times.</div>
+          <div class="ritual-detail">Tap Modify on each booking. Earlier slots will sometimes appear as other guests adjust theirs. Spend 10 minutes here for free upgrades, then go back to sleep.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Per-park <em>strategy</em></h2>
+    <p class="section-intro">Each park needs a different approach. Some reward rope drop, some reward Lightning Lane, one barely needs Multi Pass at all.</p>
+    <div class="park-strategy">
+
+      <div class="park-row header">
+        <div class="park-cell"><strong>Park</strong></div>
+        <div class="park-cell"><strong>Recommended</strong></div>
+        <div class="park-cell"><strong>Why</strong></div>
+        <div class="park-cell"><strong>Cost (×5)</strong></div>
+      </div>
+
+      <div class="park-row">
+        <div class="park-cell"><strong>Magic Kingdom</strong>4-day priority</div>
+        <div class="park-cell">Multi Pass<br>+ TRON Single Pass OR rope drop TRON</div>
+        <div class="park-cell">3 tier-1 rides routinely run 60+ min standby. Multi Pass pays for itself on Seven Dwarfs alone.</div>
+        <div class="park-cell cost">$175–275</div>
+      </div>
+
+      <div class="park-row">
+        <div class="park-cell"><strong>EPCOT</strong>Day with fireworks</div>
+        <div class="park-cell">Multi Pass<br>+ Virtual Queue for Cosmic Rewind (or Single Pass backup)</div>
+        <div class="park-cell">Single Rider lines cover Test Track + Remy's for free. Multi Pass handles Frozen and others.</div>
+        <div class="park-cell cost">$175–275</div>
+      </div>
+
+      <div class="park-row">
+        <div class="park-cell"><strong>Hollywood Studios</strong>Where LL wins biggest</div>
+        <div class="park-cell">Multi Pass<br>+ Rise of the Resistance Single Pass (required)</div>
+        <div class="park-cell">Two brand-new/legacy headliners with 90+ min waits. Rope drop doesn't help Rise.</div>
+        <div class="park-cell cost">~$285</div>
+      </div>
+
+      <div class="park-row">
+        <div class="park-cell"><strong>Animal Kingdom</strong>Skip Multi Pass</div>
+        <div class="park-cell">Flight of Passage Single Pass only</div>
+        <div class="park-cell">Only one painful wait. Other rides clear with rope drop or single rider. Multi Pass not worth $175.</div>
+        <div class="park-cell cost">$75</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Eight <em>tricks</em> that actually work</h2>
+    <p class="section-intro">Most "Lightning Lane tips" are obvious. These aren't.</p>
+    <div class="tricks">
+
+      <div class="trick">
+        <div class="trick-num">01</div>
+        <div class="trick-content">
+          <div class="trick-title">Stack your three advance picks LATE in the day</div>
+          <div class="trick-body">Counterintuitive. If you rope drop one headliner for free at 9 AM, you don't need Multi Pass that early. Book your three advance slots for 11 AM, 1 PM, and 3 PM. As you tap into each, immediately book a new one. You end up with 6–8 Multi Pass rides total instead of 3.</div>
+          <span class="trick-tag">+3 free Multi Pass rides</span>
+        </div>
+      </div>
+
+      <div class="trick">
+        <div class="trick-num">02</div>
+        <div class="trick-content">
+          <div class="trick-title">Modify, never cancel</div>
+          <div class="trick-body">If you want a different time for an existing booking, tap "Modify" not "Cancel". Cancel releases the slot back to the public pool and you lose priority. Modify keeps you in the system as you search. Same end result, very different odds.</div>
+          <span class="trick-tag">Hidden in plain sight</span>
+        </div>
+      </div>
+
+      <div class="trick">
+        <div class="trick-num">03</div>
+        <div class="trick-content">
+          <div class="trick-title">Refresh-stalk every 20–30 seconds</div>
+          <div class="trick-body">When other guests modify or cancel, their old slot drops back into the booking pool. Aggressive pull-to-refresh during the day will catch earlier slots opening up — sometimes 60+ minutes earlier than what was first offered. The single biggest in-app tactic.</div>
+          <span class="trick-tag">Free time travel</span>
+        </div>
+      </div>
+
+      <div class="trick">
+        <div class="trick-num">04</div>
+        <div class="trick-content">
+          <div class="trick-title">Multi-device Virtual Queue at 7 AM and 1 PM</div>
+          <div class="trick-body">Cosmic Rewind's free Virtual Queue drops at 7 AM and again at 1 PM. Have multiple phones in the family on the app at 6:59:50, all on the Cosmic Rewind page, ready to tap "Join Queue" the millisecond it hits 7:00. Two attempts daily, multiple devices. Saves you $100 for a family of 5.</div>
+          <span class="trick-tag">Free Cosmic Rewind = $100 saved</span>
+        </div>
+      </div>
+
+      <div class="trick">
+        <div class="trick-num">05</div>
+        <div class="trick-content">
+          <div class="trick-title">Single Rider Lines = free Lightning Lane</div>
+          <div class="trick-body">Three rides on property have Single Rider lines: Test Track and Remy's at EPCOT, Smugglers Run at Hollywood Studios. The line typically runs 15–25 min vs. 60–100+ for standby. If your group doesn't mind separate rides (you'll cycle within a few minutes of each other), this saves you Multi Pass slots and is completely free.</div>
+          <span class="trick-tag">3 free time savings</span>
+        </div>
+      </div>
+
+      <div class="trick">
+        <div class="trick-num">06</div>
+        <div class="trick-content">
+          <div class="trick-title">The "second tap" booking trick</div>
+          <div class="trick-body">The instant you tap into a Lightning Lane ride, the app unlocks your ability to book the next one. Open the app while approaching the entrance — the moment your physical tap registers, the booking page refreshes with new slots. Often the best slot of the day appears in this 30-second window.</div>
+          <span class="trick-tag">Time-window arbitrage</span>
+        </div>
+      </div>
+
+      <div class="trick">
+        <div class="trick-num">07</div>
+        <div class="trick-content">
+          <div class="trick-title">End-of-night stacking</div>
+          <div class="trick-body">Wait times collapse in the last hour before park close. People are walking to parking lots; rides are running near-empty. You can stack Multi Pass bookings for the final 90 minutes and do 3–4 rides back-to-back. Magic Kingdom is especially good for this — Tower of Terror at night is a different ride entirely.</div>
+          <span class="trick-tag">Last-hour blitz</span>
+        </div>
+      </div>
+
+      <div class="trick">
+        <div class="trick-num">08</div>
+        <div class="trick-content">
+          <div class="trick-title">Skip Multi Pass at Animal Kingdom</div>
+          <div class="trick-body">It's the one park where the math doesn't work. Flight of Passage isn't covered (Single Pass only), and everything else has manageable waits with rope drop or single rider. Buying Multi Pass at AK saves you $0–10 in waits while costing $175 for a family. Use it on the other three parks; skip it here.</div>
+          <span class="trick-tag">Save $175</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="budget">
+      <div class="budget-label">For your family · 5 people · 4 park days</div>
+      <h3>The total <em>cost</em>, by park</h3>
+      <p>Assuming Multi Pass on three parks, Single Pass for the four headliner rides, and skipping Multi Pass at Animal Kingdom. Lower number per park assumes rope drop or Virtual Queue success; higher number assumes Single Pass purchases for those headliners too.</p>
+
+      <div class="budget-lines">
+        <div class="budget-line">
+          <div class="park-name">Animal Kingdom</div>
+          <div class="detail">FoP Single Pass only ($15 × 5)</div>
+          <div class="amount">$75</div>
+        </div>
+        <div class="budget-line">
+          <div class="park-name">Magic Kingdom</div>
+          <div class="detail">Multi Pass $35 × 5 + TRON Single Pass if no rope drop</div>
+          <div class="amount">$175–275</div>
+        </div>
+        <div class="budget-line">
+          <div class="park-name">EPCOT</div>
+          <div class="detail">Multi Pass $35 × 5 + Cosmic Rewind SP if no VQ</div>
+          <div class="amount">$175–275</div>
+        </div>
+        <div class="budget-line">
+          <div class="park-name">Hollywood Studios</div>
+          <div class="detail">Multi Pass $35 × 5 + Rise SP $22 × 5</div>
+          <div class="amount">$285</div>
+        </div>
+      </div>
+
+      <div class="budget-total">
+        <div class="total-label">Total LL spend · 4 days</div>
+        <div class="total-amount">$710–910</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Frequently <em>asked</em></h2>
+    <p class="section-intro">Tap any to expand.</p>
+    <div class="faqs">
+
+      <div class="faq" data-faq>
+        <div class="faq-q">Do my kids need their own Lightning Lane purchases?</div>
+        <div class="faq-a">Yes. Disney charges adult pricing for everyone 3 and older on all Lightning Lane products. There's no kid discount the way there is on park tickets. Under 3 doesn't need anything. For your family of 5, every person you'd put on a ride needs their own pass.</div>
+      </div>
+
+      <div class="faq" data-faq>
+        <div class="faq-q">Can I park-hop my Multi Pass to a second park?</div>
+        <div class="faq-a">Yes, but with rules. You need Park Hopper tickets first. Multi Pass at the second park becomes available after either (a) you've used all three of your initial picks at the first park, or (b) it's 2 PM. Whichever comes first. So a "two parks in a day" strategy is real, just constrained.</div>
+      </div>
+
+      <div class="faq" data-faq>
+        <div class="faq-q">What happens if I miss my Lightning Lane return window?</div>
+        <div class="faq-a">There's a 5-minute grace period at the start and a 15-minute grace at the end (so a 10:00–11:00 window is really 9:55–11:15 in practice). Outside that, the slot expires and you forfeit it. Modify the slot in the app before you miss it; you can always push the window later.</div>
+      </div>
+
+      <div class="faq" data-faq>
+        <div class="faq-q">Should I buy Premier Pass for any day?</div>
+        <div class="faq-a">For your family of 5, Premier Pass costs roughly $1,000–$2,200 per park day. The Multi + Single Pass approach gets you the same ride access for $175–$285 per park. Premier only makes sense if you genuinely don't want to manage the app — or if a Multi Pass return window won't be available when you need it (rare for mid-week June trips).</div>
+      </div>
+
+      <div class="faq" data-faq>
+        <div class="faq-q">When do Single Pass and Multi Pass tend to sell out?</div>
+        <div class="faq-a">Single Pass for the four headliner rides can sell out by 9–10 AM on busy days. Multi Pass at any park almost never "sells out" — but the best return windows do. By 9 AM, the easy slots for Seven Dwarfs Mine Train (MK) and Slinky Dog Dash (HS) might already be pushed to after 5 PM.</div>
+      </div>
+
+      <div class="faq" data-faq>
+        <div class="faq-q">Can I buy Lightning Lane the day before?</div>
+        <div class="faq-a">Disney resort guests can book Multi Pass starting 7 days before their arrival (a real advantage). Off-property guests are locked to 7 AM the day of. For Single Pass and Virtual Queue, both are day-of for everyone.</div>
+      </div>
+
+      <div class="faq" data-faq>
+        <div class="faq-q">Do I need to buy Multi Pass for everyone in my party?</div>
+        <div class="faq-a">Yes — Lightning Lane is per-ticket, per-person. If only some of your group buys it, the others have to wait in standby. With kids in particular, you can't realistically split the group, so all-or-none is the rule.</div>
+      </div>
+
+      <div class="faq" data-faq>
+        <div class="faq-q">Can I use Lightning Lane on a ride that's broken down?</div>
+        <div class="faq-a">If a ride goes down during your return window, your booking automatically converts to a "multiple experience" pass valid at most other Lightning Lane attractions for the rest of the day. So you don't lose value; you just don't ride that specific attraction.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    05 / 06 · Low Gear Studio Trip Plan · Lightning Lane Guide
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('[data-faq]').forEach(faq => {
+    faq.addEventListener('click', () => faq.classList.toggle('open'));
+  });
+</script>
+
+</body>
+</html>

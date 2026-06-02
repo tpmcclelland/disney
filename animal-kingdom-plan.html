@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Kingdom — Touring Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400..700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3ede0;
+    --paper-edge: #e8dfc9;
+    --ink: #1f2a1c;
+    --ink-soft: #4a5340;
+    --moss: #5b6f3f;
+    --loam: #6b4f2a;
+    --amber: #b8862c;
+    --pandora: #2d8a9a;
+    --clay: #a8492a;
+    --sage: #8a9670;
+    --shadow: rgba(31, 42, 28, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    background-image:
+      radial-gradient(at 15% 12%, rgba(139, 150, 112, 0.18) 0px, transparent 50%),
+      radial-gradient(at 85% 75%, rgba(184, 134, 44, 0.12) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(45, 138, 154, 0.06) 0px, transparent 60%);
+    color: var(--ink);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Paper grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.05 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--paper-edge);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--loam);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--loam);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 9vw, 108px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--moss);
+  }
+
+  .subtitle {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin-top: 16px;
+    max-width: 620px;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--paper-edge);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+  .meta-row span strong {
+    display: block;
+    color: var(--ink);
+    margin-top: 4px;
+    font-size: 13px;
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 64px 0;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  h2 em { font-style: italic; color: var(--moss); font-weight: 300; }
+
+  .section-intro {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+    max-width: 620px;
+  }
+
+  /* === LIGHTNING LANE CALLOUT === */
+  .callout {
+    background: linear-gradient(135deg, #1f2a1c 0%, #2d3a26 100%);
+    color: #f3ede0;
+    padding: 40px 48px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .callout::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(184, 134, 44, 0.18) 0%, transparent 70%);
+  }
+  .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+  .callout h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .callout p {
+    color: rgba(243, 237, 224, 0.85);
+    max-width: 720px;
+    margin-bottom: 12px;
+  }
+  .callout .price-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(243, 237, 224, 0.15);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(243, 237, 224, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .callout .price-row strong {
+    display: block;
+    color: var(--amber);
+    font-size: 18px;
+    margin-top: 4px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* === TIMELINE === */
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .progress-track {
+    flex: 1;
+    height: 2px;
+    background: var(--paper-edge);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-fill {
+    position: absolute;
+    inset: 0 100% 0 0;
+    background: var(--moss);
+    transition: right 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .stop {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--paper-edge);
+    position: relative;
+    cursor: pointer;
+    transition: padding 0.3s ease;
+  }
+  .stop:hover { padding-left: 8px; }
+  .stop:last-child { border-bottom: 1px solid var(--paper-edge); }
+
+  .stop.done .stop-title,
+  .stop.done .stop-detail {
+    color: var(--ink-soft);
+    text-decoration: line-through;
+    text-decoration-color: var(--sage);
+    text-decoration-thickness: 1px;
+  }
+  .stop.done .stop-number {
+    background: var(--moss);
+    color: var(--paper);
+  }
+
+  .stop-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--loam);
+    padding-top: 4px;
+  }
+  .stop-time strong {
+    display: block;
+    color: var(--ink);
+    font-size: 18px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .stop-body {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .stop-number {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+    background: var(--paper);
+  }
+
+  .stop-content { flex: 1; }
+  .stop-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .stop-detail {
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .stop-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    margin-top: 12px;
+    margin-right: 6px;
+    background: var(--paper-edge);
+    color: var(--ink-soft);
+    border-radius: 2px;
+  }
+  .stop-tag.pandora { background: rgba(45, 138, 154, 0.18); color: var(--pandora); }
+  .stop-tag.priority { background: rgba(184, 134, 44, 0.2); color: var(--loam); }
+  .stop-tag.wet { background: rgba(168, 73, 42, 0.18); color: var(--clay); }
+
+  .timing-breakdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 16px;
+    margin-bottom: 14px;
+    max-width: 480px;
+    border: 1px solid var(--paper-edge);
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .timing-chip {
+    padding: 10px 12px;
+    border-right: 1px solid var(--paper-edge);
+    text-align: center;
+  }
+  .timing-chip:last-child { border-right: none; }
+  .timing-chip .chip-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .timing-chip .chip-value {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .timing-chip.walk .chip-value { color: var(--moss); }
+  .timing-chip.wait .chip-value { color: var(--loam); }
+  .timing-chip.total {
+    background: var(--ink);
+  }
+  .timing-chip.total .chip-label { color: rgba(243, 237, 224, 0.55); }
+  .timing-chip.total .chip-value { color: var(--paper); }
+  .stop.done .timing-breakdown { opacity: 0.4; }
+
+  @media (max-width: 700px) {
+    .timing-chip .chip-value { font-size: 14px; }
+    .timing-chip { padding: 8px 6px; }
+  }
+
+  /* === RIDE GRID === */
+  .rides-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .ride {
+    border-top: 1px solid var(--paper-edge);
+    padding: 28px 0;
+    cursor: pointer;
+    transition: padding 0.25s ease;
+  }
+  .ride:hover { padding-left: 8px; }
+  .ride:last-child { border-bottom: 1px solid var(--paper-edge); }
+
+  .ride-header {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .ride-rank {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--loam);
+  }
+  .ride-name {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .ride-name .land {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .wait-display {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .wait-display .wait-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    display: block;
+  }
+  .wait-display .wait-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .wait-bar {
+    height: 4px;
+    background: var(--paper-edge);
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wait-bar-fill {
+    position: absolute;
+    inset: 0 100% 0 0;
+    background: linear-gradient(90deg, var(--sage), var(--loam) 60%, var(--clay));
+    transition: right 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;
+  }
+  .wait-bar-marker {
+    position: absolute;
+    top: -3px;
+    width: 1px;
+    height: 10px;
+    background: var(--ink);
+    opacity: 0.3;
+  }
+
+  .ride-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+  }
+  .ride.expanded .ride-details {
+    max-height: 800px;
+    margin-top: 24px;
+  }
+
+  .ride-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 20px 0;
+    border-top: 1px solid var(--paper-edge);
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+  }
+  .ride-meta strong {
+    display: block;
+    color: var(--ink);
+    font-size: 14px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .ride-description {
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    max-width: 700px;
+  }
+  .ride-tip {
+    background: rgba(184, 134, 44, 0.1);
+    border-left: 3px solid var(--amber);
+    padding: 16px 20px;
+    font-style: italic;
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    max-width: 700px;
+  }
+  .ride-tip::before {
+    content: 'Tip — ';
+    font-style: normal;
+    font-weight: 600;
+    color: var(--loam);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-right: 4px;
+  }
+
+  /* === DINING + SHOWS === */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--paper-edge);
+    padding: 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px var(--shadow);
+  }
+  .card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .card .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--loam);
+    margin-bottom: 14px;
+  }
+  .card p { color: var(--ink-soft); font-size: 14px; }
+  .card .card-time {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--paper-edge);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--moss);
+  }
+
+  /* === NOTES === */
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .note {
+    padding: 24px;
+    background: rgba(168, 73, 42, 0.04);
+    border-left: 2px solid var(--clay);
+  }
+  .note.warn { background: rgba(184, 134, 44, 0.06); border-left-color: var(--amber); }
+  .note.info { background: rgba(45, 138, 154, 0.05); border-left-color: var(--pandora); }
+  .note-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .note p { font-size: 14px; color: var(--ink-soft); }
+
+  /* === FOOTER === */
+  footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-soft);
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--loam);
+    margin: 0 auto 24px;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .stop { grid-template-columns: 80px 1fr; gap: 16px; }
+    .ride-header { grid-template-columns: 32px 1fr; }
+    .wait-display { grid-column: 2; text-align: left; margin-top: 8px; }
+    .callout { padding: 28px 24px; }
+    .meta-row { gap: 20px; }
+  }
+
+  /* Subtle entrance */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="eyebrow">Walt Disney World · Park 01 of 04</div>
+    <h1>Animal <em>Kingdom</em></h1>
+    <p class="subtitle">A field guide to one wild, sweaty, brilliantly themed day — built around the only ride that actually fights back: Flight of Passage.</p>
+    <div class="meta-row">
+      <span>Arrival<strong>30–45 min pre-open</strong></span>
+      <span>Park hours<strong>~9am – 7/8pm</strong></span>
+      <span>Off-property<strong>No early entry</strong></span>
+      <span>Riders 44″+<strong>All coasters cleared</strong></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="callout">
+      <div class="callout-label">Lightning Lane Strategy</div>
+      <h3>Buy Single Pass for Flight of Passage. Skip Multi Pass.</h3>
+      <p>Animal Kingdom is the one park where Multi Pass doesn't earn its cost. Flight of Passage is the only ride with brutal waits — everything else stays under an hour if you start early. The Single Pass for FoP is the single best Lightning Lane purchase at this park.</p>
+      <p>Book it the morning of your visit (7am for off-property guests) since it sells out by mid-morning on busy days.</p>
+      <div class="price-row">
+        <span>Flight of Passage Single Pass<strong>$12–16 / person</strong></span>
+        <span>Booking window<strong>7:00 AM day-of</strong></span>
+        <span>Time saved<strong>~80 minutes</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The <em>plan</em></h2>
+    <p class="section-intro">Sequenced to zig while the resort-guest crowd zags. Every stop shows the walk-time, expected wait, and ride duration math. Structured plan ends around 3 PM, leaving 4+ hours of open afternoon. Tap any stop to mark it done.</p>
+
+    <div class="progress-bar">
+      <span>Progress</span>
+      <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+      <span id="progressText">0 / 8</span>
+    </div>
+
+    <div class="timeline" id="timeline">
+
+      <div class="stop" data-stop>
+        <div class="stop-time">8:15 AM<strong>Arrive</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">1</div>
+          <div class="stop-content">
+            <div class="stop-title">Park entry &amp; security</div>
+            <div class="stop-detail">Aim to be parked by 8:15. Account for: tram or walk to entrance (5–10 min), bag check (5–10 min), wait at tap stiles until 9:00. Once tapped in, walk to Pandora — most resort guests sprint to Flight of Passage, leaving Na'vi River Journey lighter.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Parking</span><span class="chip-value">10 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Security</span><span class="chip-value">10 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Hold</span><span class="chip-value">25 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Tap in</span><span class="chip-value">9:00 AM</span></div>
+            </div>
+            <span class="stop-tag">Off-property note</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">9:05 AM<strong>Stop 01</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">2</div>
+          <div class="stop-content">
+            <div class="stop-title">Na'vi River Journey</div>
+            <div class="stop-detail">First thing. Loads slowly so waits build fast — 15–20 min at rope drop vs. 45–65 min later. Yes, you're in Pandora with the FoP crowd, but this loads on a separate path.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">5 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~18 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">9:33 AM</span></div>
+            </div>
+            <span class="stop-tag pandora">Pandora</span>
+            <span class="stop-tag">No height req</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">9:43 AM<strong>Stop 02</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">3</div>
+          <div class="stop-content">
+            <div class="stop-title">Kilimanjaro Safaris</div>
+            <div class="stop-detail">Walk from Pandora to Africa. Safari waits build through the morning, and animals are most active in cool morning hours. Two wins in one stop.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">10 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~25 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">20 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">10:28 AM</span></div>
+            </div>
+            <span class="stop-tag">Africa</span>
+            <span class="stop-tag priority">Closes early</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">10:35 AM<strong>Stop 03</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">4</div>
+          <div class="stop-content">
+            <div class="stop-title">Expedition Everest</div>
+            <div class="stop-detail">Head to Asia. If posted wait tops 30 min, use the single rider line — drops to ~10 min and your group rides within a few cycles.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">7 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~25 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">3 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">11:10 AM</span></div>
+            </div>
+            <span class="stop-tag">Asia</span>
+            <span class="stop-tag">Single rider available</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">11:13 AM<strong>Stop 04</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">5</div>
+          <div class="stop-content">
+            <div class="stop-title">Kali River Rapids</div>
+            <div class="stop-detail">Already in Asia. You will get wet — accept it or bring a poncho. In hot weather, save this for mid-afternoon as a cool-down instead.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">3 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Wait</span><span class="chip-value">~20 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Ride</span><span class="chip-value">5 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">11:38 AM</span></div>
+            </div>
+            <span class="stop-tag wet">You WILL get wet</span>
+            <span class="stop-tag">38″ minimum</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">11:50 AM<strong>Stop 05</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">6</div>
+          <div class="stop-content">
+            <div class="stop-title">Lunch — Satu'li Canteen</div>
+            <div class="stop-detail">Walk back through Discovery Island to Pandora. Build-your-own protein bowls, fast line, and the best quick-service food in the park. Mobile order on the walk over so it's ready when you arrive.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">12 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Pickup</span><span class="chip-value">5 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Eat</span><span class="chip-value">40 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">12:45 PM</span></div>
+            </div>
+            <span class="stop-tag pandora">Pandora</span>
+            <span class="stop-tag">Mobile order</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">12:50 PM<strong>Stop 06</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">7</div>
+          <div class="stop-content">
+            <div class="stop-title">Avatar Flight of Passage</div>
+            <div class="stop-detail">Use your Single Pass return window — aim for a 12:30–1:30 booking when you reserve at 7 AM. Queue walk is ~20 min even with Single Pass (it's intentionally part of the experience), then a brief preshow before the ride itself.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">3 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Queue</span><span class="chip-value">20 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Preshow + Ride</span><span class="chip-value">15 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">1:28 PM</span></div>
+            </div>
+            <span class="stop-tag pandora">Pandora</span>
+            <span class="stop-tag priority">Single Pass</span>
+            <span class="stop-tag">44″ minimum</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">~2:00 PM<strong>Stop 07</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">8</div>
+          <div class="stop-content">
+            <div class="stop-title">Festival of the Lion King</div>
+            <div class="stop-detail">Genuinely one of the best things in the park. Showtimes are fixed and posted day-of in the app — check at breakfast and slot your visit around the next show after FoP. Arrive 20 min before showtime to seat together.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Walk</span><span class="chip-value">10 min</span></div>
+              <div class="timing-chip wait"><span class="chip-label">Seat early</span><span class="chip-value">20 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Show</span><span class="chip-value">30 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Done by</span><span class="chip-value">~3:00 PM</span></div>
+            </div>
+            <span class="stop-tag">Africa</span>
+            <span class="stop-tag priority">Showtimes vary</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop" data-stop>
+        <div class="stop-time">3:00 PM+<strong>Open</strong></div>
+        <div class="stop-body">
+          <div class="stop-number">9</div>
+          <div class="stop-content">
+            <div class="stop-title">Walking trails + Zootopia + re-rides</div>
+            <div class="stop-detail">Gorilla Falls Exploration Trail (Africa) and Maharajah Jungle Trek (Asia) for tigers, gibbons, bats. Hit Zootopia: Better Zoogether! as a heat-break. Re-ride favorites until park close — most waits collapse late afternoon.</div>
+            <div class="timing-breakdown">
+              <div class="timing-chip walk"><span class="chip-label">Buffer</span><span class="chip-value">flex</span></div>
+              <div class="timing-chip"><span class="chip-label">Trails</span><span class="chip-value">~60 min</span></div>
+              <div class="timing-chip"><span class="chip-label">Re-rides</span><span class="chip-value">~90 min</span></div>
+              <div class="timing-chip total"><span class="chip-label">Until close</span><span class="chip-value">7–8 PM</span></div>
+            </div>
+            <span class="stop-tag">Low-key</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Every <em>ride</em>, ranked</h2>
+    <p class="section-intro">Average waits from 2026 tracker data. Tap any ride for detail.</p>
+
+    <div class="rides-grid" id="rides">
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">01</div>
+          <div class="ride-name">Avatar Flight of Passage<span class="land">Pandora · 3D flying simulator</span></div>
+          <div class="wait-display">
+            <span class="wait-num">87</span>
+            <span class="wait-label">min avg wait</span>
+          </div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="92"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>44″ min</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Lightning Lane<strong>Single Pass ($12–16)</strong></span>
+            <span>Standby range<strong>80–95 min</strong></span>
+          </div>
+          <p class="ride-description">Strap into a "link chair" that connects you to your banshee and fly through the floating mountains of Pandora. Genuinely best-in-class. The queue itself — through bioluminescent caves and a lab — is part of the experience.</p>
+          <div class="ride-tip">Single Pass is worth every dollar here. Without it, this one ride eats 90+ minutes of your day. Posted waits also overstate by 15–25%, so a "90 min" sign is often a real 70.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">02</div>
+          <div class="ride-name">Na'vi River Journey<span class="land">Pandora · Gentle boat ride</span></div>
+          <div class="wait-display">
+            <span class="wait-num">55</span>
+            <span class="wait-label">min avg wait</span>
+          </div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="58"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass</strong></span>
+            <span>Standby range<strong>45–65 min</strong></span>
+          </div>
+          <p class="ride-description">Slow boat through bioluminescent rainforest scenes. The Shaman of Songs animatronic at the end is one of the most advanced figures Disney has ever built. Short, beautiful, gentle.</p>
+          <div class="ride-tip">Ride this first thing — it's the rope-drop priority because the line builds fast and stays long all day.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">03</div>
+          <div class="ride-name">Kilimanjaro Safaris<span class="land">Africa · Open-air safari vehicle</span></div>
+          <div class="wait-display">
+            <span class="wait-num">45</span>
+            <span class="wait-label">min avg wait</span>
+          </div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="48"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~20 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass</strong></span>
+            <span>Standby range<strong>35–55 min</strong></span>
+          </div>
+          <p class="ride-description">Real animals — giraffes, lions, elephants, rhinos — on an 18–20 min safari ride. No two trips identical. Worth it even for adults who think they're "over" theme parks.</p>
+          <div class="ride-tip">Safari typically closes 1–2 hours before park close. Do it early-to-mid morning when animals are most active AND when you're guaranteed it's running.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">04</div>
+          <div class="ride-name">Expedition Everest<span class="land">Asia · Roller coaster</span></div>
+          <div class="wait-display">
+            <span class="wait-num">32</span>
+            <span class="wait-label">min avg wait</span>
+          </div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="32"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>44″ min</strong></span>
+            <span>Duration<strong>~3 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass</strong></span>
+            <span>Standby range<strong>25–40 min</strong></span>
+          </div>
+          <p class="ride-description">The park's only true thrill coaster. 80-foot drop, a backward section in the dark, encounter with the Yeti. Doesn't look intimidating but delivers.</p>
+          <div class="ride-tip">Single rider line is the move here — it moves much faster than posted standby, and the coaster loads quickly so your group reunites within a few cycles.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">05</div>
+          <div class="ride-name">Kali River Rapids<span class="land">Asia · River raft</span></div>
+          <div class="wait-display">
+            <span class="wait-num">22</span>
+            <span class="wait-label">min avg wait</span>
+          </div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="22"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>38″ min</strong></span>
+            <span>Duration<strong>~5 min</strong></span>
+            <span>Lightning Lane<strong>Multi Pass</strong></span>
+            <span>Standby range<strong>15–30 min</strong></span>
+          </div>
+          <p class="ride-description">Round raft, 8 people, one big drop, lots of splash zones. Theming is genuinely strong — illegal logging operation, smoke, fire, deforestation messaging.</p>
+          <div class="ride-tip">Bring a poncho or lock phones/shoes in the on-ride locker. Save it for hot afternoons as a cooldown — it's painful when you're already cold.</div>
+        </div>
+      </div>
+
+      <div class="ride" data-ride>
+        <div class="ride-header">
+          <div class="ride-rank">06</div>
+          <div class="ride-name">Zootopia: Better Zoogether!<span class="land">Tree of Life Theater · Show</span></div>
+          <div class="wait-display">
+            <span class="wait-num">18</span>
+            <span class="wait-label">min avg wait</span>
+          </div>
+        </div>
+        <div class="wait-bar"><div class="wait-bar-fill" data-fill="18"></div></div>
+        <div class="ride-details">
+          <div class="ride-meta">
+            <span>Height<strong>None</strong></span>
+            <span>Duration<strong>~12 min</strong></span>
+            <span>Lightning Lane<strong>None</strong></span>
+            <span>Type<strong>3D screen-based show</strong></span>
+          </div>
+          <p class="ride-description">Newer attraction (replaced It's Tough to Be a Bug). Sit-down 3D show featuring the Zootopia cast. Air-conditioned, family-friendly, low-stakes.</p>
+          <div class="ride-tip">Use this as a midday heat-break. Walk-up most of the day.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Where to <em>eat</em></h2>
+    <p class="section-intro">Animal Kingdom's food game is unexpectedly strong. Mobile order to skip lines.</p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">Quick service · Pandora</div>
+        <h4>Satu'li Canteen</h4>
+        <p>Build-your-own protein bowls with bases, sauces, and proteins. Healthy, fresh, and actually filling. The standout quick service on property.</p>
+        <div class="card-time">Recommended for lunch</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Quick service · Discovery Island</div>
+        <h4>Flame Tree Barbecue</h4>
+        <p>Smoked ribs, pulled pork, chicken. Riverside seating with shade and views. Follow the smell. Big portions for the money.</p>
+        <div class="card-time">Best for late lunch / lighter crowds</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Table service · Asia</div>
+        <h4>Yak &amp; Yeti</h4>
+        <p>Pan-Asian — pot stickers, lo mein, mahi mahi. Solid sit-down option if you want air conditioning and a real break. Reservations recommended.</p>
+        <div class="card-time">60-day advance reservation</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Snack / drinks · Pandora</div>
+        <h4>Pongu Pongu</h4>
+        <p>Specialty drinks, including the blue Night Blossom and frozen lumpia-style desserts. Cheap, fast, fun, and Instagram-y.</p>
+        <div class="card-time">Anytime stop</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Shows worth <em>catching</em></h2>
+    <p class="section-intro">Check showtimes in the My Disney Experience app the morning of your visit.</p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">~30 minutes · Africa</div>
+        <h4>Festival of the Lion King</h4>
+        <p>Acrobats, fire-twirlers, live vocals, and Disney's best stage production by a wide margin. Air-conditioned theater. Arrive 20 minutes early for good seats.</p>
+        <div class="card-time">Multiple showtimes daily</div>
+      </div>
+      <div class="card">
+        <div class="card-label">~15 minutes · Asia</div>
+        <h4>Feathered Friends in Flight</h4>
+        <p>Free-flying bird show featuring macaws, eagles, hawks, and owls in the Anandapur theater. Better than it sounds.</p>
+        <div class="card-time">Several daily showings</div>
+      </div>
+      <div class="card">
+        <div class="card-label">~30 minutes · Discovery Island</div>
+        <h4>Finding Nemo: The Big Blue... and Beyond!</h4>
+        <p>Reimagined Finding Nemo musical with puppetry. Strong production values, great for younger kids — skippable for adults if pressed for time.</p>
+        <div class="card-time">Multiple showtimes</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Practical <em>notes</em></h2>
+    <p class="section-intro">Small things that matter on the ground.</p>
+    <div class="notes">
+      <div class="note warn">
+        <div class="note-title">DinoLand is gone</div>
+        <p>DINOSAUR and all of DinoLand U.S.A. permanently closed February 2026. The eastern side of the park is walled off for the Tropical Americas land (Indiana Jones + Encanto rides, opening 2027). Plan around a smaller park footprint.</p>
+      </div>
+      <div class="note">
+        <div class="note-title">Park closes earlier</div>
+        <p>Typically 7–8 PM, not the late hours of Magic Kingdom. Don't plan a late dinner inside the park. Eat in or head to Disney Springs after.</p>
+      </div>
+      <div class="note info">
+        <div class="note-title">Safari closes before park</div>
+        <p>Kilimanjaro Safaris often shuts 1–2 hours ahead of park close because they need light for the animals. Don't save it for last.</p>
+      </div>
+      <div class="note warn">
+        <div class="note-title">Florida sun is real</div>
+        <p>Animal Kingdom has more shade than Magic Kingdom but Pandora's main paths are open. Refillable water bottle, sunscreen, hat. Refill stations throughout.</p>
+      </div>
+      <div class="note">
+        <div class="note-title">Posted waits run hot</div>
+        <p>Animal Kingdom overstates waits by 15–25%, especially Flight of Passage. A posted 90 is often a real 70. Helpful when deciding whether to skip Single Pass.</p>
+      </div>
+      <div class="note info">
+        <div class="note-title">Walking trails count</div>
+        <p>Gorilla Falls (Africa) and Maharajah Jungle Trek (Asia) have real animals — gorillas, tigers, gibbons, bats. They're not rides but they're some of the best content in the park.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    01 / 04 · Low Gear Studio Trip Plan · Animal Kingdom
+  </footer>
+
+</div>
+
+<script>
+  // Wait bar animation on load
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.wait-bar-fill').forEach(el => {
+      const fill = parseInt(el.dataset.fill, 10);
+      el.style.right = (100 - fill) + '%';
+    });
+  });
+
+  // Stop toggle (mark done)
+  const stops = document.querySelectorAll('[data-stop]');
+  const progressFill = document.getElementById('progress');
+  const progressText = document.getElementById('progressText');
+  const totalStops = stops.length - 1; // excluding the "arrive at gate" stop from count? No, include all
+  const trackedStops = stops.length;
+
+  function updateProgress() {
+    const done = document.querySelectorAll('[data-stop].done').length;
+    const pct = (done / trackedStops) * 100;
+    progressFill.style.right = (100 - pct) + '%';
+    progressText.textContent = done + ' / ' + trackedStops;
+  }
+
+  stops.forEach(stop => {
+    stop.addEventListener('click', () => {
+      stop.classList.toggle('done');
+      updateProgress();
+    });
+  });
+
+  // Ride expand
+  document.querySelectorAll('[data-ride]').forEach(ride => {
+    ride.addEventListener('click', () => {
+      ride.classList.toggle('expanded');
+    });
+  });
+</script>
+
+</body>
+</html>

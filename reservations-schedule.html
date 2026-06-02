@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservations &amp; Schedule — June 8–13, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Onest:wght@300..700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f3eb;
+    --paper-soft: #efe9dc;
+    --ink: #1f2024;
+    --ink-soft: #4a4d54;
+    --ink-mute: #7a7d85;
+    --paper-edge: #ddd5c0;
+    --wine: #7a2f3f;
+    --wine-soft: #9a4654;
+    --sage: #5e7d5a;
+    --gold: #b08940;
+    --olive: #8c8945;
+    --cream: #faf6ed;
+    --crimson: #a04848;
+    --teal: #3a7080;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    background-image:
+      radial-gradient(at 12% 8%, rgba(122, 47, 63, 0.05) 0px, transparent 50%),
+      radial-gradient(at 88% 92%, rgba(94, 125, 90, 0.05) 0px, transparent 50%);
+    color: var(--ink);
+    font-family: 'Onest', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 90px 0 60px;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  .eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--wine);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--wine);
+  }
+
+  h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(44px, 7.5vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-variation-settings: "opsz" 72;
+  }
+  h1 em { font-style: italic; color: var(--wine); font-weight: 300; }
+
+  .subtitle {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin-top: 18px;
+    max-width: 660px;
+    line-height: 1.45;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--paper-edge);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-mute);
+  }
+  .meta-row span strong {
+    display: block;
+    color: var(--ink);
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Newsreader', serif;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 64px 0;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+    color: var(--ink);
+    font-variation-settings: "opsz" 48;
+  }
+  h2 em { font-style: italic; color: var(--wine); font-weight: 300; }
+
+  .section-intro {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+    max-width: 720px;
+    line-height: 1.45;
+  }
+
+  /* === REALITY CHECK CALLOUT === */
+  .callout {
+    background: linear-gradient(135deg, var(--wine) 0%, #5a1f2a 100%);
+    color: var(--cream);
+    padding: 40px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .callout::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(247, 243, 235, 0.08) 0%, transparent 70%);
+  }
+  .callout-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(247, 243, 235, 0.65);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .callout h3 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 30px;
+    margin-bottom: 16px;
+    line-height: 1.15;
+    color: var(--cream);
+    font-variation-settings: "opsz" 36;
+  }
+  .callout h3 em { font-style: italic; }
+  .callout p {
+    color: rgba(247, 243, 235, 0.85);
+    max-width: 740px;
+    margin-bottom: 12px;
+  }
+
+  /* === SCHEDULE === */
+  .schedule {
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--paper-edge);
+    background: var(--cream);
+  }
+  .schedule-day {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+  .schedule-day:last-child { border-bottom: none; }
+  .schedule-date {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .schedule-date .day-name {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .schedule-date .day-num {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 0.9;
+    color: var(--cream);
+    font-variation-settings: "opsz" 72;
+  }
+  .schedule-date .day-month {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    color: rgba(247, 243, 235, 0.7);
+    margin-top: 4px;
+  }
+  .schedule-content {
+    padding: 24px 28px;
+  }
+  .schedule-park {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .schedule-park em { font-style: italic; font-weight: 400; color: var(--wine); }
+  .schedule-tagline {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .schedule-detail {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .schedule-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .schedule-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 3px 9px;
+    background: var(--paper-soft);
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .schedule-tag.priority { background: rgba(122, 47, 63, 0.15); color: var(--wine); }
+  .schedule-tag.flex { background: rgba(94, 125, 90, 0.18); color: var(--sage); }
+  .schedule-tag.show { background: rgba(176, 137, 64, 0.18); color: var(--gold); }
+
+  /* === RESERVATIONS TABLE === */
+  .res-list { border: 1px solid var(--paper-edge); background: var(--cream); }
+  .res-row {
+    display: grid;
+    grid-template-columns: 1fr 200px 160px 130px;
+    gap: 0;
+    border-bottom: 1px solid var(--paper-edge);
+    align-items: stretch;
+  }
+  .res-row:last-child { border-bottom: none; }
+  .res-row.header { background: var(--ink); color: var(--cream); }
+  .res-row.header .res-cell {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(247, 243, 235, 0.85);
+    font-weight: 600;
+  }
+  .res-cell {
+    padding: 16px 20px;
+    border-right: 1px solid var(--paper-edge);
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .res-row.header .res-cell { border-right-color: rgba(247, 243, 235, 0.15); }
+  .res-cell:last-child { border-right: none; }
+  .res-cell .res-name {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    margin-bottom: 2px;
+  }
+  .res-cell .res-meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .difficulty {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .difficulty.high { color: var(--wine); }
+  .difficulty.med { color: var(--gold); }
+  .difficulty.low { color: var(--sage); }
+  .difficulty .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+  }
+
+  @media (max-width: 900px) {
+    .res-row { grid-template-columns: 1fr 1fr; }
+    .res-cell { padding: 12px 14px; font-size: 13px; }
+  }
+
+  /* === STRATEGY CARDS === */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--cream);
+    border: 1px solid var(--paper-edge);
+    padding: 28px;
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--ink-mute);
+    box-shadow: 0 12px 28px rgba(31, 32, 36, 0.08);
+  }
+  .card h4 {
+    font-family: 'Newsreader', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .card .card-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--wine);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .card p { color: var(--ink-soft); font-size: 14px; }
+  .card .card-time {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--paper-edge);
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--sage);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* === TACTIC LIST === */
+  .tactics { display: grid; gap: 0; }
+  .tactic {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--paper-edge);
+  }
+  .tactic:first-child { border-top: none; }
+  .tactic:last-child { border-bottom: 1px solid var(--paper-edge); }
+  .tactic-num {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 42px;
+    color: var(--wine);
+    line-height: 1;
+    font-variation-settings: "opsz" 72;
+  }
+  .tactic-content { padding-top: 6px; }
+  .tactic-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .tactic-body {
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 720px;
+  }
+
+  /* === BOTH WATER PARKS === */
+  .water-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--paper-edge);
+    border: 1px solid var(--paper-edge);
+  }
+  .water-park {
+    background: var(--cream);
+    padding: 32px 28px;
+  }
+  .water-park h4 {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 26px;
+    margin-bottom: 6px;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .water-park .water-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .water-park p { color: var(--ink-soft); font-size: 14px; margin-bottom: 14px; }
+  .water-park .water-feature {
+    font-size: 13px;
+    padding: 6px 0;
+    border-top: 1px solid var(--paper-edge);
+    color: var(--ink-soft);
+    display: flex;
+    gap: 8px;
+  }
+  .water-park .water-feature::before {
+    content: '→';
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 700px) {
+    .water-compare { grid-template-columns: 1fr; }
+  }
+
+  /* Footer */
+  footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-mute);
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--wine);
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 20px; }
+    .callout { padding: 28px 24px; }
+    .schedule-day { grid-template-columns: 90px 1fr; }
+    .schedule-date { padding: 16px; }
+    .schedule-date .day-num { font-size: 36px; }
+    .schedule-content { padding: 18px 20px; }
+    .tactic { grid-template-columns: 40px 1fr; gap: 14px; }
+    .tactic-num { font-size: 32px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.1s; }
+  section:nth-of-type(2) { animation-delay: 0.2s; }
+  section:nth-of-type(3) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="eyebrow">Trip Reference · 06 of 06</div>
+    <h1>Reservations &amp; <em>schedule</em></h1>
+    <p class="subtitle">Six days, four park days, two water park / mini-golf days, and a dining reservation window that closed two months ago. What you can still book, what to walk up to, and where to spend the time.</p>
+    <div class="meta-row">
+      <span>Trip dates<strong>Mon June 8 – Sat June 13</strong></span>
+      <span>Ticket<strong>4-day Park Hopper Plus</strong></span>
+      <span>Includes<strong>2 water parks + mini golf</strong></span>
+      <span>Family<strong>5 people · 2 adults + 3 kids</strong></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="callout">
+      <div class="callout-label">Reality check · 6 days out</div>
+      <h3>The 60-day window closed April 9. <em>Plan accordingly.</em></h3>
+      <p>Disney dining reservations open 60 days before your check-in date. By two months ahead, the premium spots (Be Our Guest, Cinderella's Royal Table, Sci-Fi Dine-In, Le Cellier) are typically booked. Six days out means most prime tables are gone.</p>
+      <p>But: people cancel constantly. Reservations open up in the My Disney Experience app throughout each day. The walk-up wait list works at most table-service spots. And third-party reservation alert services (DVC Reservation Finder, MouseDining) text you when slots drop. There's a real playbook for late booking — covered below.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The <em>schedule</em></h2>
+    <p class="section-intro">Recommended sequence: Animal Kingdom first (shortest park day, eases in after travel), Hollywood Studios early-week (Muppets coaster crowds lighter Mon–Tue than Sat–Sun), water park mid-trip as the recovery day, then Magic Kingdom on its best crowd day and EPCOT as the trip-closing festival evening. Saturday opens up as a real flex day — Universal, Disney Springs, or a final low-key option.</p>
+    <div class="schedule">
+
+      <div class="schedule-day">
+        <div class="schedule-date">
+          <div class="day-name">Mon</div>
+          <div class="day-num">8</div>
+          <div class="day-month">June</div>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-park">Animal <em>Kingdom</em></div>
+          <div class="schedule-tagline">Ease in. Shortest park day, animals at their most active in morning heat.</div>
+          <div class="schedule-detail">Animal Kingdom closes earlier than other parks (7–8 PM), making it the gentlest Monday after travel. Single Pass for Flight of Passage; rope drop Na'vi River Journey if you make it, otherwise just head straight to Pandora. Lion King show mid-afternoon. Done by dinner.</div>
+          <div class="schedule-tags">
+            <span class="schedule-tag priority">Park day 01</span>
+            <span class="schedule-tag">FoP Single Pass</span>
+            <span class="schedule-tag show">Lion King show</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="schedule-date">
+          <div class="day-name">Tue</div>
+          <div class="day-num">9</div>
+          <div class="day-month">June</div>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-park">Hollywood <em>Studios</em></div>
+          <div class="schedule-tagline">Hit Muppets coaster &amp; Rise of the Resistance before weekend crowds build.</div>
+          <div class="schedule-detail">Most ride-dense park on property. Brand-new Muppets coaster — Tuesday wait times still manageable before mid-week and weekend novelty crowds peak. Rise of the Resistance via Single Pass. Stay through Fantasmic at 9 PM.</div>
+          <div class="schedule-tags">
+            <span class="schedule-tag priority">Park day 02</span>
+            <span class="schedule-tag">Rise Single Pass</span>
+            <span class="schedule-tag show">Fantasmic finale</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="schedule-date">
+          <div class="day-name">Wed</div>
+          <div class="day-num">10</div>
+          <div class="day-month">June</div>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-park">Water park <em>&amp; mini golf</em></div>
+          <div class="schedule-tagline">Mid-week reset day. Sleep in.</div>
+          <div class="schedule-detail">Water park morning (Blizzard Beach or Typhoon Lagoon — pick based on weather and which is less crowded). Mini golf in the evening at Fantasia Gardens or Winter Summerland. No reservations needed for either; just show up.</div>
+          <div class="schedule-tags">
+            <span class="schedule-tag flex">Rest day</span>
+            <span class="schedule-tag">Plus benefits</span>
+            <span class="schedule-tag flex">Evening mini golf</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="schedule-date">
+          <div class="day-name">Thu</div>
+          <div class="day-num">11</div>
+          <div class="day-month">June</div>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-park">Magic <em>Kingdom</em></div>
+          <div class="schedule-tagline">The big one. Best crowd day for the park. Full energy after Wednesday's rest.</div>
+          <div class="schedule-detail">Counter-clockwise sweep starting in Tomorrowland. Six lands, 25+ rides, fireworks at 9 PM. Multi Pass + TRON Single Pass. Plan for a 12-hour day; bring an extra layer for after-dark. Big Thunder should be open by your trip.</div>
+          <div class="schedule-tags">
+            <span class="schedule-tag priority">Park day 03</span>
+            <span class="schedule-tag">TRON Single Pass</span>
+            <span class="schedule-tag show">Happily Ever After fireworks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="schedule-date">
+          <div class="day-name">Fri</div>
+          <div class="day-num">12</div>
+          <div class="day-month">June</div>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-park">EP<em>COT</em></div>
+          <div class="schedule-tagline">Trip-closing day. Festival graze + Luminous fireworks finale.</div>
+          <div class="schedule-detail">Cosmic Rewind Virtual Queue at 7 AM. Front-half rides until 11 AM, World Showcase pavilions in the afternoon. Flower &amp; Garden Festival food booths for lunch. Build to Luminous fireworks at 9 PM for a perfect trip-ending evening. Storm break around 3–5 PM.</div>
+          <div class="schedule-tags">
+            <span class="schedule-tag priority">Park day 04</span>
+            <span class="schedule-tag">Virtual Queue 7 AM</span>
+            <span class="schedule-tag show">Luminous finale</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-day">
+        <div class="schedule-date">
+          <div class="day-name">Sat</div>
+          <div class="day-num">13</div>
+          <div class="day-month">June</div>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-park">Flex <em>day</em></div>
+          <div class="schedule-tagline">Cherry-pick your closing experience. Universal, Disney Springs, beach, or just head home.</div>
+          <div class="schedule-detail">Five viable options based on remaining energy and budget — Universal Epic Universe for the high-energy "completely different" day, Disney Springs for low-key dining, Kennedy Space Center for an actual-rocket day, Cocoa Beach for outdoor reset, or just head home early. Full options below.</div>
+          <div class="schedule-tags">
+            <span class="schedule-tag flex">Flex day</span>
+            <span class="schedule-tag flex">5 options</span>
+            <span class="schedule-tag">Decision day</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Saturday <em>options</em></h2>
+    <p class="section-intro">Five paths for the flex day, ranked by what makes sense for a family of five after a hard week of theme parks. Pick based on energy level Friday night and what's missing from the trip so far.</p>
+
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-label">Option 01 · ~$900–1,150</div>
+        <h4>Universal Epic Universe</h4>
+        <p>Brand-new (May 2025) Universal park with five immersive worlds — Super Nintendo World, Wizarding Ministry of Magic, How to Train Your Dragon, Dark Universe, and Celestial Park hub. Completely different from Disney. Full guide already built. Best for high-energy families who still want one big ride day.</p>
+        <div class="card-time">Full day · $750–1,000 tickets + $150 food/parking</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Option 02 · Free · Recommended default</div>
+        <h4>Disney Springs + early travel home</h4>
+        <p>Outdoor walkable district with restaurants, shops, and entertainment. Free admission and parking. The Boathouse on the water, Wine Bar George, Chef Art Smith's Homecomin', House of Blues. Half-day max. Smart move if everyone's exhausted by Saturday.</p>
+        <div class="card-time">Half day · No admission required</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Option 03 · ~$340 family · 1 hour east</div>
+        <h4>Kennedy Space Center</h4>
+        <p>Actual NASA launch site. Apollo/Saturn V Center has a real Saturn V rocket suspended overhead. Atlantis space shuttle exhibit, astronaut meet-and-greets, IMAX films. $75 adult / $65 kid (3–11). Surprisingly engaging for kids who think they're "over" museums. Different enough from theme parks to be refreshing.</p>
+        <div class="card-time">Full day · 1 hour drive each way</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Option 04 · Free · 45 min east</div>
+        <h4>Cocoa Beach</h4>
+        <p>Closest real beach to Orlando. Cocoa Beach Pier has restaurants, surf shops, and a Ron Jon Surf Shop nearby. Real Atlantic Ocean swim. Outdoor reset after a week indoors. Bring sunscreen and shade if possible — Florida sun is no joke.</p>
+        <div class="card-time">Half/full day · Beach essentials needed</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Option 05 · $$$ · Add a 1-day ticket</div>
+        <h4>Return to Magic Kingdom</h4>
+        <p>If one Disney park genuinely deserves a second visit, it's MK — most rides per square foot, most to miss the first time, fireworks better the second time. 1-day ticket runs ~$160/person ($800 family) plus possible Multi Pass. Only makes sense if energy is high and budget allows.</p>
+        <div class="card-time">Full day · ~$800+ added cost</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Option 06 · Free · Light option</div>
+        <h4>Disney resort hopping + dinner</h4>
+        <p>Free monorail loop connects Polynesian, Grand Floridian, and Contemporary resorts. Walk the resort lobbies, ride the monorail at sunset, then dinner at one of the resort restaurants (Sanaa at Animal Kingdom Lodge, 'Ohana at Polynesian, Geyser Point at Wilderness Lodge). Resort restaurants have better availability than park ones. Free transportation, low-stress.</p>
+        <div class="card-time">Half day · Resort restaurant reservation helpful</div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 28px; color: var(--ink-soft); font-size: 14px; max-width: 700px; font-family: 'Newsreader', serif; font-style: italic;">My honest recommendation: lean toward Disney Springs or Universal Epic Universe. Disney Springs is the smart default if anyone in the family is dragging by Friday night. Epic Universe is the right call if everyone still has gas — it's a genuinely different experience that won't feel like "more of the same." Skip returning to a Disney park unless one specific kid is begging for it.</p>
+  </section>
+
+  <section>
+    <h2>The dining <em>playbook</em> · 6 days out</h2>
+    <p class="section-intro">When the 60-day window has passed, you need different tactics. Here's how late bookings actually work.</p>
+
+    <div class="tactics">
+
+      <div class="tactic">
+        <div class="tactic-num">01</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Refresh the MDX app daily — slots open constantly</div>
+          <div class="tactic-body">People cancel reservations every day. The standard cancellation window is 24 hours, so the day before any reservation, lots of unwanted tables drop back to the public pool. Open My Disney Experience → Dining → search your dates each morning. Hot spots like Sci-Fi Dine-In and 50's Prime Time turn over especially often.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">02</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Use a reservation drop alert service</div>
+          <div class="tactic-body">MouseDining and DVC Reservation Finder both watch for cancellations and text/email you when a slot opens for your search criteria. MouseDining is free for limited searches, ~$7/month for unlimited. They work — most users score top reservations within 48 hours of setting alerts. Worth it for a high-priority restaurant like Be Our Guest.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">03</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Walk-up Wait List is real and works</div>
+          <div class="tactic-body">Inside the My Disney Experience app, "Walk-up Availability" lets you join a wait list at most table-service restaurants when you're at the park. Quote times are usually 30–60 minutes. Add yourself when leaving a ride, do another ride, get the text when your table's ready. Almost every non-character restaurant works this way.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">04</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Mobile order quick service — always, no exceptions</div>
+          <div class="tactic-body">For every quick-service restaurant (Pecos Bill, Satu'li, Docking Bay 7, etc.), use mobile order in the app. Pick a pickup window, get your food fast, skip the order line entirely. The pickup window slots fill up — book 30 min before you want to eat. For a family of 5 this saves 15–30 minutes per meal.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">05</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Off-peak meal times open everything</div>
+          <div class="tactic-body">11:00 AM lunch, 4:30 PM dinner, 8:30 PM late dinner — these windows have availability everywhere because most families eat at "normal" times. If you can shift your meal timing 1–2 hours off center, even hard-to-book spots become walk-up-able.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">06</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Resort restaurants are easier than park restaurants</div>
+          <div class="tactic-body">Most "best of Disney" lists focus on in-park dining, which is why those spots are impossible. The Disney resort hotels have outstanding restaurants with much shorter booking horizons — Sanaa (Animal Kingdom Lodge), 'Ohana (Polynesian), Boma (Animal Kingdom Lodge), Geyser Point (Wilderness Lodge), Three Bridges (Coronado Springs). All worth dinner trips and usually have availability close to the date.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Top dining <em>picks</em> per park</h2>
+    <p class="section-intro">Booking difficulty marked. Try the high-difficulty ones via drop alerts; walk-up the medium ones; mobile-order the low ones.</p>
+
+    <div class="res-list">
+
+      <div class="res-row header">
+        <div class="res-cell"><strong>Restaurant</strong></div>
+        <div class="res-cell"><strong>Where / Why</strong></div>
+        <div class="res-cell"><strong>Type</strong></div>
+        <div class="res-cell"><strong>Difficulty</strong></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Be Our Guest</div>
+          <div class="res-meta">Magic Kingdom · Fantasyland</div>
+        </div>
+        <div class="res-cell">Lunch inside Beast's Castle. French-inspired menu. Bucket-list ambiance for first-timers.</div>
+        <div class="res-cell">Table service · Pre-fixe</div>
+        <div class="res-cell"><span class="difficulty high"><span class="dot"></span>Very hard</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Sci-Fi Dine-In Theater</div>
+          <div class="res-meta">Hollywood Studios · Echo Lake</div>
+        </div>
+        <div class="res-cell">Eat in 1950s convertibles inside a faux drive-in. The novelty is the experience.</div>
+        <div class="res-cell">Table service</div>
+        <div class="res-cell"><span class="difficulty high"><span class="dot"></span>Very hard</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">50's Prime Time Café</div>
+          <div class="res-meta">Hollywood Studios · Echo Lake</div>
+        </div>
+        <div class="res-cell">Server-as-mom comfort food bit. Loud, weird, kids love it. Meatloaf is solid.</div>
+        <div class="res-cell">Table service</div>
+        <div class="res-cell"><span class="difficulty high"><span class="dot"></span>Very hard</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Le Cellier Steakhouse</div>
+          <div class="res-meta">EPCOT · Canada pavilion</div>
+        </div>
+        <div class="res-cell">Underground steakhouse, cheese soup, filet mignon. Adult-leaning dinner spot.</div>
+        <div class="res-cell">Table service · $$$</div>
+        <div class="res-cell"><span class="difficulty high"><span class="dot"></span>Very hard</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Roundup Rodeo BBQ</div>
+          <div class="res-meta">Hollywood Studios · Toy Story Land</div>
+        </div>
+        <div class="res-cell">All-you-care-to-enjoy BBQ. Newer (2023) so still has occasional availability.</div>
+        <div class="res-cell">Table service · Family-style</div>
+        <div class="res-cell"><span class="difficulty med"><span class="dot"></span>Moderate</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Yak &amp; Yeti</div>
+          <div class="res-meta">Animal Kingdom · Asia</div>
+        </div>
+        <div class="res-cell">Pan-Asian sit-down. Pot stickers, lo mein, mahi mahi. AC break worth the cost.</div>
+        <div class="res-cell">Table service</div>
+        <div class="res-cell"><span class="difficulty med"><span class="dot"></span>Moderate</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Coral Reef</div>
+          <div class="res-meta">EPCOT · The Seas</div>
+        </div>
+        <div class="res-cell">Dining room wall is the giant aquarium from The Seas pavilion. Surreal experience for kids.</div>
+        <div class="res-cell">Table service</div>
+        <div class="res-cell"><span class="difficulty med"><span class="dot"></span>Moderate</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Mama Melrose's</div>
+          <div class="res-meta">Hollywood Studios · Streets of America</div>
+        </div>
+        <div class="res-cell">Italian. Has a Fantasmic Dining Package — guarantees reserved seating for the show.</div>
+        <div class="res-cell">Table service · Fantasmic combo</div>
+        <div class="res-cell"><span class="difficulty med"><span class="dot"></span>Moderate</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Satu'li Canteen</div>
+          <div class="res-meta">Animal Kingdom · Pandora</div>
+        </div>
+        <div class="res-cell">Best quick service on property. Build-your-own protein bowls. Mobile order essential.</div>
+        <div class="res-cell">Quick service · Mobile order</div>
+        <div class="res-cell"><span class="difficulty low"><span class="dot"></span>Mobile only</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Docking Bay 7</div>
+          <div class="res-meta">Hollywood Studios · Galaxy's Edge</div>
+        </div>
+        <div class="res-cell">Themed Star Wars quick service. Smoked ribs, fried Endorian tip-yip. Mobile order required.</div>
+        <div class="res-cell">Quick service · Mobile order</div>
+        <div class="res-cell"><span class="difficulty low"><span class="dot"></span>Mobile only</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Pecos Bill Tall Tale Inn</div>
+          <div class="res-meta">Magic Kingdom · Frontierland</div>
+        </div>
+        <div class="res-cell">Tex-Mex bowls with the free toppings bar. Feeds a hungry family of 5 cheaply.</div>
+        <div class="res-cell">Quick service · Mobile order</div>
+        <div class="res-cell"><span class="difficulty low"><span class="dot"></span>Mobile only</span></div>
+      </div>
+
+      <div class="res-row">
+        <div class="res-cell">
+          <div class="res-name">Regal Eagle Smokehouse</div>
+          <div class="res-meta">EPCOT · American Adventure</div>
+        </div>
+        <div class="res-cell">BBQ done well. Big portions, indoor seating, the best non-festival quick service at EPCOT.</div>
+        <div class="res-cell">Quick service · Mobile order</div>
+        <div class="res-cell"><span class="difficulty low"><span class="dot"></span>Mobile only</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Shows worth <em>scheduling around</em></h2>
+    <p class="section-intro">A few shows need seat planning or dining packages to land good viewing. Most don't.</p>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-label">Hollywood Studios · ~30 min</div>
+        <h4>Fantasmic!</h4>
+        <p>Disney's best nighttime show. Water + fire + projection mapping. One show per night at park close (~9 PM). Fantasmic Dining Package at Mama Melrose, Hollywood &amp; Vine, or Brown Derby gets you reserved seating without the 60-min hold. Worth booking if available.</p>
+        <div class="card-time">Book dining package via MDX app</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Magic Kingdom · ~20 min</div>
+        <h4>Happily Ever After Fireworks</h4>
+        <p>9 or 9:30 PM nightly. No reservation needed but the prime viewing spots fill 60+ min ahead. Plaza Garden hub seats (free, first-come) or Dessert Party (paid, ~$100/person) are the two reserved-seat options.</p>
+        <div class="card-time">Stake out 60 min ahead</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">EPCOT · ~12 min</div>
+        <h4>Luminous: The Symphony of Us</h4>
+        <p>Fireworks + water + light show on World Showcase Lagoon. Around 9 PM. Stake out a spot 45 min before. Best free viewing: between Italy and American Adventure, or near UK pavilion.</p>
+        <div class="card-time">Stake out 45 min ahead</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Animal Kingdom · ~30 min</div>
+        <h4>Festival of the Lion King</h4>
+        <p>Acrobats, fire-twirlers, live vocals. Multiple showtimes daily — check My Disney Experience day-of. Arrive 20 min early for good seats. No advance reservation needed.</p>
+        <div class="card-time">Multiple showtimes · No reservation</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Hollywood Studios · ~30 min</div>
+        <h4>Indiana Jones Epic Stunt Spectacular</h4>
+        <p>Real stunt performers, fire effects, behind-the-scenes framing. Multiple daily showtimes. Walk in 15 min before showtime for good seats.</p>
+        <div class="card-time">Multiple showtimes · No reservation</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">EPCOT · ~30 min</div>
+        <h4>The American Adventure</h4>
+        <p>35 animatronics, rotating stage, narrated American history theater piece. Air-conditioned, almost always walk-up seating. Most overlooked attraction at EPCOT. Showtimes every ~45 min.</p>
+        <div class="card-time">Continuous · No reservation</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Water <em>park</em> · Wednesday</h2>
+    <p class="section-intro">Both parks open all summer 2026. Pick based on which is less crowded that day (check MDX wait times Tuesday night) and what your kids will like better.</p>
+
+    <div class="water-compare">
+
+      <div class="water-park">
+        <div class="water-tag">Option A · Tropical</div>
+        <h4>Typhoon Lagoon</h4>
+        <p>Tropical-island shipwreck theming. Anchored by a massive surf-style wave pool that throws real 6-foot waves every 90 seconds. Generally calmer overall — better for younger kids and adults who want to float.</p>
+        <div class="water-feature">Crush 'n' Gusher water coaster</div>
+        <div class="water-feature">Castaway Creek lazy river</div>
+        <div class="water-feature">Surf Pool (the wave pool)</div>
+        <div class="water-feature">Miss Adventure Falls family raft</div>
+      </div>
+
+      <div class="water-park">
+        <div class="water-tag">Option B · Ski theme</div>
+        <h4>Blizzard Beach</h4>
+        <p>Melted ski-resort theming. More thrill-oriented slides, including Summit Plummet (a 12-story near-vertical drop). Better for older kids and teens who want speed. Less family-floaty than Typhoon Lagoon.</p>
+        <div class="water-feature">Summit Plummet (one of the tallest body slides anywhere)</div>
+        <div class="water-feature">Teamboat Springs raft</div>
+        <div class="water-feature">Cross Country Creek lazy river</div>
+        <div class="water-feature">Toboggan Racers slide</div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 24px; color: var(--ink-soft); font-size: 14px; max-width: 700px;">No reservations needed for either. Both open at 10 AM and close 5–8 PM depending on the date. Arrive at 9:45 AM to get a chair (free chairs are first-come). Both have <a style="color: var(--wine); text-decoration: underline;">cabana rentals</a> available if you want shade plus a private space — book in advance via MDX.</p>
+  </section>
+
+  <section>
+    <h2>Mini <em>golf</em> · Wednesday evening</h2>
+    <p class="section-intro">Disney has two mini golf locations. Both included in your Park Hopper Plus.</p>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-label">Near Swan / Dolphin · 2 courses</div>
+        <h4>Fantasia Gardens</h4>
+        <p>Two 18-hole courses. "Fantasia Gardens" is whimsical-themed, family-friendly, easier. "Fantasia Fairways" is a real mini-golf course with longer holes (40–70 feet) — more challenging, plays more like real golf. Best for older kids and adults.</p>
+        <div class="card-time">Open 10 AM – 10:30 PM</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Near Blizzard Beach · 2 courses</div>
+        <h4>Winter Summerland</h4>
+        <p>Christmas-vacation-themed. "Summer" course (sand, beach umbrellas, surfboard hazards) and "Winter" course (snowmen, gift-wrapped presents). Easier than Fantasia Fairways — better for younger kids in the family.</p>
+        <div class="card-time">Open 10 AM – 10:30 PM</div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 24px; color: var(--ink-soft); font-size: 14px; max-width: 700px;">No advance booking — just show up. Both locations include club rentals. Evening play is best in June — temperatures drop, courses lit up, fewer crowds. Pair with dinner nearby (Big River Grille at the Boardwalk if doing Fantasia Gardens, or back to the resort if doing Winter Summerland).</p>
+  </section>
+
+  <section>
+    <h2>Special <em>experiences</em></h2>
+    <p class="section-intro">A few add-on bookings that can elevate a day. All require advance reservation through the MDX app.</p>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-label">Animal Kingdom · ~3 hrs · $$$</div>
+        <h4>Wild Africa Trek</h4>
+        <p>Behind-the-scenes safari walk where you cross a rope bridge over hippos and crocodiles, then ride a private vehicle out onto the savanna for an exclusive boxed-meal stop. Kids must be 8+ and 48"+. Memorable but pricey.</p>
+        <div class="card-time">$189–249/person · Book via MDX</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">EPCOT · ~75 min · $</div>
+        <h4>Behind the Seeds</h4>
+        <p>Walking tour of the working greenhouses behind Living with the Land. See the hydroponic tomatoes, 9-pound lemons, and the aquaculture tanks. Surprisingly fascinating for adults. Kids welcome.</p>
+        <div class="card-time">~$35/person · Book via MDX</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Multi-park · $$$$</div>
+        <h4>VIP Tour Services</h4>
+        <p>Private guide takes your group through Lightning Lane entrances on every ride across multiple parks. Effectively unlimited rides in 7+ hours. ~$425–650/hour, 7-hour minimum, plus park tickets. Bonkers expensive but the ultimate splurge.</p>
+        <div class="card-time">$3,000+ for the family · Call to book</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Hollywood Studios · ~$22/person</div>
+        <h4>Savi's Workshop Lightsaber Build</h4>
+        <p>In Galaxy's Edge. Each guest builds their own custom lightsaber from scratch (~30 min experience). Cost is ~$249 per saber. Hardcore Star Wars fan move; the sabers are real keepsakes.</p>
+        <div class="card-time">Book via MDX · 60 days out</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Action <em>items</em> · this week</h2>
+    <p class="section-intro">Concrete things to do before Monday.</p>
+    <div class="tactics">
+
+      <div class="tactic">
+        <div class="tactic-num">01</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Set up reservation drop alerts now</div>
+          <div class="tactic-body">Sign up for MouseDining or DVC Reservation Finder. Set alerts for your top 3 dining priorities (recommend: Sci-Fi Dine-In, 50's Prime Time, Be Our Guest if interested). 6 days is enough time for several drops to come through.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">02</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Refresh the dining page in MDX once a day</div>
+          <div class="tactic-body">Open My Disney Experience → Dining → search your date range. Spend 5 minutes scrolling each morning. Hot tables turn over constantly.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">03</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Pre-link your Park Hopper Plus tickets</div>
+          <div class="tactic-body">In MDX, confirm all 5 family members have tickets linked. Verify Park Hopper Plus is showing for everyone, with the correct number of additional water park / mini golf entries (4 each for a 4-day ticket).</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">04</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Set Sunday 6 PM as your prep moment</div>
+          <div class="tactic-body">Sunday evening: review Monday's HS plan one more time, set 6:55 AM alarm for the Multi Pass / Rise Single Pass booking. Have payment method saved in MDX. Verify all 5 family member IDs are linked to the same My Disney Experience account.</div>
+        </div>
+      </div>
+
+      <div class="tactic">
+        <div class="tactic-num">05</div>
+        <div class="tactic-content">
+          <div class="tactic-title">Pack the small things that matter</div>
+          <div class="tactic-body">Refillable water bottles (5 of them), portable phone chargers (you'll be in the app all day), ponchos or rain jackets (June thunderstorms are daily), cooling neck towels, sunscreen reapply stick, hats. Snacks for the kids — Disney prices are real.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    06 / 06 · Low Gear Studio Trip Plan · Reservations &amp; Schedule
+  </footer>
+
+</div>
+
+</body>
+</html>
