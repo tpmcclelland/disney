@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 AM Booking Script — Friday June 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@300..700&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #14151a;
+    --darker: #0c0d10;
+    --carbon: #1e2028;
+    --carbon-light: #2a2d36;
+    --cream: #f0eadd;
+    --cream-dim: rgba(240, 234, 221, 0.72);
+    --cream-mute: rgba(240, 234, 221, 0.42);
+    --cream-edge: rgba(240, 234, 221, 0.12);
+    --signal: #ff4a4a;
+    --signal-soft: #cc3a3a;
+    --amber: #f4b842;
+    --teal: #4ad4e0;
+    --emerald: #6ed99c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    background-image:
+      radial-gradient(at 15% 5%, rgba(255, 74, 74, 0.08) 0px, transparent 50%),
+      radial-gradient(at 85% 95%, rgba(244, 184, 66, 0.05) 0px, transparent 50%);
+    color: var(--cream);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 70px 0 50px;
+    border-bottom: 2px solid var(--signal);
+    position: relative;
+  }
+
+  /* Tactical corner brackets */
+  header::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    border-top: 2px solid var(--signal);
+    border-right: 2px solid var(--signal);
+    opacity: 0.6;
+  }
+
+  .eyebrow {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--signal);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+  }
+  .eyebrow::before {
+    content: '●';
+    color: var(--signal);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  h1 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(54px, 11vw, 130px);
+    line-height: 0.88;
+    letter-spacing: -0.005em;
+    color: var(--cream);
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--signal);
+  }
+
+  .subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--cream-dim);
+    margin-top: 20px;
+    max-width: 660px;
+    line-height: 1.4;
+  }
+
+  .meta-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--cream-edge);
+  }
+  .meta-block {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--cream-mute);
+    font-weight: 700;
+  }
+  .meta-block strong {
+    display: block;
+    margin-top: 4px;
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .meta-block.signal strong { color: var(--signal); }
+  .meta-block.amber strong { color: var(--amber); }
+
+  /* === SECTIONS === */
+  section {
+    padding: 56px 0;
+    border-bottom: 1px dashed var(--cream-edge);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    margin-bottom: 16px;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+  h2 em {
+    font-style: normal;
+    color: var(--signal);
+  }
+  h2 .amber { color: var(--amber); }
+
+  .section-intro {
+    font-size: 17px;
+    color: var(--cream-dim);
+    margin-bottom: 36px;
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  /* === PREGAME CHECKLIST === */
+  .pregame {
+    background: var(--carbon);
+    border: 1px solid var(--cream-edge);
+    padding: 32px 36px;
+  }
+  .pregame h3 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin-bottom: 8px;
+  }
+  .pregame .time-stamp {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--cream-mute);
+    margin-bottom: 24px;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+  .pregame-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-top: 1px solid var(--cream-edge);
+    align-items: baseline;
+  }
+  .pregame-item:first-of-type { border-top: 1px solid var(--cream-edge); margin-top: 8px; }
+  .pregame-item .time {
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    color: var(--amber);
+    font-weight: 700;
+  }
+  .pregame-item .action {
+    font-size: 15px;
+    color: var(--cream);
+  }
+  .pregame-item .action small {
+    display: block;
+    color: var(--cream-mute);
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  /* === COUNTDOWN === */
+  .countdown {
+    text-align: center;
+    padding: 36px 0;
+    margin: 32px 0;
+    background: linear-gradient(135deg, var(--signal) 0%, var(--signal-soft) 100%);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .countdown::before, .countdown::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: var(--cream);
+    opacity: 0.3;
+  }
+  .countdown::before { left: 5%; }
+  .countdown::after { right: 5%; }
+  .countdown-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .countdown-time {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(64px, 12vw, 96px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .countdown-detail {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    margin-top: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    font-weight: 500;
+  }
+
+  /* === PARK BLOCK === */
+  .park-block {
+    margin-bottom: 32px;
+    border: 1px solid var(--cream-edge);
+    background: var(--carbon);
+    overflow: hidden;
+  }
+  .park-header {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 20px;
+    padding: 24px 32px;
+    background: var(--darker);
+    align-items: center;
+    border-bottom: 1px solid var(--cream-edge);
+  }
+  .park-priority {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 56px;
+    color: var(--signal);
+    line-height: 0.8;
+    text-align: center;
+  }
+  .park-info .park-name {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .park-info .park-day {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--cream-mute);
+    font-weight: 700;
+  }
+  .park-cost {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--amber);
+    text-align: right;
+  }
+  .park-cost small {
+    display: block;
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    color: var(--cream-mute);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* === ACTION SEQUENCE === */
+  .action-seq {
+    padding: 24px 32px;
+  }
+  .action-step {
+    padding: 16px 0;
+    border-top: 1px solid var(--cream-edge);
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .action-step:first-child { border-top: none; padding-top: 0; }
+  .action-step:last-child { padding-bottom: 0; }
+  .step-marker {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--signal);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+  .step-marker.first { color: var(--signal); }
+  .step-marker.then { color: var(--amber); }
+  .step-marker.skip { color: var(--cream-mute); }
+  .step-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--cream-mute);
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .step-content .step-action {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .step-content .step-action.single {
+    color: var(--signal);
+  }
+  .step-content .step-detail {
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.45;
+  }
+  .step-content .step-detail strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .picks {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .pick {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 12px;
+    padding: 10px 14px;
+    background: rgba(240, 234, 221, 0.04);
+    border-left: 3px solid var(--signal);
+    align-items: baseline;
+  }
+  .pick.tier1 { border-left-color: var(--signal); }
+  .pick.tier2 { border-left-color: var(--amber); }
+  .pick.skip { border-left-color: var(--cream-mute); background: rgba(240, 234, 221, 0.02); }
+  .pick-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 9px;
+    color: var(--cream-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+  }
+  .pick.tier1 .pick-label { color: var(--signal); }
+  .pick.tier2 .pick-label { color: var(--amber); }
+  .pick-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--cream);
+  }
+  .pick.skip .pick-name { color: var(--cream-mute); text-decoration: line-through; text-decoration-color: var(--cream-mute); }
+  .pick-name small {
+    display: block;
+    font-family: 'Fira Code', monospace;
+    font-weight: 400;
+    font-size: 10px;
+    color: var(--cream-mute);
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* === BACKUPS === */
+  .backup-section {
+    background: rgba(244, 184, 66, 0.05);
+    border-left: 3px solid var(--amber);
+    padding: 14px 18px;
+    margin-top: 16px;
+  }
+  .backup-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .backup-list {
+    font-size: 13px;
+    color: var(--cream-dim);
+    line-height: 1.5;
+  }
+  .backup-list strong { color: var(--cream); font-weight: 600; }
+
+  /* === RULES === */
+  .rules {
+    background: var(--carbon);
+    border: 1px solid var(--cream-edge);
+    padding: 32px 36px;
+  }
+  .rule {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid var(--cream-edge);
+    align-items: baseline;
+  }
+  .rule:first-child { border-top: none; padding-top: 0; }
+  .rule:last-child { padding-bottom: 0; }
+  .rule-num {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--signal);
+    line-height: 1;
+  }
+  .rule-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .rule-detail {
+    font-size: 14px;
+    color: var(--cream-dim);
+    line-height: 1.5;
+    max-width: 700px;
+  }
+
+  /* === TOTAL === */
+  .total-block {
+    background: var(--signal);
+    color: var(--cream);
+    padding: 40px;
+    text-align: center;
+  }
+  .total-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .total-amount {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(60px, 12vw, 96px);
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .total-detail {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    margin-top: 14px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    font-weight: 500;
+  }
+
+  /* Footer */
+  footer {
+    padding: 50px 0 70px;
+    text-align: center;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--cream-mute);
+    font-weight: 700;
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--signal);
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 18px; }
+    .park-header { grid-template-columns: 50px 1fr; padding: 18px 22px; }
+    .park-cost { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
+    .park-priority { font-size: 42px; }
+    .park-info .park-name { font-size: 26px; }
+    .action-seq { padding: 20px 22px; }
+    .action-step { grid-template-columns: 1fr; gap: 8px; }
+    .step-marker { font-size: 10px; }
+    .pick { grid-template-columns: 60px 1fr; padding: 10px; }
+    .pregame { padding: 24px 22px; }
+    .pregame-item { grid-template-columns: 70px 1fr; gap: 12px; }
+    .rules { padding: 24px 22px; }
+    .total-block { padding: 28px 22px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.08s; }
+  section:nth-of-type(2) { animation-delay: 0.14s; }
+  section:nth-of-type(3) { animation-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="eyebrow">Mission · Lightning Lane Booking</div>
+    <h1>7 AM <em>Script</em></h1>
+    <p class="subtitle">Friday June 5, 2026 — your only booking window for the entire trip. Date-based ticket unlocks all 4 park days in one 7 AM session.</p>
+    <div class="meta-bar">
+      <div class="meta-block">
+        Window opens<strong>7:00 AM ET</strong>
+      </div>
+      <div class="meta-block signal">
+        Park days<strong>4 days</strong>
+      </div>
+      <div class="meta-block">
+        Family<strong>5 × passes</strong>
+      </div>
+      <div class="meta-block amber">
+        Total spend<strong>$735</strong>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Pre-game <em>checklist</em></h2>
+    <p class="section-intro">Get all of this done <strong>before</strong> 7:00 AM. The window is unforgiving — fumbling for a credit card at 7:00:08 means you lose Rise of the Resistance.</p>
+
+    <div class="pregame">
+      <h3>Tonight + tomorrow morning</h3>
+      <div class="time-stamp">// Before T-0</div>
+
+      <div class="pregame-item">
+        <div class="time">TONIGHT</div>
+        <div class="action">Verify all 5 tickets linked in My Disney Experience<small>Settings → My Profile → Family &amp; Friends → confirm 5 names with valid park tickets</small></div>
+      </div>
+
+      <div class="pregame-item">
+        <div class="time">TONIGHT</div>
+        <div class="action">Save payment method in MDX wallet<small>Account → Wallet → Add payment method. Don't trust autofill at 7:00 AM.</small></div>
+      </div>
+
+      <div class="pregame-item">
+        <div class="time">TONIGHT</div>
+        <div class="action">Charge phone to 100% + bring charger to bed<small>You will not have time to plug in in the morning</small></div>
+      </div>
+
+      <div class="pregame-item">
+        <div class="time">6:55 AM</div>
+        <div class="action">Wake up. Open MDX. Biometric login.<small>Set the alarm now if you haven't. 6:55, not 7:00.</small></div>
+      </div>
+
+      <div class="pregame-item">
+        <div class="time">6:57 AM</div>
+        <div class="action">Navigate to Lightning Lane booking page<small>Bottom menu → Plan → Lightning Lane. Hover finger over "Add" button.</small></div>
+      </div>
+
+      <div class="pregame-item">
+        <div class="time">6:59 AM</div>
+        <div class="action">Re-read this doc, top to bottom<small>Memorize the order. Don't read mid-booking.</small></div>
+      </div>
+
+      <div class="pregame-item">
+        <div class="time">7:00:00</div>
+        <div class="action">Tap. Go.<small>Start with HS. See sequence below.</small></div>
+      </div>
+    </div>
+
+    <div class="countdown">
+      <div class="countdown-label">T-Minus</div>
+      <div class="countdown-time">7:00 ET</div>
+      <div class="countdown-detail">Friday · June 5 · 2026</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The <em>sequence</em></h2>
+    <p class="section-intro">Book in order of <strong>sell-out risk</strong>, not chronological. Hollywood Studios first because Rise of the Resistance Single Pass disappears fastest.</p>
+
+    <!-- HS - Priority 01 -->
+    <div class="park-block">
+      <div class="park-header">
+        <div class="park-priority">01</div>
+        <div class="park-info">
+          <div class="park-name">Hollywood Studios</div>
+          <div class="park-day">Tuesday June 9 · Park day 02</div>
+        </div>
+        <div class="park-cost">$285<small>Total</small></div>
+      </div>
+
+      <div class="action-seq">
+        <div class="action-step">
+          <div class="step-marker first">STEP 01</div>
+          <div class="step-content">
+            <div class="step-label">First action — book before anything else</div>
+            <div class="step-action single">Single Pass · Rise of the Resistance × 5</div>
+            <div class="step-detail">$22 each, $110 total. <strong>This sells out fastest of any LL purchase at any park.</strong> Pick the earliest available return window (probably 9:30–10:30 AM).</div>
+          </div>
+        </div>
+
+        <div class="action-step">
+          <div class="step-marker then">STEP 02</div>
+          <div class="step-content">
+            <div class="step-label">Then — Multi Pass advance picks</div>
+            <div class="step-action">Multi Pass × 5</div>
+            <div class="step-detail">$35 each, $175 total. Choose ONE Tier 1 + TWO Tier 2:</div>
+
+            <div class="picks">
+              <div class="pick tier1">
+                <div class="pick-label">TIER 1</div>
+                <div class="pick-name">Muppets Coaster<small>Brand new, novelty crowds peaking — pick this over Slinky</small></div>
+              </div>
+              <div class="pick tier2">
+                <div class="pick-label">TIER 2</div>
+                <div class="pick-name">Slinky Dog Dash<small>Would be Tier 1 normally — grab as Tier 2 if open</small></div>
+              </div>
+              <div class="pick tier2">
+                <div class="pick-label">TIER 2</div>
+                <div class="pick-name">Mickey &amp; Minnie's Runaway Railway<small>Multi Pass priority — standby builds fast</small></div>
+              </div>
+            </div>
+
+            <div class="backup-section">
+              <div class="backup-label">If picks unavailable, swap in:</div>
+              <div class="backup-list">
+                <strong>For Tier 1:</strong> Slinky Dog Dash, Tower of Terror, or Mickey &amp; Minnie's Runaway Railway (if Disney has flexed the tier list).<br>
+                <strong>For Tier 2:</strong> Tower of Terror, Star Tours, Smugglers Run, Toy Story Mania.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-step">
+          <div class="step-marker skip">SKIP</div>
+          <div class="step-content">
+            <div class="step-label">Use free Single Rider line at the park</div>
+            <div class="picks">
+              <div class="pick skip">
+                <div class="pick-label">FREE</div>
+                <div class="pick-name">Smugglers Run<small>Single Rider — 20 min vs. 60 standby</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MK - Priority 02 -->
+    <div class="park-block">
+      <div class="park-header">
+        <div class="park-priority">02</div>
+        <div class="park-info">
+          <div class="park-name">Magic Kingdom</div>
+          <div class="park-day">Thursday June 11 · Park day 03</div>
+        </div>
+        <div class="park-cost">$275<small>Total</small></div>
+      </div>
+
+      <div class="action-seq">
+        <div class="action-step">
+          <div class="step-marker first">STEP 01</div>
+          <div class="step-content">
+            <div class="step-label">First — buy Single Pass</div>
+            <div class="step-action single">Single Pass · TRON Lightcycle / Run × 5</div>
+            <div class="step-detail">$20 each, $100 total. Pick a 10:00–11:00 AM return so you're done with TRON before lunch. Sells out by mid-morning on busy days.</div>
+          </div>
+        </div>
+
+        <div class="action-step">
+          <div class="step-marker then">STEP 02</div>
+          <div class="step-content">
+            <div class="step-label">Then — Multi Pass</div>
+            <div class="step-action">Multi Pass × 5</div>
+            <div class="step-detail">$35 each, $175 total.</div>
+
+            <div class="picks">
+              <div class="pick tier1">
+                <div class="pick-label">TIER 1</div>
+                <div class="pick-name">Seven Dwarfs Mine Train<small>Always the top Tier 1 pick at Magic Kingdom</small></div>
+              </div>
+              <div class="pick tier2">
+                <div class="pick-label">TIER 2</div>
+                <div class="pick-name">Peter Pan's Flight<small>Low capacity = legendary 60+ min waits all day</small></div>
+              </div>
+              <div class="pick tier2">
+                <div class="pick-label">TIER 2</div>
+                <div class="pick-name">Big Thunder Mountain Railroad<small>Newly reopened (May 2026), demand will be high in June</small></div>
+              </div>
+            </div>
+
+            <div class="backup-section">
+              <div class="backup-label">If picks unavailable, swap in:</div>
+              <div class="backup-list">
+                <strong>For Tier 1:</strong> Peter Pan's Flight, Space Mountain, Tiana's Bayou Adventure.<br>
+                <strong>For Tier 2:</strong> Space Mountain, Haunted Mansion, Tiana's, Buzz Lightyear, Jungle Cruise.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EPCOT - Priority 03 -->
+    <div class="park-block">
+      <div class="park-header">
+        <div class="park-priority">03</div>
+        <div class="park-info">
+          <div class="park-name">EPCOT</div>
+          <div class="park-day">Friday June 12 · Park day 04</div>
+        </div>
+        <div class="park-cost">$275<small>Total</small></div>
+      </div>
+
+      <div class="action-seq">
+        <div class="action-step">
+          <div class="step-marker first">STEP 01</div>
+          <div class="step-content">
+            <div class="step-label">First — buy Single Pass</div>
+            <div class="step-action single">Single Pass · Cosmic Rewind × 5</div>
+            <div class="step-detail">$20 each, $100 total. <strong>Skipping Virtual Queue gamble means buying this now.</strong> Pick an early return window so you can re-ride later if desired (Virtual Queue is still free if you want to try at 7 AM and 1 PM same-day).</div>
+          </div>
+        </div>
+
+        <div class="action-step">
+          <div class="step-marker then">STEP 02</div>
+          <div class="step-content">
+            <div class="step-label">Then — Multi Pass (save slots for non-Single-Rider rides)</div>
+            <div class="step-action">Multi Pass × 5</div>
+            <div class="step-detail">$35 each, $175 total. <strong>Counterintuitive pick:</strong> skip Test Track and Remy's because they have free Single Rider lines. Save your LL slots for rides that don't.</div>
+
+            <div class="picks">
+              <div class="pick tier1">
+                <div class="pick-label">TIER 1</div>
+                <div class="pick-name">Frozen Ever After<small>No Single Rider alternative — Multi Pass is the only LL path</small></div>
+              </div>
+              <div class="pick tier2">
+                <div class="pick-label">TIER 2</div>
+                <div class="pick-name">Soarin' Around the World<small>40-min wait spread between morning and noon</small></div>
+              </div>
+              <div class="pick tier2">
+                <div class="pick-label">TIER 2</div>
+                <div class="pick-name">Spaceship Earth<small>Lower priority but the easy slot to grab</small></div>
+              </div>
+            </div>
+
+            <div class="backup-section">
+              <div class="backup-label">If picks unavailable, swap in:</div>
+              <div class="backup-list">
+                <strong>For Tier 1:</strong> Test Track or Remy's Ratatouille (only if Frozen sold out — then plan to standby Frozen or skip).<br>
+                <strong>For Tier 2:</strong> Mission: SPACE, Journey Into Imagination with Figment, Living with the Land.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-step">
+          <div class="step-marker skip">SKIP</div>
+          <div class="step-content">
+            <div class="step-label">Use free Single Rider lines at the park</div>
+            <div class="picks">
+              <div class="pick skip">
+                <div class="pick-label">FREE</div>
+                <div class="pick-name">Test Track<small>Single Rider — 20 min vs. 99 min standby</small></div>
+              </div>
+              <div class="pick skip">
+                <div class="pick-label">FREE</div>
+                <div class="pick-name">Remy's Ratatouille Adventure<small>Single Rider — 15 min vs. 55 min standby</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AK - Priority 04 -->
+    <div class="park-block">
+      <div class="park-header">
+        <div class="park-priority">04</div>
+        <div class="park-info">
+          <div class="park-name">Animal Kingdom</div>
+          <div class="park-day">Monday June 8 · Park day 01</div>
+        </div>
+        <div class="park-cost">$75<small>Total</small></div>
+      </div>
+
+      <div class="action-seq">
+        <div class="action-step">
+          <div class="step-marker first">STEP 01</div>
+          <div class="step-content">
+            <div class="step-label">Only action — buy Single Pass</div>
+            <div class="step-action single">Single Pass · Flight of Passage × 5</div>
+            <div class="step-detail">$15 each, $75 total. <strong>Pick an early return window (10:00–11:00 AM)</strong> so the rest of Monday flows freely. No Multi Pass needed — AK doesn't reward it.</div>
+          </div>
+        </div>
+
+        <div class="action-step">
+          <div class="step-marker skip">SKIP</div>
+          <div class="step-content">
+            <div class="step-label">No Multi Pass — strategy confirmed</div>
+            <div class="step-detail">Skipping Multi Pass saves $175 ($35 × 5). Rope drop Na'vi River Journey if you make it; otherwise just join the standby. Animal Kingdom's other rides clear naturally without LL.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Operating <em>rules</em></h2>
+    <p class="section-intro">Three things to remember while booking. They will save your day if anything goes sideways.</p>
+
+    <div class="rules">
+
+      <div class="rule">
+        <div class="rule-num">01</div>
+        <div>
+          <div class="rule-text">Speed beats optimization</div>
+          <div class="rule-detail">Don't agonize over a 1:30 PM vs 2:00 PM return time. Tap whatever's offered first — you can modify it later. Every second you spend choosing is a second Rise of the Resistance Single Pass is closer to selling out.</div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="rule-num">02</div>
+        <div>
+          <div class="rule-text">Modify, never cancel</div>
+          <div class="rule-detail">If you want a different return time, tap "Modify" — your spot stays in queue. Tapping "Cancel" releases it to the public pool and you lose priority. Same end result, very different odds of getting what you want.</div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="rule-num">03</div>
+        <div>
+          <div class="rule-text">After the initial drop, refresh-stalk</div>
+          <div class="rule-detail">Once your 4 days are booked, spend 5–10 minutes hitting Modify on each booking to see if earlier times have opened up. People cancel within minutes of booking. This is free time-travel for your day.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="total-block">
+      <div class="total-label">Mission Total · Family of 5</div>
+      <div class="total-amount">$910</div>
+      <div class="total-detail">$735 in passes + ~$175 contingency for rebookings</div>
+    </div>
+  </section>
+
+  <footer>
+    08 / 08 · Low Gear Studio Trip Plan · 7 AM Booking Script
+  </footer>
+
+</div>
+
+</body>
+</html>
