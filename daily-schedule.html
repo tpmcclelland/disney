@@ -374,6 +374,117 @@
     line-height: 1.45;
   }
 
+  /* === ADJUSTMENT PLAYBOOK === */
+  .adjustments {
+    background: var(--cream);
+    border: 1px solid var(--paper-edge);
+    border-top: 4px solid var(--amber);
+    padding: 36px 40px;
+    margin: 0;
+  }
+  .adjustments-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--amber);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .adjustments h3 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 38px;
+    color: var(--ink);
+    margin-bottom: 28px;
+    letter-spacing: -0.018em;
+    line-height: 1.05;
+  }
+  .adjustments h3 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+  .adj-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px 36px;
+  }
+  .adj-block {
+    padding-top: 14px;
+    border-top: 1px solid var(--paper-edge);
+  }
+  .adj-block h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .adj-block p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* === BONUS OPTIONS === */
+  .bonus-options {
+    background: rgba(176, 137, 64, 0.05);
+    border-left: 3px solid var(--amber);
+    padding: 24px 28px;
+    margin: 40px 0 8px;
+  }
+  section.day[data-day="hs"] .bonus-options { border-left-color: var(--day-hs); background: rgba(184, 51, 106, 0.04); }
+  section.day[data-day="ak"] .bonus-options { border-left-color: var(--day-ak); background: rgba(91, 111, 63, 0.04); }
+  section.day[data-day="mk"] .bonus-options { border-left-color: var(--day-mk); background: rgba(45, 58, 95, 0.04); }
+  section.day[data-day="epcot"] .bonus-options { border-left-color: var(--day-epcot); background: rgba(217, 106, 44, 0.04); }
+  .bonus-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--amber);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  section.day[data-day="hs"] .bonus-label { color: var(--day-hs); }
+  section.day[data-day="ak"] .bonus-label { color: var(--day-ak); }
+  section.day[data-day="mk"] .bonus-label { color: var(--day-mk); }
+  section.day[data-day="epcot"] .bonus-label { color: var(--day-epcot); }
+  .bonus-list {
+    display: grid;
+    gap: 14px;
+  }
+  .bonus-item {
+    padding-top: 12px;
+    border-top: 1px solid var(--paper-edge);
+  }
+  .bonus-item:first-child { border-top: none; padding-top: 0; }
+  .bonus-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .bonus-name em {
+    font-style: italic;
+  }
+  .bonus-detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  @media (max-width: 700px) {
+    .adjustments { padding: 24px 22px; }
+    .adj-grid { grid-template-columns: 1fr; gap: 18px; }
+    .adjustments h3 { font-size: 28px; margin-bottom: 18px; }
+    .bonus-options { padding: 18px 20px; }
+    .bonus-name { font-size: 16px; }
+  }
+
   /* Footer */
   footer {
     padding: 60px 0 80px;
@@ -444,6 +555,56 @@
       </a>
     </nav>
   </header>
+
+  <section style="padding: 64px 0; border-bottom: 1px dashed var(--paper-edge);">
+    <div class="adjustments">
+      <div class="adjustments-label">Real-time decision making</div>
+      <h3>If plans go <em>sideways</em></h3>
+      <div class="adj-grid">
+
+        <div class="adj-block">
+          <h4>Running behind schedule</h4>
+          <p>Skip the next non-LL activity first — wandering, snacks, the big break. Booked LL windows are locked, protect those. Drop afternoon shows before evening meals.</p>
+        </div>
+
+        <div class="adj-block">
+          <h4>Running ahead of schedule</h4>
+          <p>Pull from the day's bonus options below. Or do character meets, photo ops at park icons, pin trading, Kidcot stamps (EPCOT). Quality over quantity — don't cram in marginal rides.</p>
+        </div>
+
+        <div class="adj-block">
+          <h4>A kid is fading</h4>
+          <p>Hit an AC show immediately — PhilharMagic, Carousel of Progress, Turtle Talk, Frozen Sing-Along, Spaceship Earth. Sit, snack, 30 min recovery. Skip the next standby ride; don't push through.</p>
+        </div>
+
+        <div class="adj-block">
+          <h4>Florida afternoon rain (3–5 PM is typical)</h4>
+          <p>Move indoors immediately. Most shows are covered. Wait it out 30–45 min — Florida rain passes fast. Crowds drop after rain, so standby times decrease. Time big shows for forecast rain windows.</p>
+        </div>
+
+        <div class="adj-block">
+          <h4>Standby way higher than expected</h4>
+          <p>Over 60 min for a non-headliner means skip. Open MDX → rebook a Multi Pass instead. Or come back at park close when waits drop. Don't sink an hour just because you walked over there.</p>
+        </div>
+
+        <div class="adj-block">
+          <h4>Standby shockingly low</h4>
+          <p>Grab it — rare gift. Reshuffle your day around it. Variable rides include Slinky Dog, Peter Pan, Frozen Ever After, Mine Train. If you walk by and see &lt;20 min, get in line.</p>
+        </div>
+
+        <div class="adj-block">
+          <h4>Ride breaks down while you're in line</h4>
+          <p>Disney auto-converts your spot to an "anytime Lightning Lane" pass usable later at most attractions. Don't panic — it happens often and resolves usually. Move to the nearest backup ride or show.</p>
+        </div>
+
+        <div class="adj-block">
+          <h4>If you lose track of a kid</h4>
+          <p>Go to the nearest cast member with the kid's age + clothing description. Disney has well-rehearsed lost-child protocols and will radio quickly. Tell kids in advance: if separated, find ANY cast member (they wear name tags).</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- ============== MONDAY HS ============== -->
   <section class="day" data-day="hs" id="monday">
@@ -726,6 +887,32 @@
           <div class="entry-detail">Big day done. Set 7 AM alarm — AK is a slightly easier day tomorrow.</div>
         </div>
       </div>
+      <div class="bonus-options">
+        <div class="bonus-label">★ Bonus options · pick if time / kids want</div>
+        <div class="bonus-list">
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Indiana Jones Epic Stunt Spectacular</em></div>
+            <div class="bonus-detail">30-min outdoor stunt show, typically 1, 3, 4 PM. Alternative to Frozen Sing-Along. Older kids love this — fight scenes, explosions, real stunts.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Beauty and the Beast Live on Stage</em></div>
+            <div class="bonus-detail">30-min Broadway-style musical in covered theater on Sunset Boulevard. AC. Family-friendly.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Rock 'n' Roller Coaster Starring The Muppets</em> · NEW</div>
+            <div class="bonus-detail">48″ minimum — likely excludes the 7-year-old. Rider swap for parents if older kids want it. Standby will be brutal as new ride; consider rebooking via Multi Pass mid-day.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Star Wars Launch Bay</em></div>
+            <div class="bonus-detail">Indoor exhibit with character meet-and-greets (Chewbacca, Kylo Ren, BB-8). Props and costumes from the films. AC respite. Usually walk-in.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Walt Disney Presents</em></div>
+            <div class="bonus-detail">Walt's history exhibit + preview clips of upcoming Disney films. Quiet AC space.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -983,6 +1170,36 @@
           <div class="entry-detail">Earliest finish of the trip. Use the rest. Wednesday is your true rest day.</div>
         </div>
       </div>
+      <div class="bonus-options">
+        <div class="bonus-label">★ Bonus options · pick if time / kids want</div>
+        <div class="bonus-list">
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Wilderness Explorers</em> · FREE kid activity</div>
+            <div class="bonus-detail"><strong>Highly recommended for slower kid pacing.</strong> Pick up a free handbook at Discovery Island. Kids earn badges by completing tasks at stations across the park (~25 stations). Self-paced — perfect for the 7-year-old. Russell from "Up" hands out the books.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Zootopia: Better Zoogether!</em></div>
+            <div class="bonus-detail">Newer show (May 2025) on Discovery Island. ~10-min musical with Judy Hopps and Nick Wilde. AC. Replaced the old Bug's Life show.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Feathered Friends in Flight!</em></div>
+            <div class="bonus-detail">25-min outdoor bird show in Asia. Macaws, owls, hawks flying overhead and through the audience. Recently revamped from the old UP! show.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Pandora at dusk · bioluminescence</em></div>
+            <div class="bonus-detail">Park closes early Tuesday (7–8 PM), but if you stay until just before close, Pandora lights up — bioluminescent paint, glowing plants, magical sky. Real photo moment. Would push the day past 7:30 PM.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Finding Nemo: The Big Blue... and Beyond!</em></div>
+            <div class="bonus-detail">25-min recently revamped musical with giant puppets. AC, sit-down, good fade-recovery option.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Boneyard playground (Dinoland)</em></div>
+            <div class="bonus-detail">Free play area where kids dig for "fossils." Burns kid energy if they're getting restless. Status of Dinoland transition — check the day-of as some areas being reimagined.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1254,6 +1471,44 @@
           <div class="entry-detail">Big day done. EPCOT tomorrow is the trip closer — fireworks finale.</div>
         </div>
       </div>
+      <div class="bonus-options">
+        <div class="bonus-label">★ Bonus options · pick if time / kids want</div>
+        <div class="bonus-list">
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Festival of Fantasy Parade</em> · 3 PM</div>
+            <div class="bonus-detail"><strong>Major event worth catching.</strong> 12-min parade through Frontierland → Liberty Square → Main Street with all the princesses, Maleficent dragon (breathes real fire), Tangled float. Stake out a curb spot at 2:45 PM. Falls between Haunted Mansion (2:55) and TRON (4:05) — tight but possible to squeeze in. If you go: skip the rebook walk and catch parade instead.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Pirates of the Caribbean</em></div>
+            <div class="bonus-detail">~20 min standby usually. AC. Classic 15-min boat ride through the pirate raid. Adventureland. Big yo-ho-ho moments.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Buzz Lightyear's Space Ranger Spin</em></div>
+            <div class="bonus-detail">Interactive shooter — score points blasting Zurg. No height min. ~25 min standby. Could squeeze in during the 1–2:30 PM ride hunt window.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Tomorrowland Speedway</em></div>
+            <div class="bonus-detail">Kids drive cars on a track (sort of — they're on rails but feel like they're steering). ~25 min wait. Great for the 7-year-old. 32″ to drive with adult, 54″ to drive solo.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Mickey's PhilharMagic</em></div>
+            <div class="bonus-detail">12-min 3D show. Walk-on usually. AC. Perfect fading-kid recovery. Donald goes through Disney movies. Genuinely charming.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Tom Sawyer Island</em></div>
+            <div class="bonus-detail">Raft over to free-roam island. Climbing, hiding, exploring caves. 30–60 min depending on kids. Closes earlier than rest of park (~dusk). Underrated burn-energy option.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Country Bear Musical Jamboree</em></div>
+            <div class="bonus-detail">Reopened in 2024 with new songs. 15-min animatronic show. AC. Classic Disney Americana.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Monsters Inc. Laugh Floor</em></div>
+            <div class="bonus-detail">Interactive comedy show — monsters tell jokes to the audience. Adult and kid humor both work. AC, ~12 min, walk-in.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1545,6 +1800,44 @@
           <div><span class="entry-tag">Sleep</span></div>
           <div class="entry-action">Back at hotel — last bedtime of the trip</div>
           <div class="entry-detail">Trip done. Saturday is flex — Disney Springs, Universal, or just head home.</div>
+        </div>
+      </div>
+
+      <div class="bonus-options">
+        <div class="bonus-label">★ Bonus options · pick if time / kids want</div>
+        <div class="bonus-list">
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Kidcot Fun Stops</em> · FREE kid activity</div>
+            <div class="bonus-detail"><strong>Don't miss this for a kid-focused EPCOT day.</strong> Pick up a free "Duffy" or animal cutout near the entrance. Bring it to each country's Kidcot station in World Showcase — cast members from that country sign/stamp it in their native language. Self-paced, perfect for slow World Showcase exploration. Kids get a souvenir at every stop.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Turtle Talk with Crush</em></div>
+            <div class="bonus-detail">Interactive show — Crush from Finding Nemo talks live with kids in the audience. They actually have real conversations. AC, ~15 min, walk-in usually. In The Seas pavilion. Kid favorite.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Gran Fiesta Tour Starring The Three Caballeros</em></div>
+            <div class="bonus-detail">Inside the Mexico pyramid. ~7-min boat ride, AC, walk-on usually. Mexican market upstairs is fun to browse — papel picado, pottery, candy.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Mission: SPACE</em></div>
+            <div class="bonus-detail">Two versions: Green (mild, family-friendly) vs. Orange (intense actual G-forces, can cause nausea). <strong>Pick Green for the 7-year-old.</strong> 40″ minimum. Both versions have similar wait times. Worth doing the Green version at least once.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Journey Into Imagination with Figment</em></div>
+            <div class="bonus-detail">Quirky 6-min ride with the iconic purple dragon Figment. Low wait. AC. Imagination pavilion. Adults find it weirdly nostalgic; kids find it just weird in a fun way.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>The Seas with Nemo &amp; Friends</em></div>
+            <div class="bonus-detail">Aquarium + ride combination. Real manatees, sharks, fish. Ride is short and gentle. ~10 min wait usually. Pairs naturally with Turtle Talk in same pavilion.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Disney and Pixar Short Film Festival</em></div>
+            <div class="bonus-detail">17-min show featuring Pixar short films in 4D (with effects). AC. Imagination pavilion. Good fading-kid recovery spot.</div>
+          </div>
+          <div class="bonus-item">
+            <div class="bonus-name"><em>Character meets at the EPCOT Character Spot</em></div>
+            <div class="bonus-detail">Indoor AC space with Mickey, Minnie, Goofy meet-and-greets. Faster than waiting outdoors.</div>
+          </div>
         </div>
       </div>
 
