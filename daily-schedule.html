@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Schedule — Disney Trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Hanken+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f0e6;
+    --paper-soft: #ede6d6;
+    --ink: #1f2024;
+    --ink-soft: #4a4c54;
+    --ink-mute: #84868f;
+    --paper-edge: #d8cfb8;
+    --amber: #b08940;
+    --cream: #faf6ed;
+
+    /* Day accents matching source docs */
+    --day-hs: #b8336a;
+    --day-ak: #5b6f3f;
+    --day-mk: #2d3a5f;
+    --day-epcot: #d96a2c;
+
+    /* Activity colors */
+    --ll-color: #b08940;
+    --meal-color: #a04a30;
+    --show-color: #6a4a9a;
+    --break-color: #84868f;
+    --fireworks-color: #c45b94;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    background-image:
+      radial-gradient(at 15% 5%, rgba(176, 137, 64, 0.04) 0px, transparent 50%),
+      radial-gradient(at 85% 95%, rgba(28, 29, 34, 0.03) 0px, transparent 50%);
+    color: var(--ink);
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 90px 0 60px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--amber);
+    margin-bottom: 32px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--amber);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(54px, 10vw, 116px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .lead {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin-top: 24px;
+    max-width: 720px;
+    line-height: 1.4;
+  }
+
+  /* === NAV STRIP === */
+  .day-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 56px;
+    padding-top: 36px;
+    border-top: 1px solid var(--paper-edge);
+  }
+  .day-nav-item {
+    text-decoration: none;
+    color: var(--ink);
+    padding: 18px;
+    background: var(--cream);
+    border: 1px solid var(--paper-edge);
+    border-left: 4px solid var(--ink);
+    transition: all 0.25s ease;
+    display: block;
+  }
+  .day-nav-item[data-day="hs"] { border-left-color: var(--day-hs); }
+  .day-nav-item[data-day="ak"] { border-left-color: var(--day-ak); }
+  .day-nav-item[data-day="mk"] { border-left-color: var(--day-mk); }
+  .day-nav-item[data-day="epcot"] { border-left-color: var(--day-epcot); }
+  .day-nav-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(28, 29, 34, 0.08);
+  }
+  .day-nav-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-mute);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .day-nav-park {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  @media (max-width: 700px) {
+    .day-nav { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* === DAY SECTIONS === */
+  section.day {
+    padding: 80px 0;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  section.day:last-of-type { border-bottom: none; }
+
+  .day-header {
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 12px;
+  }
+  .day-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    font-weight: 700;
+  }
+  .day-meta .accent {
+    color: var(--ink);
+  }
+  section.day[data-day="hs"] .day-meta .accent { color: var(--day-hs); }
+  section.day[data-day="ak"] .day-meta .accent { color: var(--day-ak); }
+  section.day[data-day="mk"] .day-meta .accent { color: var(--day-mk); }
+  section.day[data-day="epcot"] .day-meta .accent { color: var(--day-epcot); }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  h2 em {
+    font-style: italic;
+  }
+  section.day[data-day="hs"] h2 em { color: var(--day-hs); }
+  section.day[data-day="ak"] h2 em { color: var(--day-ak); }
+  section.day[data-day="mk"] h2 em { color: var(--day-mk); }
+  section.day[data-day="epcot"] h2 em { color: var(--day-epcot); }
+
+  .day-summary {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin: 14px 0 40px;
+    max-width: 700px;
+    line-height: 1.4;
+  }
+
+  /* === TIMELINE === */
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    padding: 14px 0;
+    border-top: 1px solid var(--paper-edge);
+    align-items: baseline;
+  }
+  .entry:first-child { border-top: 1px solid var(--paper-edge); }
+
+  .entry-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    padding-top: 2px;
+  }
+
+  .entry-body {
+    display: grid;
+    gap: 4px;
+  }
+
+  .entry-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    padding: 2px 8px;
+    color: var(--ink-mute);
+    font-weight: 700;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    background: rgba(132, 134, 143, 0.08);
+    vertical-align: 1px;
+  }
+  .entry-tag.ll {
+    background: rgba(176, 137, 64, 0.15);
+    color: var(--ll-color);
+  }
+  .entry-tag.sp {
+    background: rgba(184, 51, 106, 0.15);
+    color: var(--day-hs);
+  }
+  .entry-tag.standby {
+    background: rgba(45, 58, 95, 0.1);
+    color: var(--day-mk);
+  }
+  .entry-tag.meal {
+    background: rgba(160, 74, 48, 0.12);
+    color: var(--meal-color);
+  }
+  .entry-tag.snack {
+    background: rgba(160, 74, 48, 0.06);
+    color: var(--meal-color);
+  }
+  .entry-tag.show {
+    background: rgba(106, 74, 154, 0.12);
+    color: var(--show-color);
+  }
+  .entry-tag.fireworks {
+    background: rgba(196, 91, 148, 0.15);
+    color: var(--fireworks-color);
+  }
+  .entry-tag.break {
+    background: rgba(132, 134, 143, 0.1);
+    color: var(--ink-mute);
+  }
+
+  .entry-action {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .entry-action em {
+    font-style: italic;
+  }
+
+  .entry-detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.45;
+    max-width: 640px;
+  }
+
+  /* Hero entries (LL, fireworks, meals) get bigger treatment */
+  .entry.hero {
+    padding: 22px 0;
+  }
+  .entry.hero .entry-action {
+    font-size: 24px;
+  }
+  .entry.hero .entry-time {
+    font-size: 15px;
+    color: var(--ll-color);
+    font-weight: 700;
+  }
+  section.day[data-day="hs"] .entry.hero .entry-time { color: var(--day-hs); }
+  section.day[data-day="ak"] .entry.hero .entry-time { color: var(--day-ak); }
+  section.day[data-day="mk"] .entry.hero .entry-time { color: var(--day-mk); }
+  section.day[data-day="epcot"] .entry.hero .entry-time { color: var(--day-epcot); }
+
+  /* Time block dividers */
+  .phase {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0 12px;
+    padding: 6px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--ink-mute);
+    font-weight: 700;
+  }
+  .phase::before, .phase::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--paper-edge);
+  }
+
+  /* Day-specific highlight */
+  .day-call {
+    background: var(--cream);
+    border-left: 4px solid var(--amber);
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+  section.day[data-day="hs"] .day-call { border-left-color: var(--day-hs); }
+  section.day[data-day="ak"] .day-call { border-left-color: var(--day-ak); }
+  section.day[data-day="mk"] .day-call { border-left-color: var(--day-mk); }
+  section.day[data-day="epcot"] .day-call { border-left-color: var(--day-epcot); }
+
+  .day-call-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--amber);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  section.day[data-day="hs"] .day-call-label { color: var(--day-hs); }
+  section.day[data-day="ak"] .day-call-label { color: var(--day-ak); }
+  section.day[data-day="mk"] .day-call-label { color: var(--day-mk); }
+  section.day[data-day="epcot"] .day-call-label { color: var(--day-epcot); }
+
+  .day-call p {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  /* Footer */
+  footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 700;
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--amber);
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 18px; }
+    .entry { grid-template-columns: 75px 1fr; gap: 14px; padding: 12px 0; }
+    .entry-time { font-size: 13px; }
+    .entry-action { font-size: 17px; }
+    .entry.hero .entry-action { font-size: 19px; }
+    .day-call { padding: 16px 18px; }
+    .day-meta { font-size: 10px; gap: 14px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.08s; }
+  section:nth-of-type(2) { animation-delay: 0.14s; }
+  section:nth-of-type(3) { animation-delay: 0.2s; }
+  section:nth-of-type(4) { animation-delay: 0.26s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="cover-rule"></div>
+    <div class="eyebrow">Day-by-day · Realistic schedule</div>
+    <h1>Daily <em>Schedule</em></h1>
+    <p class="lead">Built around your actual Lightning Lane bookings. Breaks, meals, and family pacing baked in — slow walking pace assumed, no death marches, plenty of room for the kids to take their time.</p>
+
+    <nav class="day-nav">
+      <a class="day-nav-item" data-day="hs" href="#monday">
+        <div class="day-nav-day">Mon · Jun 8</div>
+        <div class="day-nav-park">Hollywood Studios</div>
+      </a>
+      <a class="day-nav-item" data-day="ak" href="#tuesday">
+        <div class="day-nav-day">Tue · Jun 9</div>
+        <div class="day-nav-park">Animal Kingdom</div>
+      </a>
+      <a class="day-nav-item" data-day="mk" href="#thursday">
+        <div class="day-nav-day">Thu · Jun 11</div>
+        <div class="day-nav-park">Magic Kingdom</div>
+      </a>
+      <a class="day-nav-item" data-day="epcot" href="#friday">
+        <div class="day-nav-day">Fri · Jun 12</div>
+        <div class="day-nav-park">EPCOT</div>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ============== MONDAY HS ============== -->
+  <section class="day" data-day="hs" id="monday">
+    <div class="day-header">
+      <div class="day-meta">
+        <span>Monday · <span class="accent">June 8</span></span>
+        <span>Hours · <span class="accent">9 AM – 9 PM</span></span>
+        <span>Park day · <span class="accent">01 of 04</span></span>
+      </div>
+      <h2>Hollywood <em>Studios</em></h2>
+      <p class="day-summary">Long day with bookings spread morning to evening. Big midday gap (12:30–6:30) is your friend — use it for lunch, shows, and a real afternoon break. Rise of the Resistance closes the night.</p>
+    </div>
+
+    <div class="day-call">
+      <div class="day-call-label">★ Today's mission</div>
+      <p>Slinky Dog Dash at park open (kids' top pick, not on Multi Pass). Then everything else falls into place around your booked Lightning Lane windows.</p>
+    </div>
+
+    <div class="phase">Morning · arrival &amp; rope drop</div>
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="entry-time">7:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wake</span></div>
+          <div class="entry-action">Hotel breakfast, hydrate</div>
+          <div class="entry-detail">Big day ahead — eat well. Sunscreen on everyone before leaving.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:15 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Leave hotel for HS</div>
+          <div class="entry-detail">Allow extra time for parking. Tram to entrance adds 10 min.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:25 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Arrive HS, security &amp; bag check</div>
+          <div class="entry-detail">Have MagicBands/tickets visible and ready BEFORE the tap-in. Kids stay together.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:55 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Position</span></div>
+          <div class="entry-action">At gates, front-third of crowd</div>
+          <div class="entry-detail">Pull up Google Maps to find direct route to Toy Story Land (Disney signage takes scenic route).</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">9:00 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Rope drop</span></div>
+          <div class="entry-action">Walk briskly to Toy Story Land</div>
+          <div class="entry-detail">No running. ~10 min walk. Slinky Dog Dash is the destination.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">9:15 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Standby · Kids' #1</span></div>
+          <div class="entry-action"><em>Slinky Dog Dash</em></div>
+          <div class="entry-detail">Expected wait 30–45 min (vs. 88 min mid-day). All kids ride (38″ min).</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:00 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Break</span></div>
+          <div class="entry-action">Bathroom + water in Toy Story Land</div>
+          <div class="entry-detail">Restrooms by Slinky exit. Refill water bottles.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:15 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Standby</span></div>
+          <div class="entry-action"><em>Toy Story Mania!</em></div>
+          <div class="entry-detail">Next door to Slinky. ~15–20 min wait, high capacity. No height min.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:40 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Mickey &amp; Minnie · Animation Courtyard</div>
+          <div class="entry-detail">12 min walk. Kids will want to stop for photos — let them.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">11:00 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Mickey &amp; Minnie's Runaway Railway</em></div>
+          <div class="entry-detail">Window open 10:35–11:35. Tap in — no height minimum, family ride.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">11:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Rebook</span></div>
+          <div class="entry-action">Open MDX → Multi Pass → rebook</div>
+          <div class="entry-detail"><strong>Target: Smugglers Run.</strong> Tier 1 slot opens after using M&amp;M. 38″ min, all kids ride.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">11:35 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Star Tours · Echo Lake</div>
+          <div class="entry-detail">8 min walk. Snack stand on the way if needed.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">11:50 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Star Tours – The Adventures Continue</em></div>
+          <div class="entry-detail">Window open 11:35–12:35. 40″ minimum.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Midday · lunch &amp; rest</div>
+    <div class="timeline">
+
+      <div class="entry hero">
+        <div class="entry-time">12:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Lunch</span></div>
+          <div class="entry-action"><em>Lunch — Backlot Express</em></div>
+          <div class="entry-detail">Quick service, family-friendly menu, near Star Tours. Mobile order via MDX 20 min before. Sci-Fi Dine-In if you have an ADR. Allow 60+ min — sit, hydrate, breathe.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">1:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Galaxy's Edge</div>
+          <div class="entry-detail">10–12 min walk. Galaxy's Edge is fully immersive — let the kids absorb it.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">1:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane · Rebook</span></div>
+          <div class="entry-action"><em>Millennium Falcon: Smugglers Run</em></div>
+          <div class="entry-detail">Use the rebook you grabbed at 11:30. If unavailable, standby (~30–40 min mid-afternoon).</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">2:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wander</span></div>
+          <div class="entry-action">Galaxy's Edge exploration</div>
+          <div class="entry-detail">Coca-Cola "thermal detonator" bottles, Droid Depot (if budget allows ~$130), characters wandering. Kids will love it.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">3:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag snack">Snack</span></div>
+          <div class="entry-action">Blue/green milk at Milk Stand</div>
+          <div class="entry-detail">Iconic Star Wars stop. Kids love the colors. ~$8 each — share between 5.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">3:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Big break · 90 min</span></div>
+          <div class="entry-action">Sit-down rest — AC respite</div>
+          <div class="entry-detail">Find a Starbucks (Trolley Car Café on Sunset Blvd) or air-conditioned lounge. Kids decompress. Adults coffee. This is the day's pacing reset — don't skip it.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">5:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag show">Show</span></div>
+          <div class="entry-action"><em>Frozen Sing-Along Celebration</em></div>
+          <div class="entry-detail">30-min show, fully AC, no waiting in sun. Hyperion Theater. Showtimes vary; check Tip Board.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">5:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Sunset Boulevard</div>
+          <div class="entry-detail">Tower of Terror is the destination. Optional: pick up dinner snacks on the way.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Evening · big rides &amp; close</div>
+    <div class="timeline">
+
+      <div class="entry hero">
+        <div class="entry-time">5:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Dinner</span></div>
+          <div class="entry-action"><em>Dinner — Catalina Eddie's or Rosie's All-American Café</em></div>
+          <div class="entry-detail">Quick service on Sunset Blvd, right by Tower of Terror. Pizza, burgers — kid-friendly. Allow 50 min.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">6:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Twilight Zone Tower of Terror</em></div>
+          <div class="entry-detail">Window open 6:35–7:35. 40″ minimum. Drop ride — verify everyone wants to do it; 7-year-old may sit out.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">7:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wander</span></div>
+          <div class="entry-action">Sunset Boulevard photos + dessert</div>
+          <div class="entry-detail">Hollywood Brown Derby has good desserts. Or grab a Mickey ice cream. Free time — don't rush.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Galaxy's Edge for Rise of the Resistance</div>
+          <div class="entry-detail">15 min walk across park. Kids may flag at this point — push through, this is the finale.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">8:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag sp">Single Pass</span></div>
+          <div class="entry-action"><em>Star Wars: Rise of the Resistance</em></div>
+          <div class="entry-detail">Window 8:30–9:00. 40″ minimum. ~20-minute immersive experience — the headline ride at HS.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">9:10 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Exit</span></div>
+          <div class="entry-action">Walk out of park, head to hotel</div>
+          <div class="entry-detail">Crowds heavy at close. Allow 30–40 min from exit to car. Get kids in seats fast.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Sleep</span></div>
+          <div class="entry-action">Back at hotel — bedtime</div>
+          <div class="entry-detail">Big day done. Set 7 AM alarm — AK is a slightly easier day tomorrow.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TUESDAY AK ============== -->
+  <section class="day" data-day="ak" id="tuesday">
+    <div class="day-header">
+      <div class="day-meta">
+        <span>Tuesday · <span class="accent">June 9</span></span>
+        <span>Hours · <span class="accent">8 AM – 7 PM</span></span>
+        <span>Park day · <span class="accent">02 of 04</span></span>
+      </div>
+      <h2>Animal <em>Kingdom</em></h2>
+      <p class="day-summary">Shortest park day with the best timing. Morning LL block (9:35–11:35), Pandora afternoon, walking trails to close. Bonus: you actually got Multi Pass here — gives the day way more structure.</p>
+    </div>
+
+    <div class="day-call">
+      <div class="day-call-label">★ Today's mission</div>
+      <p>Kilimanjaro Safaris at rope drop (only headliner without LL coverage, plus animals are most active in morning heat). Then ride your booked Lightning Lanes back-to-back.</p>
+    </div>
+
+    <div class="phase">Morning · safari &amp; mountains</div>
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="entry-time">7:00 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wake</span></div>
+          <div class="entry-action">Wake, breakfast, sunscreen</div>
+          <div class="entry-detail">Earlier wake than HS — AK opens 8 AM, you want to be there. Layer for AC, dress for heat.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">7:45 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Leave hotel for AK</div>
+          <div class="entry-detail">Closest to most off-property hotels. ~15–20 min drive.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">7:55 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Arrive AK, security</div>
+          <div class="entry-detail">AK security is usually faster than the others. Discovery Island is just past entrance.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">8:20 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Rope drop</span></div>
+          <div class="entry-action">Walk to Africa for Kilimanjaro Safaris</div>
+          <div class="entry-detail">Through Discovery Island, across bridge to Africa. ~10 min walk. Animals most active in morning before heat.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">8:35 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Standby</span></div>
+          <div class="entry-action"><em>Kilimanjaro Safaris</em></div>
+          <div class="entry-detail">Expected wait 20–30 min at rope drop. 22-min ride through real African savanna with real animals. No height min.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">9:25 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Break</span></div>
+          <div class="entry-action">Bathroom + water in Africa</div>
+          <div class="entry-detail">Restrooms by Safari exit. Refill bottles — it'll be 90°+ today.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">9:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Asia (Expedition Everest)</div>
+          <div class="entry-detail">8 min walk via the Tree of Life path. Worth a photo at the Tree.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">9:45 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Expedition Everest</em></div>
+          <div class="entry-detail">Window 9:35–10:35. 44″ minimum — verify 7-year-old clears. Adults coaster, kids may sit out with rider swap.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:15 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Short walk to Kali River Rapids</div>
+          <div class="entry-detail">3 min — right next door in Asia. CHANGE INTO PONCHOS NOW if you have them.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">10:40 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Kali River Rapids</em></div>
+          <div class="entry-detail">Window 10:35–11:35. 38″ minimum. <strong>YOU WILL GET SOAKED.</strong> No exceptions. Phones in lockers (free, 75 min).</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">11:05 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Dry time</span></div>
+          <div class="entry-action">Dry off + bathroom + snack</div>
+          <div class="entry-detail">Anandapur Ice Cream Truck nearby — drinks and cooling. Family dries off in 20 min in this heat.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">11:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Maharajah Jungle Trek (slow walk)</div>
+          <div class="entry-detail">Walking trail through Asia — tigers, gibbons, bats. ~25 min at slow pace. Shaded, AC pavilions throughout.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Midday · lunch &amp; Pandora prep</div>
+    <div class="timeline">
+
+      <div class="entry hero">
+        <div class="entry-time">12:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Lunch</span></div>
+          <div class="entry-action"><em>Lunch — Satu'li Canteen (Pandora)</em></div>
+          <div class="entry-detail">One of the best meals on property. Bowls with proteins, fresh ingredients, vegetarian options. Mobile order via MDX 30 min ahead. Walk over from Asia takes ~15 min.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">1:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wander</span></div>
+          <div class="entry-action">Pandora exploration</div>
+          <div class="entry-detail">Walk among the floating mountains. Photos are magic in afternoon light. Kids will be transfixed.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">1:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Position</span></div>
+          <div class="entry-action">Head to Flight of Passage entrance</div>
+          <div class="entry-detail">Buffer time for the queue walk. The queue itself is part of the experience — beautiful set design.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">2:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag sp">Single Pass</span></div>
+          <div class="entry-action"><em>Avatar Flight of Passage</em></div>
+          <div class="entry-detail">Window 1:50–2:50. 44″ minimum. The best ride at WDW. Tells you you're on a banshee — sit back and let it work.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">2:40 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Short walk to Na'vi River Journey</div>
+          <div class="entry-detail">5 min through Pandora.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">3:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Na'vi River Journey</em></div>
+          <div class="entry-detail">Window 2:50–3:50. No height minimum, gentle boat ride through bioluminescent forest. Stunning visuals — younger kids especially love this.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">3:25 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag snack">Snack</span></div>
+          <div class="entry-action">Pongu Pongu — Night Blossom drink</div>
+          <div class="entry-detail">Pandora-themed beverages. Kids love the boba. ~$7 each, share if needed.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Afternoon · shows &amp; trails</div>
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="entry-time">3:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Big break · 45 min</span></div>
+          <div class="entry-action">Sit-down rest in Pandora AC</div>
+          <div class="entry-detail">Find a shaded bench or duck into a shop. Kids hit a wall mid-afternoon — let them recover before the show.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">4:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag show">Show</span></div>
+          <div class="entry-action"><em>Festival of the Lion King</em></div>
+          <div class="entry-detail">30-min spectacle in Africa. Acrobats, fire, music. Best AK show. Check Tip Board for showtimes (typically 4:30 or 5:30).</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">5:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wander</span></div>
+          <div class="entry-action">Gorilla Falls Exploration Trail (Africa)</div>
+          <div class="entry-detail">Walking trail with gorillas, hippos, meerkats. Easy pace. ~30 min if slow.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">5:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wander</span></div>
+          <div class="entry-action">Discovery Island — Tree of Life carvings</div>
+          <div class="entry-detail">Walk around the Tree of Life. 300+ animal carvings hidden in it. Photo op + cool spot.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">6:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Dinner</span></div>
+          <div class="entry-action"><em>Dinner — Flame Tree Barbecue or off-property</em></div>
+          <div class="entry-detail">Flame Tree is BBQ on Discovery Island — ribs, brisket, family-friendly. Or leave park and eat at hotel/Disney Springs — AK is the easiest park to exit early from.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">7:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Sleep</span></div>
+          <div class="entry-action">Back at hotel — pool + bed</div>
+          <div class="entry-detail">Earliest finish of the trip. Use the rest. Wednesday is your true rest day.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== THURSDAY MK ============== -->
+  <section class="day" data-day="mk" id="thursday">
+    <div class="day-header">
+      <div class="day-meta">
+        <span>Thursday · <span class="accent">June 11</span></span>
+        <span>Hours · <span class="accent">8:30 AM – 11 PM</span></span>
+        <span>Park day · <span class="accent">03 of 04</span></span>
+      </div>
+      <h2>Magic <em>Kingdom</em></h2>
+      <p class="day-summary">The big one. Five Lightning Lane bookings spread across the day, fireworks finale. Pacing reset on Wednesday matters here — this is a 14-hour push and worth doing right.</p>
+    </div>
+
+    <div class="day-call">
+      <div class="day-call-label">★ Today's mission</div>
+      <p>Peter Pan's Flight at rope drop (only Tier 1 ride not on LL, and the worst standby at MK by far). Then follow the LL ladder all the way to Seven Dwarfs Mine Train at 7:50 — set up perfectly for Happily Ever After fireworks at 9.</p>
+    </div>
+
+    <div class="phase">Morning · rope drop &amp; first LL block</div>
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="entry-time">6:45 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wake</span></div>
+          <div class="entry-action">Wake, breakfast, sunscreen</div>
+          <div class="entry-detail">Earliest wake of the trip. MK requires transport (ferry, monorail, or bus) — extra time needed.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">7:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Leave hotel for TTC</div>
+          <div class="entry-detail">TTC (Transportation &amp; Ticket Center) is where you park. Then ferry or monorail to MK gates.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:00 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Ferry/monorail across Seven Seas Lagoon</div>
+          <div class="entry-detail">Monorail is faster (~5 min). Ferry is the classic experience (~10 min) but slower. Either works.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:20 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Position</span></div>
+          <div class="entry-action">At MK gates, ready</div>
+          <div class="entry-detail">Castle photo before rope drop — Main Street will be full of people later. Get the shot now.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">8:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Rope drop</span></div>
+          <div class="entry-action">Walk to Fantasyland for Peter Pan</div>
+          <div class="entry-detail">No running. Through Main Street, around castle, to Fantasyland. Peter Pan is the most-skipped rope drop and the highest standby ride at MK.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">8:45 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Standby</span></div>
+          <div class="entry-action"><em>Peter Pan's Flight</em></div>
+          <div class="entry-detail">Expected wait 20–30 min at rope drop (vs. 60–80 min mid-day). No height min. Family ride everyone enjoys.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">9:15 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Break</span></div>
+          <div class="entry-action">Bathroom + walk to Tomorrowland</div>
+          <div class="entry-detail">Fantasyland to Tomorrowland is ~5 min via Cosmic Ray's path. Refill bottles.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">9:50 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Space Mountain</em></div>
+          <div class="entry-detail">Window 9:45–10:45. 44″ minimum. Kids' top Tier 1 pick. Cool, dark, AC respite.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:20 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Rebook</span></div>
+          <div class="entry-action">Open MDX → rebook target: Tiana's</div>
+          <div class="entry-detail">After tapping Space Mountain, Tier 1 slot opens. <strong>Target: Tiana's Bayou Adventure</strong> (kids' other Tier 1 pick).</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag snack">Snack</span></div>
+          <div class="entry-action">Snack break — Cosmic Ray's snacks or churro stand</div>
+          <div class="entry-detail">Tomorrowland has multiple snack stops. Hydrate. Don't try to power through.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">11:00 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Fantasyland for Barnstormer</div>
+          <div class="entry-detail">8 min walk. Storybook Circus area is past the carousel.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">11:35 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>The Barnstormer</em></div>
+          <div class="entry-detail">Window 11:30–12:30. 35″ minimum — everyone rides. Kids' coaster, short but a kid favorite.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Midday · lunch &amp; light rides</div>
+    <div class="timeline">
+
+      <div class="entry hero">
+        <div class="entry-time">12:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Lunch</span></div>
+          <div class="entry-action"><em>Lunch — Pinocchio Village Haus or Pecos Bill's</em></div>
+          <div class="entry-detail">Pinocchio is right by Barnstormer (Italian, family-friendly). Pecos Bill is Tex-Mex with a toppings bar — Tom likes it. Mobile order 30 min ahead.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">1:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wander</span></div>
+          <div class="entry-action">Light afternoon standby — pick up free wins</div>
+          <div class="entry-detail">"it's a small world" (10 min), Carousel (walk-on), Mad Tea Party (15 min), Mickey's PhilharMagic (walk-on, AC). Family pace — let kids choose.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">2:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Break · 30 min</span></div>
+          <div class="entry-action">Walk to Liberty Square, restrooms, hydrate</div>
+          <div class="entry-detail">Past Cinderella's castle. Restrooms in Liberty Square are quieter than Fantasyland's.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">3:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Haunted Mansion</em></div>
+          <div class="entry-detail">Window 2:55–3:55. No height min. Stretching room into the dark, then 8-min boat ride. Classic.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">3:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Cross park to Tomorrowland for TRON</div>
+          <div class="entry-detail">12–15 min walk. Through Liberty Square → Main Street → Tomorrowland. Lots of photo stops along the way.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">4:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag sp">Single Pass</span></div>
+          <div class="entry-action"><em>TRON Lightcycle / Run</em></div>
+          <div class="entry-detail">Window 4:05–5:05. <strong>48″ minimum — verify 7-year-old clears.</strong> If not, rider swap (parent rides while other parent waits with him, then they switch). Fast launch coaster.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Late afternoon · big break + recharge</div>
+    <div class="timeline">
+
+      <div class="entry hero">
+        <div class="entry-time">5:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Big break · 90 min</span></div>
+          <div class="entry-action">Sit, eat dessert, AC</div>
+          <div class="entry-detail">Carousel of Progress is the secret weapon here — 22-min show, fully AC, you can nap. Or Tomorrowland Terrace lounge. This is the energy reset before the long evening.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">6:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Dinner</span></div>
+          <div class="entry-action"><em>Dinner — Plaza Restaurant or Cosmic Ray's</em></div>
+          <div class="entry-detail">Plaza is a sit-down sandwich/comfort food spot at end of Main Street — try walk-up. Cosmic Ray's is quick-service with the Sonny Eclipse animatronic. Allow 60 min.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">7:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Fantasyland for Seven Dwarfs</div>
+          <div class="entry-detail">From Tomorrowland: walk through hub past castle, to Fantasyland. 12 min. Crowds will be building for fireworks.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">8:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag sp">Single Pass</span></div>
+          <div class="entry-action"><em>Seven Dwarfs Mine Train</em></div>
+          <div class="entry-detail">Window 7:50–8:50. 38″ minimum. Perfect timing — ride at 8:00, exit at 8:30, walk straight to fireworks. The day's accidental win.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Position</span></div>
+          <div class="entry-action">Walk to fireworks viewing spot</div>
+          <div class="entry-detail">Castle hub or Main Street. Avoid directly under the castle — angles aren't great. Halfway down Main Street is the sweet spot.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Finale · fireworks &amp; exit</div>
+    <div class="timeline">
+
+      <div class="entry hero">
+        <div class="entry-time">9:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag fireworks">Fireworks</span></div>
+          <div class="entry-action"><em>Happily Ever After</em></div>
+          <div class="entry-detail">25-minute fireworks + projection mapping on the castle. Best fireworks at WDW. Crowds will gasp, kids will be transfixed.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">9:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Exit</span></div>
+          <div class="entry-action">Walk out with everyone else — pace yourself</div>
+          <div class="entry-detail">Heavy crowd flow toward exit. Don't rush — better to grab a snack and wait 15 min for crowd to thin.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Sleep</span></div>
+          <div class="entry-action">Back at hotel — bed</div>
+          <div class="entry-detail">Big day done. EPCOT tomorrow is the trip closer — fireworks finale.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FRIDAY EPCOT ============== -->
+  <section class="day" data-day="epcot" id="friday">
+    <div class="day-header">
+      <div class="day-meta">
+        <span>Friday · <span class="accent">June 12</span></span>
+        <span>Hours · <span class="accent">9 AM – 9 PM</span></span>
+        <span>Park day · <span class="accent">04 of 04 · Finale</span></span>
+      </div>
+      <h2>EP<em>COT</em></h2>
+      <p class="day-summary">Trip-closing day. Front-half rides until 11 (World Showcase opens then), festival booth grazing in the afternoon, Test Track at 5, Luminous fireworks at 9. The most relaxed pacing of any park day.</p>
+    </div>
+
+    <div class="day-call">
+      <div class="day-call-label">★ Today's mission</div>
+      <p>Soarin' Around the World at rope drop (the classic — your booked LL is for Soarin' Across America, the NEW film). Then ride your LLs back-to-back through the afternoon. Rebook Remy's after using Spaceship Earth.</p>
+    </div>
+
+    <div class="phase">Morning · front half rides</div>
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="entry-time">7:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wake</span></div>
+          <div class="entry-action">Wake, breakfast, sunscreen</div>
+          <div class="entry-detail">Park opens at 9. You can sleep slightly later than other days.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:15 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Leave hotel for EPCOT</div>
+          <div class="entry-detail">EPCOT has its own parking lot — easier than MK. ~15 min drive.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Travel</span></div>
+          <div class="entry-action">Arrive EPCOT, security</div>
+          <div class="entry-detail">Walk under the Spaceship Earth dome — that photo's a classic.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">8:55 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Rope drop</span></div>
+          <div class="entry-action">Walk to Soarin' (World Nature)</div>
+          <div class="entry-detail">Past Spaceship Earth, then left into World Nature. ~8 min walk. Soarin' is in The Land pavilion.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">9:10 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Standby</span></div>
+          <div class="entry-action"><em>Soarin' Around the World</em> (original)</div>
+          <div class="entry-detail">Expected wait 20–30 min at rope drop (vs. 60+ min mid-day). 40″ minimum. Your LL is for the NEW Soarin' Across America at 2:40 — ride them both to compare.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">9:45 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Standby</span></div>
+          <div class="entry-action"><em>Living with the Land</em></div>
+          <div class="entry-detail">Same pavilion as Soarin'. 14-min slow boat ride through greenhouses. Usually walk-on or 5–10 min. Kids find it calmer; adults find it surprisingly cool.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:10 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Break</span></div>
+          <div class="entry-action">Snack + bathroom in The Land pavilion</div>
+          <div class="entry-detail">Sunshine Seasons has good drinks + breakfast snacks until 11 AM.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Spaceship Earth</div>
+          <div class="entry-detail">~10 min walk back toward entrance.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">11:00 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Spaceship Earth</em></div>
+          <div class="entry-detail">Window 10:45–11:45. No height min. 16-min ride through human history inside the giant geosphere. Underrated.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">11:30 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Rebook</span></div>
+          <div class="entry-action">Open MDX → rebook target: Remy's Ratatouille Adventure</div>
+          <div class="entry-detail">After Spaceship Earth, you can rebook Multi Pass. <strong>Target: Remy's Ratatouille Adventure</strong> — kids' EPCOT pick. Look for late-afternoon window.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">11:35 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">To Norway (World Showcase opens 11)</div>
+          <div class="entry-detail">10-12 min walk along the path that opens up into World Showcase. Get there before the standby builds.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">11:50 AM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag standby">Standby</span></div>
+          <div class="entry-action"><em>Frozen Ever After</em> (Norway)</div>
+          <div class="entry-detail">Right when World Showcase opens. Expected wait 25–40 min. 35″ min — all kids ride. Kids' alternate pick.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Lunch &amp; afternoon LL block</div>
+    <div class="timeline">
+
+      <div class="entry hero">
+        <div class="entry-time">12:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Lunch</span></div>
+          <div class="entry-action"><em>Lunch — Festival booths (Mexico → Norway → China)</em></div>
+          <div class="entry-detail">Flower &amp; Garden Festival booths are the lunch move. Small plates, walk between countries, kids try things. Allow 60 min and don't stress quantity — kids will fill up on snacks all afternoon anyway.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">1:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Back to World Discovery for Cosmic Rewind</div>
+          <div class="entry-detail">~10 min walk. Cosmic Rewind is in Wonders of Xandar pavilion.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">1:50 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag sp">Single Pass</span></div>
+          <div class="entry-action"><em>Guardians of the Galaxy: Cosmic Rewind</em></div>
+          <div class="entry-detail">Window 1:40–2:40. 42″ minimum. Indoor rollercoaster with rotating cars + soundtrack. One of the best rides at WDW.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">2:20 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Walk to Soarin' (World Nature)</div>
+          <div class="entry-detail">8 min walk through the central plaza.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">2:50 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Soarin' Across America</em> — NEW</div>
+          <div class="entry-detail">Window 2:40–3:40. 40″ min. The new film just opened May 26. You'll have ridden both versions today — fun comparison.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">3:20 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag snack">Snack</span></div>
+          <div class="entry-action">Mickey ice cream or churro</div>
+          <div class="entry-detail">Sun's hot. Kids will need cooling. Multiple stands in World Showcase.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">3:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag break">Big break · 75 min</span></div>
+          <div class="entry-action">World Showcase wander + AC stops</div>
+          <div class="entry-detail">Walk Japan → Morocco → France → UK. AC pavilions throughout. Each country has shops kids will love. Adults find festival booths fascinating.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="phase">Evening · Test Track &amp; finale</div>
+    <div class="timeline">
+
+      <div class="entry">
+        <div class="entry-time">4:45 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Walk to Test Track (World Discovery)</div>
+          <div class="entry-detail">~10 min from World Showcase. Across the main plaza.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">5:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Lightning Lane</span></div>
+          <div class="entry-action"><em>Test Track</em></div>
+          <div class="entry-detail">Window 5:00–6:00. 40″ minimum. Design a car, then race it on a track at 65 mph. Kids love the design phase.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">5:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Walk</span></div>
+          <div class="entry-action">Walk to Remy's — if rebooked</div>
+          <div class="entry-detail">If you grabbed a Remy's rebook earlier, head over. Remy's is in France pavilion (World Showcase).</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">6:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag ll">Rebook</span></div>
+          <div class="entry-action"><em>Remy's Ratatouille Adventure</em></div>
+          <div class="entry-detail">If your rebook landed here. Else, standby in evening drops to 20–30 min. Trackless ride through Gusteau's kitchen.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">6:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag meal">Dinner</span></div>
+          <div class="entry-action"><em>Dinner — Festival booths or Le Cellier (Canada)</em></div>
+          <div class="entry-detail">If Le Cellier has a walk-up window, great steakhouse. Otherwise graze the booths — Canadian Cheddar Cheese Soup is mandatory. Allow 60 min.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">7:30 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Wander</span></div>
+          <div class="entry-action">Final World Showcase loop</div>
+          <div class="entry-detail">Pick a country to hang out in. Mexico has a great margarita stand if adults want one. Kids can chase ducks. Casual finish.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">8:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Position</span></div>
+          <div class="entry-action">Find Luminous viewing spot</div>
+          <div class="entry-detail">World Showcase lagoon — anywhere along the edge works. Japan-side is less crowded than UK-side.</div>
+        </div>
+      </div>
+
+      <div class="entry hero">
+        <div class="entry-time">9:00 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag fireworks">Fireworks</span></div>
+          <div class="entry-action"><em>Luminous The Symphony of Us</em></div>
+          <div class="entry-detail">17-minute fireworks + fountain + projection show across the lagoon. The trip-closing moment.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">9:20 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Exit</span></div>
+          <div class="entry-action">Walk out of park</div>
+          <div class="entry-detail">EPCOT has 2 exits — International Gateway (BoardWalk side) is much less crowded than main entrance. If car is at main entrance though, just go that way.</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-time">10:15 PM</div>
+        <div class="entry-body">
+          <div><span class="entry-tag">Sleep</span></div>
+          <div class="entry-action">Back at hotel — last bedtime of the trip</div>
+          <div class="entry-detail">Trip done. Saturday is flex — Disney Springs, Universal, or just head home.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Daily Schedule · Day-of reference · Low Gear Studio Trip Plan
+  </footer>
+
+</div>
+
+</body>
+</html>
