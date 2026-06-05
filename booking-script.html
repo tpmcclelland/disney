@@ -524,6 +524,70 @@
     font-weight: 500;
   }
 
+  /* === KIDS TAGS & WISHLIST === */
+  .kids-tag {
+    display: inline-block;
+    font-family: 'Fira Code', monospace;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 2px 7px;
+    background: var(--teal);
+    color: var(--dark);
+    font-weight: 700;
+    margin-left: 8px;
+    vertical-align: 1px;
+    border-radius: 2px;
+  }
+  .kids-tag.sub {
+    background: rgba(74, 212, 224, 0.25);
+    color: var(--teal);
+  }
+
+  .kids-wishlist {
+    background: rgba(74, 212, 224, 0.07);
+    border-left: 3px solid var(--teal);
+    padding: 18px 22px;
+    margin: 20px 32px 24px;
+  }
+  .kids-wishlist-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--teal);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .kids-wishlist-list {
+    display: grid;
+    gap: 6px;
+  }
+  .kids-wishlist-item {
+    font-size: 13px;
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(74, 212, 224, 0.08);
+  }
+  .kids-wishlist-item:last-child { border-bottom: none; }
+  .kids-wishlist-item .ride-coverage {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--cream-mute);
+    font-weight: 600;
+  }
+  .kids-wishlist-item.covered .ride-coverage { color: var(--emerald); }
+  .kids-wishlist-item.rebook .ride-coverage { color: var(--amber); }
+  @media (max-width: 700px) {
+    .kids-wishlist { margin: 16px 22px 20px; padding: 14px 16px; }
+    .kids-wishlist-item { font-size: 12px; grid-template-columns: 1fr; gap: 2px; }
+  }
+
   /* Footer */
   footer {
     padding: 50px 0 70px;
@@ -679,16 +743,16 @@
 
             <div class="picks">
               <div class="pick tier1">
-                <div class="pick-label">TIER 1</div>
-                <div class="pick-name">Slinky Dog Dash<small>38″ — everyone in the family can ride. Muppets coaster is 48″, may exclude 7yo</small></div>
+                <div class="pick-label">TIER 1 · Kids' pick</div>
+                <div class="pick-name">Slinky Dog Dash<small>38″ — everyone in the family can ride. Kids' top Tier 1 pick</small></div>
               </div>
               <div class="pick tier2">
-                <div class="pick-label">TIER 2</div>
-                <div class="pick-name">Twilight Zone Tower of Terror<small>48 min avg, 40″ minimum</small></div>
+                <div class="pick-label">TIER 2 · Kids' pick</div>
+                <div class="pick-name">Twilight Zone Tower of Terror<small>48 min avg, 40″ minimum — kids' pick</small></div>
               </div>
               <div class="pick tier2">
-                <div class="pick-label">TIER 2</div>
-                <div class="pick-name">Toy Story Mania!<small>Family-friendly, no height, 32 min avg — secures a Multi Pass slot</small></div>
+                <div class="pick-label">TIER 2 · Kids' "Star Wars"</div>
+                <div class="pick-name">Star Tours – The Adventures Continue<small>25 min avg, 40″ — pairs with Rise of the Resistance to cover kids' Star Wars interest</small></div>
               </div>
             </div>
 
@@ -710,6 +774,16 @@
           </div>
         </div>
       </div>
+      <div class="kids-wishlist">
+        <div class="kids-wishlist-label">★ Kids' wishlist at Hollywood Studios</div>
+        <div class="kids-wishlist-list">
+          <div class="kids-wishlist-item covered"><span>Star Wars: Rise of the Resistance</span><span class="ride-coverage">Single Pass ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Slinky Dog Dash</span><span class="ride-coverage">Multi Pass T1 ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Tower of Terror</span><span class="ride-coverage">Multi Pass T2 ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Star Tours (additional Star Wars)</span><span class="ride-coverage">Multi Pass T2 ✓</span></div>
+        </div>
+      </div>
+
     </div>
 
     <!-- MK - Priority 02 -->
@@ -751,29 +825,43 @@
 
             <div class="picks">
               <div class="pick tier1">
-                <div class="pick-label">TIER 1</div>
-                <div class="pick-name">Peter Pan's Flight<small>Low capacity = legendary 55+ min waits all day, hardest to standby</small></div>
+                <div class="pick-label">TIER 1 · Kids' pick</div>
+                <div class="pick-name">Space Mountain<small>52 min avg — kids' top Tier 1 pick. Tiana's is also Tier 1, will need rebook</small></div>
               </div>
               <div class="pick tier2">
-                <div class="pick-label">TIER 2</div>
-                <div class="pick-name">Haunted Mansion<small>35 min avg — best Tier 2 wait at MK</small></div>
+                <div class="pick-label">TIER 2 · Kids' pick</div>
+                <div class="pick-name">Haunted Mansion<small>35 min avg — kids' top Tier 2 pick</small></div>
               </div>
               <div class="pick tier2">
-                <div class="pick-label">TIER 2</div>
-                <div class="pick-name">Buzz Lightyear's Space Ranger Spin<small>28 min avg, family-friendly, all kids enjoy</small></div>
+                <div class="pick-label">TIER 2 · Kids' sub</div>
+                <div class="pick-name">The Barnstormer<small>15 min avg — from the kids' substitute list, family coaster</small></div>
               </div>
             </div>
 
             <div class="backup-section">
-              <div class="backup-label">If picks unavailable, swap in:</div>
+              <div class="backup-label">Rebook plan for Tiana's + Big Thunder (kids' other picks):</div>
               <div class="backup-list">
-                <strong>For Tier 1:</strong> Big Thunder Mountain Railroad (newly reopened, demand high), Tiana's Bayou Adventure, Space Mountain.<br>
-                <strong>For Tier 2:</strong> Pirates of the Caribbean, Under the Sea, Mickey's PhilharMagic, Jungle Cruise.
+                <strong>Tiana's Bayou Adventure (Tier 1):</strong> rebook via Multi Pass after using one of your initial three picks. By mid-morning Tier 1 capacity reopens.<br>
+                <strong>Big Thunder Mountain Railroad (Tier 1, kids' sub):</strong> rebook later in the day. Newly reopened so demand is high — but Tier 1 spots roll back through the day.<br>
+                <strong>Backup Tier 2 swaps:</strong> Buzz Lightyear, Pirates of the Caribbean, Under the Sea.
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="kids-wishlist">
+        <div class="kids-wishlist-label">★ Kids' wishlist at Magic Kingdom</div>
+        <div class="kids-wishlist-list">
+          <div class="kids-wishlist-item covered"><span>TRON Lightcycle / Run</span><span class="ride-coverage">Single Pass ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Seven Dwarfs Mine Train</span><span class="ride-coverage">Single Pass ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Space Mountain</span><span class="ride-coverage">Multi Pass T1 ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Haunted Mansion</span><span class="ride-coverage">Multi Pass T2 ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Barnstormer (sub)</span><span class="ride-coverage">Multi Pass T2 ✓</span></div>
+          <div class="kids-wishlist-item rebook"><span>Tiana's Bayou Adventure</span><span class="ride-coverage">Rebook (T1 conflict)</span></div>
+          <div class="kids-wishlist-item rebook"><span>Big Thunder Mtn (sub)</span><span class="ride-coverage">Rebook or standby</span></div>
+        </div>
+      </div>
+
     </div>
 
     <!-- EPCOT - Priority 03 -->
@@ -806,8 +894,8 @@
 
             <div class="picks">
               <div class="pick tier1">
-                <div class="pick-label">TIER 1</div>
-                <div class="pick-name">Test Track<small>99 min avg standby — highest at EPCOT</small></div>
+                <div class="pick-label">TIER 1 · Kids' pick</div>
+                <div class="pick-name">Test Track<small>99 min avg standby — highest at EPCOT, kids' pick</small></div>
               </div>
               <div class="pick tier2">
                 <div class="pick-label">TIER 2</div>
@@ -842,6 +930,15 @@
           </div>
         </div>
       </div>
+      <div class="kids-wishlist">
+        <div class="kids-wishlist-label">★ Kids' wishlist at EPCOT</div>
+        <div class="kids-wishlist-list">
+          <div class="kids-wishlist-item covered"><span>Cosmic Rewind</span><span class="ride-coverage">Single Pass ✓</span></div>
+          <div class="kids-wishlist-item covered"><span>Test Track</span><span class="ride-coverage">Multi Pass T1 ✓</span></div>
+          <div class="kids-wishlist-item rebook"><span>Remy's Ratatouille Adventure</span><span class="ride-coverage">Rebook (T1 conflict)</span></div>
+        </div>
+      </div>
+
     </div>
 
     <!-- AK - Priority 04 -->
