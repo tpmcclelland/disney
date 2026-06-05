@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notes — What We're Skipping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f1e3;
+    --paper-soft: #efe6d0;
+    --paper-deep: #e6dabc;
+    --ink: #1d1e22;
+    --ink-soft: #4d4e54;
+    --ink-mute: #82847f;
+    --paper-edge: #d4c89e;
+    --sepia: #8a6d3b;
+    --sepia-soft: #b89460;
+    --cream: #fbf6e8;
+
+    /* Park accents — slightly muted for "marginalia" feel */
+    --day-hs: #a32d5e;
+    --day-ak: #4f6235;
+    --day-mk: #283452;
+    --day-epcot: #c25e26;
+
+    --star-color: #c2922a;
+    --warn: #b8462a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    background-image:
+      radial-gradient(at 20% 10%, rgba(138, 109, 59, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 90%, rgba(29, 30, 34, 0.03) 0px, transparent 50%);
+    color: var(--ink);
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* === HEADER === */
+  header {
+    padding: 90px 0 56px;
+    border-bottom: 1px solid var(--sepia);
+    position: relative;
+  }
+
+  .cover-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--sepia);
+    margin-bottom: 36px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--sepia);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(56px, 11vw, 124px);
+    line-height: 0.95;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--sepia);
+    font-weight: 500;
+  }
+
+  .lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 23px;
+    color: var(--ink-soft);
+    margin-top: 28px;
+    max-width: 720px;
+    line-height: 1.4;
+  }
+
+  /* === RESERVATION ALERT === */
+  .alert-block {
+    background: linear-gradient(135deg, var(--cream) 0%, var(--paper-soft) 100%);
+    border: 1px solid var(--paper-edge);
+    border-top: 3px solid var(--warn);
+    padding: 36px 40px;
+    margin-top: 56px;
+    position: relative;
+  }
+  .alert-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--warn);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .alert-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+  }
+  .alert-block h3 em {
+    font-style: italic;
+    color: var(--warn);
+  }
+  .alert-block p {
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .alert-block p strong {
+    color: var(--ink);
+  }
+  .alert-steps {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--paper-edge);
+    display: grid;
+    gap: 10px;
+  }
+  .alert-step {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    align-items: baseline;
+  }
+  .alert-step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--warn);
+  }
+
+  /* === SECTIONS === */
+  section.park {
+    padding: 70px 0 50px;
+    border-bottom: 1px dashed var(--paper-edge);
+  }
+  section.park:last-of-type { border-bottom: none; }
+
+  .park-header {
+    margin-bottom: 36px;
+  }
+
+  .park-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-mute);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  section.park[data-park="hs"] .park-day { color: var(--day-hs); }
+  section.park[data-park="ak"] .park-day { color: var(--day-ak); }
+  section.park[data-park="mk"] .park-day { color: var(--day-mk); }
+  section.park[data-park="epcot"] .park-day { color: var(--day-epcot); }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+  }
+  h2 em {
+    font-style: italic;
+  }
+  section.park[data-park="hs"] h2 em { color: var(--day-hs); }
+  section.park[data-park="ak"] h2 em { color: var(--day-ak); }
+  section.park[data-park="mk"] h2 em { color: var(--day-mk); }
+  section.park[data-park="epcot"] h2 em { color: var(--day-epcot); }
+
+  .park-summary {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    max-width: 720px;
+    line-height: 1.4;
+  }
+
+  /* === SUBSECTION HEADER === */
+  .subsec {
+    margin: 36px 0 18px;
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+  .subsec h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--ink);
+    letter-spacing: -0.012em;
+  }
+  .subsec h3 em {
+    font-style: italic;
+    color: var(--sepia);
+  }
+  .subsec .subsec-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-mute);
+    font-weight: 700;
+    margin-left: auto;
+  }
+
+  /* === MISS ITEM === */
+  .miss {
+    padding: 14px 0;
+    border-top: 1px solid var(--paper-edge);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .miss:last-child {
+    border-bottom: 1px solid var(--paper-edge);
+  }
+  .miss.star {
+    background: rgba(194, 146, 42, 0.04);
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+  .miss-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    letter-spacing: -0.008em;
+  }
+  .miss-name em {
+    font-style: italic;
+  }
+  .miss-name .star-icon {
+    color: var(--star-color);
+    font-size: 14px;
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
+  .miss-detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    max-width: 640px;
+  }
+  .miss-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-mute);
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .miss-meta.signature { color: var(--star-color); }
+  .miss-meta.qs { color: var(--ink-mute); }
+  .miss-meta.character { color: var(--day-hs); }
+
+  /* === BIG MISS CALLOUT === */
+  .big-miss {
+    background: var(--cream);
+    border-left: 3px solid var(--sepia);
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+  section.park[data-park="hs"] .big-miss { border-left-color: var(--day-hs); }
+  section.park[data-park="ak"] .big-miss { border-left-color: var(--day-ak); }
+  section.park[data-park="mk"] .big-miss { border-left-color: var(--day-mk); }
+  section.park[data-park="epcot"] .big-miss { border-left-color: var(--day-epcot); }
+
+  .big-miss-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--sepia);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  section.park[data-park="hs"] .big-miss-label { color: var(--day-hs); }
+  section.park[data-park="ak"] .big-miss-label { color: var(--day-ak); }
+  section.park[data-park="mk"] .big-miss-label { color: var(--day-mk); }
+  section.park[data-park="epcot"] .big-miss-label { color: var(--day-epcot); }
+
+  .big-miss p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  /* Footer */
+  footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 700;
+  }
+  footer::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--sepia);
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 18px; }
+    .alert-block { padding: 24px 22px; }
+    .miss { grid-template-columns: 1fr; gap: 8px; }
+    .miss-meta { text-align: left; }
+    .subsec { flex-direction: column; gap: 6px; align-items: flex-start; }
+    .subsec .subsec-meta { margin-left: 0; }
+    .miss-name { font-size: 17px; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  header, section { animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  section:nth-of-type(1) { animation-delay: 0.08s; }
+  section:nth-of-type(2) { animation-delay: 0.14s; }
+  section:nth-of-type(3) { animation-delay: 0.2s; }
+  section:nth-of-type(4) { animation-delay: 0.26s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="cover-rule"></div>
+    <div class="eyebrow">Field notes · The deliberate misses</div>
+    <h1>What we're <em>skipping</em></h1>
+    <p class="lead">Rides, attractions, and restaurants left out of the main schedule — so you can swap things in on the fly with eyes open, or accept the choices without second-guessing. ★ marks the standouts worth real consideration.</p>
+  </header>
+
+  <section style="padding-top: 56px; border-bottom: 1px dashed var(--paper-edge);">
+    <div class="alert-block">
+      <div class="alert-label">⚠ Dining reservations · Act this week</div>
+      <h3>The 60-day window <em>closed April 9</em></h3>
+      <p>Disney's advance dining reservation window opens 60 days before your trip start. For June 8, that meant April 9 — months ago. <strong>You missed the prime booking window for any table-service restaurant.</strong></p>
+      <p>The good news: cancellations roll in constantly, especially within the 7-day window before each reservation date. Refresh-stalking the My Disney Experience app daily can land you reservations even this late. Walk-up availability also opens throughout each park day.</p>
+
+      <div class="alert-steps">
+        <div class="alert-step">
+          <div class="alert-step-num">01</div>
+          <div>Open the My Disney Experience app daily this week. <strong>Dining → search your dates → check top picks.</strong> Cancellations drop most often 24–72 hours before the reservation.</div>
+        </div>
+        <div class="alert-step">
+          <div class="alert-step-num">02</div>
+          <div>Set up <strong>MouseDining</strong> (mousedining.com) or <strong>DVC Reservation Finder</strong>. They text/email you when slots open for restaurants you flagged. Most are free for limited use.</div>
+        </div>
+        <div class="alert-step">
+          <div class="alert-step-num">03</div>
+          <div>During each park day, check <strong>Walk-Up Available</strong> in MDX. It refreshes throughout the day and shows immediate-availability tables — sometimes for spots you can't book in advance.</div>
+        </div>
+        <div class="alert-step">
+          <div class="alert-step-num">04</div>
+          <div><strong>Lunch is easier than dinner.</strong> Character meals (Tusker House, Crystal Palace) often have walk-ups available. Signature spots (Sci-Fi Dine-In, Space 220, Be Our Guest) are the hardest.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== HOLLYWOOD STUDIOS =================== -->
+  <section class="park" data-park="hs">
+    <div class="park-header">
+      <div class="park-day">Monday · June 8 · Hollywood Studios</div>
+      <h2>Hollywood <em>Studios</em></h2>
+      <p class="park-summary">Pretty thorough coverage of all six lands. Main misses are the brand-new Muppets coaster (height blocker for the 7-year-old), Fantasmic, and a few smaller shows. Restaurant scene is rich — several worth trying to book.</p>
+    </div>
+
+    <div class="subsec">
+      <h3>Attractions <em>not on the plan</em></h3>
+      <span class="subsec-meta">5 attractions</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Rock 'n' Roller Coaster Starring The Muppets</em></div>
+        <div class="miss-detail">Brand new (opened May 26, 2026). 48″ minimum — likely excludes the 7-year-old. Older kids may want it. Rider swap is the only family path. Standby will be brutal as new ride; consider rebooking via Multi Pass mid-day if you have a slot.</div>
+      </div>
+      <div class="miss-meta">48″ · Rider swap</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Fantasmic!</em></div>
+        <div class="miss-detail">Nighttime water + projection + fireworks show at 9 PM. Your Rise of the Resistance booking at 8:30-9 PM conflicts directly — you'll exit Rise as Fantasmic ends. Modifying Rise to an earlier window would let you catch it.</div>
+      </div>
+      <div class="miss-meta">9 PM · Nighttime</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Alien Swirling Saucers</em></div>
+        <div class="miss-detail">Small spinning ride in Toy Story Land. 32″ minimum. ~25 min standby. Easy to skip — basically a kid teacup ride.</div>
+      </div>
+      <div class="miss-meta">Skippable</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Disney Junior Mickey Mouse Clubhouse Live!</em></div>
+        <div class="miss-detail">NEW preschool-targeted show. 10-year-olds probably too old; 7-year-old maybe too old. Skip unless your kids loved the show.</div>
+      </div>
+      <div class="miss-meta">Young kids</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Wonderful World of Animation</em></div>
+        <div class="miss-detail">Projection show on Chinese Theater at park close. Doesn't run every night. Skip if Rise booking holds.</div>
+      </div>
+      <div class="miss-meta">Park close</div>
+    </div>
+
+    <div class="subsec">
+      <h3>Restaurants <em>worth considering</em></h3>
+      <span class="subsec-meta">Quick service + table service</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Sci-Fi Dine-In Theater</em></div>
+        <div class="miss-detail">Eat in convertible car booths while old sci-fi movies play on a drive-in screen. Cosmically themed. Burgers, milkshakes, comfort food. Kids universally love this. <strong>Hard to get</strong> — refresh-stalk for lunch.</div>
+      </div>
+      <div class="miss-meta signature">Table · Hard book</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>50's Prime Time Café</em></div>
+        <div class="miss-detail">Kitschy 1950s home setting — your "cousin" waiter scolds you for elbows on the table, demands you eat your veggies. Mac &amp; cheese, fried chicken, milkshakes. Hilarious, family-friendly. <strong>Worth refresh-stalking.</strong></div>
+      </div>
+      <div class="miss-meta signature">Table · Hard book</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Hollywood Brown Derby</em></div>
+        <div class="miss-detail">Signature dining — Cobb Salad (invented here), grapefruit cake. Adult-oriented. Walk-up sometimes available at lunch.</div>
+      </div>
+      <div class="miss-meta signature">Table · Signature</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Hollywood &amp; Vine</em></div>
+        <div class="miss-detail">Character buffet — Disney Junior characters at breakfast/lunch, Minnie's seasonal dine at dinner. Family-friendly.</div>
+      </div>
+      <div class="miss-meta character">Character meal</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Docking Bay 7 Food and Cargo</em> · Galaxy's Edge</div>
+        <div class="miss-detail">Quick service themed to Star Wars planet Batuu. Mobile order. Themed entrees, no reservation needed.</div>
+      </div>
+      <div class="miss-meta qs">Quick · Mobile order</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Woody's Lunch Box</em> · Toy Story Land</div>
+        <div class="miss-detail">Quick service — grilled cheese sandwiches, totchos (tater tot nachos), lunch boxes. Themed packaging. Decent breakfast option.</div>
+      </div>
+      <div class="miss-meta qs">Quick · Mobile order</div>
+    </div>
+
+  </section>
+
+  <!-- =================== ANIMAL KINGDOM =================== -->
+  <section class="park" data-park="ak">
+    <div class="park-header">
+      <div class="park-day">Tuesday · June 9 · Animal Kingdom</div>
+      <h2>Animal <em>Kingdom</em></h2>
+      <p class="park-summary">Two whole areas being skipped: DinoLand (in transition to Tropical Americas) and Rafiki's Planet Watch. Several quality shows and the iconic Pandora at dusk experience also miss the schedule.</p>
+    </div>
+
+    <div class="big-miss">
+      <div class="big-miss-label">Areas being skipped entirely</div>
+      <p><strong>DinoLand U.S.A.</strong> — currently being transformed into a new "Tropical Americas" land. DINOSAUR thrill ride and most attractions may be closed during construction. Check status day-of, but it's not a big loss in current state.<br><br><strong>Rafiki's Planet Watch</strong> — Wildlife Express train, Conservation Station, animal viewing, petting area. Quiet corner of the park; 45-90 min commitment if you go.</p>
+    </div>
+
+    <div class="subsec">
+      <h3>Attractions <em>not on the plan</em></h3>
+      <span class="subsec-meta">5 attractions</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Pandora at dusk · Bioluminescence</em></div>
+        <div class="miss-detail">Pandora lights up after sunset — bioluminescent paint, glowing plants, magical sky effects. Truly stunning photo opportunity. Park closes early Tuesday (7-8 PM), but if you stayed until just before close, you'd see it. Pushes the day later.</div>
+      </div>
+      <div class="miss-meta">After sunset</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Tree of Life Awakenings</em></div>
+        <div class="miss-detail">Projection show on the Tree of Life after dark. Runs intermittently every 10 min after sunset. Worth a glance if you stay late.</div>
+      </div>
+      <div class="miss-meta">After dark</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>DINOSAUR</em> · DinoLand (if open)</div>
+        <div class="miss-detail">Indoor thrill ride through a Cretaceous-era simulation. 40″ minimum. Status uncertain during land transition — verify in MDX day-of.</div>
+      </div>
+      <div class="miss-meta">Status uncertain</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>TriceraTop Spin</em></div>
+        <div class="miss-detail">Dumbo-style spinning ride. Younger kids only really. Skip.</div>
+      </div>
+      <div class="miss-meta">Skippable</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Conservation Station / Affection Section</em> · Rafiki's Planet Watch</div>
+        <div class="miss-detail">Train ride to behind-the-scenes animal care area. Petting zoo with goats. Animation classes. Skipped because of the time commitment and out-of-the-way location.</div>
+      </div>
+      <div class="miss-meta">Out of way</div>
+    </div>
+
+    <div class="subsec">
+      <h3>Restaurants <em>worth considering</em></h3>
+      <span class="subsec-meta">Quick service + table service</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Tusker House Restaurant</em></div>
+        <div class="miss-detail">Character buffet with Donald Duck, Goofy, Mickey, Daisy in safari outfits. African-inspired buffet. Family-friendly. <strong>Walk-ups often available</strong> for lunch — try MDX day-of.</div>
+      </div>
+      <div class="miss-meta character">Character meal</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Yak &amp; Yeti Restaurant</em></div>
+        <div class="miss-detail">Pan-Asian table service in Asia. Honey chicken, lo mein, miso glazed mahi mahi. Adventurous menu kids might enjoy. Easier to book than signatures.</div>
+      </div>
+      <div class="miss-meta signature">Table · Moderate</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Tiffins Restaurant</em></div>
+        <div class="miss-detail">Signature dining inspired by global travel — animal kingdom expedition theme. Pricey, adult-oriented but kid-friendly menu exists. Walk-up sometimes available at lunch.</div>
+      </div>
+      <div class="miss-meta signature">Table · Signature</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Nomad Lounge</em></div>
+        <div class="miss-detail">Adjacent to Tiffins. Small plates, drinks. Adults' moment. Often walk-in, especially mid-afternoon. Outdoor patio with shade.</div>
+      </div>
+      <div class="miss-meta">Lounge · Walk-in</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Pizzafari</em> · Discovery Island</div>
+        <div class="miss-detail">Quick-service pizza and sandwiches. Mobile order. Themed dining rooms with wildlife murals. Solid backup if Satu'li doesn't work.</div>
+      </div>
+      <div class="miss-meta qs">Quick · Mobile order</div>
+    </div>
+
+  </section>
+
+  <!-- =================== MAGIC KINGDOM =================== -->
+  <section class="park" data-park="mk">
+    <div class="park-header">
+      <div class="park-day">Thursday · June 11 · Magic Kingdom</div>
+      <h2>Magic <em>Kingdom</em></h2>
+      <p class="park-summary">Your biggest-skip park — MK has ~25 attractions, you're hitting maybe 8-10. The pattern is Fantasyland-heavy, Adventureland-light. Two whole lands barely get touched. The dining scene here is iconic.</p>
+    </div>
+
+    <div class="big-miss">
+      <div class="big-miss-label">Lands you'll barely touch</div>
+      <p><strong>Adventureland</strong> — Pirates of the Caribbean, Jungle Cruise, Tiki Room, Magic Carpets of Aladdin, Treehouse. Pirates is the biggest single miss in this section. <strong>Liberty Square beyond Haunted Mansion</strong> — Liberty Square Riverboat, Hall of Presidents (50-min animatronic show). <strong>Most of Frontierland</strong> — Big Thunder Mountain (kids' sub, on rebook list), Tiana's Bayou Adventure (kids' pick, on rebook list), Tom Sawyer Island, Country Bear Jamboree.</p>
+    </div>
+
+    <div class="subsec">
+      <h3>Attractions <em>not on the plan</em></h3>
+      <span class="subsec-meta">12+ attractions</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Pirates of the Caribbean</em></div>
+        <div class="miss-detail">Classic 15-min boat ride through the pirate raid scene. ~20 min standby usually. AC. Yo-ho-ho song will be stuck in kids' heads for weeks. <strong>Strongly consider squeezing in</strong> during the 1-2:30 PM ride hunt window.</div>
+      </div>
+      <div class="miss-meta">~20 min · AC</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Festival of Fantasy Parade</em> · 3 PM</div>
+        <div class="miss-detail">12-min parade through Frontierland → Liberty Square → Main Street with all the princesses, Maleficent dragon float (breathes real fire), Tangled float. Kids universally love. Time-tight with Haunted Mansion (2:55) and TRON (4:05) but possible if you catch it as it passes Liberty Square.</div>
+      </div>
+      <div class="miss-meta">3 PM</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Tiana's Bayou Adventure</em> · Tier 1, on rebook list</div>
+        <div class="miss-detail">Flume ride themed to Princess and the Frog. Kids' pick. Already on the rebook strategy after Space Mountain — target this first.</div>
+      </div>
+      <div class="miss-meta">Rebook target</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Big Thunder Mountain Railroad</em> · Tier 1, on rebook list</div>
+        <div class="miss-detail">Classic mine train coaster. Newly reopened. Kids' sub pick. Target after Tiana's via Multi Pass rebook.</div>
+      </div>
+      <div class="miss-meta">Rebook target</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Jungle Cruise</em></div>
+        <div class="miss-detail">10-min boat ride with corny skipper jokes. ~40 min standby usually. Tier 1 Multi Pass but you can't pick two T1s. Standby if time, or skip.</div>
+      </div>
+      <div class="miss-meta">Tier 1 (unbooked)</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Mickey's PhilharMagic</em></div>
+        <div class="miss-detail">12-min 3D show, AC, walk-on usually. Donald goes through Disney movies. Genuinely charming. Perfect fading-kid recovery option.</div>
+      </div>
+      <div class="miss-meta">Walk-on · AC</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Tomorrowland Speedway</em></div>
+        <div class="miss-detail">Kids drive cars on a track (on rails but feels real). Recently TRON-themed. ~25 min wait. Great for the 7-year-old. 32″ to drive with adult.</div>
+      </div>
+      <div class="miss-meta">~25 min</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Buzz Lightyear's Space Ranger Spin</em></div>
+        <div class="miss-detail">Interactive shooter. No height min. ~25 min standby. Squeeze in during 1-2:30 ride hunt window if doing it.</div>
+      </div>
+      <div class="miss-meta">~25 min</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>PeopleMover</em></div>
+        <div class="miss-detail">Free 10-min elevated tour of Tomorrowland. AC respite. Walk-on usually. Adults love it for the rest.</div>
+      </div>
+      <div class="miss-meta">Walk-on · AC</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Tom Sawyer Island</em></div>
+        <div class="miss-detail">Raft over to free-roam island. Climbing, caves, hiding spots. 30-60 min depending on kids. Closes at dusk.</div>
+      </div>
+      <div class="miss-meta">Closes at dusk</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Country Bear Musical Jamboree</em></div>
+        <div class="miss-detail">Reopened in 2024 with new songs. 15-min animatronic show. AC. Classic Disney Americana.</div>
+      </div>
+      <div class="miss-meta">Walk-in · AC</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Many Adventures of Winnie the Pooh, Little Mermaid, Dumbo, Carousel</em></div>
+        <div class="miss-detail">Fantasyland smaller rides. Light afternoon ride hunt could catch one or two. None are essential.</div>
+      </div>
+      <div class="miss-meta">Multiple</div>
+    </div>
+
+    <div class="subsec">
+      <h3>Restaurants <em>worth considering</em></h3>
+      <span class="subsec-meta">Quick service + table service · iconic MK dining</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Be Our Guest Restaurant</em></div>
+        <div class="miss-detail">Beauty and the Beast themed — eat in the Ballroom, West Wing, or Rose Gallery. French-inspired prix fixe. <strong>Hardest reservation at WDW.</strong> Refresh-stalk aggressively. Lunch is slightly easier than dinner.</div>
+      </div>
+      <div class="miss-meta signature">Table · Hard book</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Cinderella's Royal Table</em></div>
+        <div class="miss-detail">Princess character meal INSIDE the castle. Most iconic MK dining experience. Pricey ($79+/adult). Very hard to book. Worth refresh-stalking if kids are princess fans.</div>
+      </div>
+      <div class="miss-meta character">Character · Hard book</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Aloha Isle — Dole Whip</em></div>
+        <div class="miss-detail">Pineapple soft serve. Iconic Disney snack. Walk-up. ~$6 each, kids will demand seconds. <strong>Adventureland — would require a small detour from main schedule.</strong></div>
+      </div>
+      <div class="miss-meta qs">Snack · Walk-up</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>The Crystal Palace</em></div>
+        <div class="miss-detail">Winnie the Pooh character buffet. Pooh, Tigger, Piglet, Eeyore. Often has walk-up availability. Easier to book than Cinderella's.</div>
+      </div>
+      <div class="miss-meta character">Character meal</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Liberty Tree Tavern</em></div>
+        <div class="miss-detail">Colonial-themed American comfort food. Family-style dinner option (Thanksgiving-style plate). Underrated, easier to book.</div>
+      </div>
+      <div class="miss-meta signature">Table · Moderate</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Jungle Navigation Co. Skipper Canteen</em></div>
+        <div class="miss-detail">Asian/African-influenced menu, Jungle Cruise-themed humor from the waitstaff. <strong>Easier to walk up</strong> than other table service. Adventurous menu but kid options exist.</div>
+      </div>
+      <div class="miss-meta signature">Table · Easier</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Tony's Town Square Restaurant</em></div>
+        <div class="miss-detail">Lady and the Tramp-themed Italian. End of Main Street. Spaghetti and meatballs (yes, you can share, but no kissing required). Easier book.</div>
+      </div>
+      <div class="miss-meta signature">Table · Easier</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Gaston's Tavern</em> · Fantasyland</div>
+        <div class="miss-detail">Quick stop in Beauty and the Beast village. LeFou's Brew (frozen apple drink with marshmallow foam). Cinnamon rolls the size of your head. Walk-up.</div>
+      </div>
+      <div class="miss-meta qs">Snack · Walk-up</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Sleepy Hollow</em> · Liberty Square</div>
+        <div class="miss-detail">Mickey-shaped waffle sandwiches (savory or sweet). Fresh fruit. Cult favorite among Disney regulars. Walk-up window.</div>
+      </div>
+      <div class="miss-meta qs">Snack · Walk-up</div>
+    </div>
+
+  </section>
+
+  <!-- =================== EPCOT =================== -->
+  <section class="park" data-park="epcot">
+    <div class="park-header">
+      <div class="park-day">Friday · June 12 · EPCOT</div>
+      <h2>EP<em>COT</em></h2>
+      <p class="park-summary">Skipping one whole pavilion (The Seas) plus the Imagination pavilion. Most missing rides are second-tier, but the dining at EPCOT is the deepest at WDW — 11 country pavilions means 25+ restaurants you won't visit.</p>
+    </div>
+
+    <div class="big-miss">
+      <div class="big-miss-label">Pavilions being skipped</div>
+      <p><strong>The Seas with Nemo &amp; Friends pavilion</strong> — entire pavilion with the ride, Turtle Talk with Crush, manatees, sharks, real aquarium. Under-rated for a family day. ~45-60 min for everything inside. <strong>The Imagination pavilion</strong> — Figment ride, Pixar Short Film Festival, Awesome Planet film. Quirky but low-priority.</p>
+    </div>
+
+    <div class="subsec">
+      <h3>Attractions <em>not on the plan</em></h3>
+      <span class="subsec-meta">8+ attractions</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Turtle Talk with Crush</em></div>
+        <div class="miss-detail">Crush from Finding Nemo talks live with kids in the audience. Actual real-time conversations. AC, ~15 min, walk-in usually. The Seas pavilion. <strong>Kid favorite.</strong> Worth a detour during the World Nature stop.</div>
+      </div>
+      <div class="miss-meta">Walk-in · AC</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Mission: SPACE</em> · Green version</div>
+        <div class="miss-detail">Two versions: Green (mild, family-friendly) vs. Orange (intense G-forces, can cause nausea). Green is fine for the 7-year-old. 40″ min. ~30 min standby with Multi Pass rebook available.</div>
+      </div>
+      <div class="miss-meta">40″ · Green</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>The American Adventure</em></div>
+        <div class="miss-detail">35-min animatronic show about American history. AC, sit-down, surprisingly moving. America pavilion. Adult-leaning but kids handle it. <strong>Walk-in.</strong></div>
+      </div>
+      <div class="miss-meta">35 min · Walk-in</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Journey Into Imagination with Figment</em></div>
+        <div class="miss-detail">6-min ride with the iconic purple dragon. Low wait. AC. Adults find it nostalgic; kids find it weird in a fun way.</div>
+      </div>
+      <div class="miss-meta">Low wait</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>The Seas with Nemo &amp; Friends</em> · ride</div>
+        <div class="miss-detail">Gentle clamshell ride through the aquarium. ~10 min wait. Pairs naturally with Turtle Talk. Real aquarium attached.</div>
+      </div>
+      <div class="miss-meta">~10 min</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Gran Fiesta Tour Starring The Three Caballeros</em></div>
+        <div class="miss-detail">Inside the Mexico pyramid. 7-min boat ride. AC. Walk-on usually. The Mexican market upstairs is fun browsing.</div>
+      </div>
+      <div class="miss-meta">Walk-on · AC</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Disney and Pixar Short Film Festival</em></div>
+        <div class="miss-detail">17-min show featuring Pixar shorts in 4D. AC. Imagination pavilion. Good fading-kid recovery.</div>
+      </div>
+      <div class="miss-meta">17 min · 4D</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Country pavilion films</em></div>
+        <div class="miss-detail">Reflections of China (360° film), Canada Far and Wide (360° film), Beauty and the Beast Sing-Along (France). Cool AC stops if it's hot, but easy to skip with limited time.</div>
+      </div>
+      <div class="miss-meta">Multiple</div>
+    </div>
+
+    <div class="subsec">
+      <h3>Restaurants <em>worth considering</em></h3>
+      <span class="subsec-meta">EPCOT has 25+ restaurants · biggest dining scene at WDW</span>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Space 220 Restaurant</em></div>
+        <div class="miss-detail">"Dine in space" — elevator simulator takes you to a space station, eat with views of Earth out the windows. Novel experience. Lunch is more accessible than dinner. <strong>Very hard to book</strong> but possible with refresh-stalking. World Discovery.</div>
+      </div>
+      <div class="miss-meta signature">Table · Hard book</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Garden Grill Restaurant</em></div>
+        <div class="miss-detail">Rotating restaurant inside The Land pavilion — slowly spins overlooking Living with the Land scenes. Character meal with Chip 'n' Dale, Mickey, Pluto in farmer outfits. Family-style platters. <strong>Often has openings.</strong></div>
+      </div>
+      <div class="miss-meta character">Character meal</div>
+    </div>
+
+    <div class="miss star">
+      <div>
+        <div class="miss-name"><span class="star-icon">★</span><em>Biergarten Restaurant</em></div>
+        <div class="miss-detail">Germany pavilion. Communal long-table seating. German buffet — schnitzel, bratwurst, spaetzle. Live oompah band every hour. Kids love the energy. <strong>Easier to book than signatures.</strong></div>
+      </div>
+      <div class="miss-meta signature">Table · Moderate</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Le Cellier Steakhouse</em></div>
+        <div class="miss-detail">Canada pavilion. Signature steakhouse — best Canadian Cheddar Cheese Soup at WDW. Dark stone cellar atmosphere. Hard to book. Worth refresh-stalking for lunch.</div>
+      </div>
+      <div class="miss-meta signature">Table · Signature</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Via Napoli Ristorante e Pizzeria</em></div>
+        <div class="miss-detail">Italy pavilion. Real wood-fired Neapolitan pizza. Family-friendly. Good for big groups. Easier book than other table service.</div>
+      </div>
+      <div class="miss-meta signature">Table · Easier</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Akershus Royal Banquet Hall</em></div>
+        <div class="miss-detail">Norway. Princess character meal with Ariel, Snow White, Belle, others. Norwegian-influenced buffet. Princess fans love it.</div>
+      </div>
+      <div class="miss-meta character">Character · Princess</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>San Angel Inn Restaurante</em></div>
+        <div class="miss-detail">Mexico pavilion — inside the pyramid, dark "moonlit" Aztec setting. Mexican cuisine, family-friendly. The Three Caballeros boat ride passes through the restaurant — kids get a kick out of seeing the diners from the ride.</div>
+      </div>
+      <div class="miss-meta signature">Table · Moderate</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Sunshine Seasons</em> · The Land</div>
+        <div class="miss-detail">Quick service with surprisingly good food — fresh salads, bowls, rotisserie chicken. Mobile order. AC. Better than most quick service at EPCOT.</div>
+      </div>
+      <div class="miss-meta qs">Quick · Mobile order</div>
+    </div>
+
+    <div class="miss">
+      <div>
+        <div class="miss-name"><em>Quick service in every country</em></div>
+        <div class="miss-detail">Each World Showcase pavilion has at least one quick service. Standouts: Kringla Bakeri (Norway · school bread), Yorkshire County Fish Shop (UK · fish and chips), Katsura Grill (Japan · ramen), La Cantina de San Angel (Mexico · tacos). Festival booths supplement these.</div>
+      </div>
+      <div class="miss-meta qs">Quick · Per pavilion</div>
+    </div>
+
+  </section>
+
+  <footer>
+    09 / 11 · Field Notes · Misses &amp; Alternatives
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -485,6 +485,133 @@
     .bonus-name { font-size: 16px; }
   }
 
+  /* === COLLAPSIBLE DAYS === */
+  .day-header {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: opacity 0.2s ease;
+    padding-right: 60px;
+  }
+  .day-header:hover {
+    opacity: 0.85;
+  }
+  .day-toggle {
+    position: absolute;
+    right: 0;
+    top: 24px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    color: var(--ink-soft);
+    border: 1px solid var(--paper-edge);
+    border-radius: 50%;
+    background: var(--cream);
+    transition: all 0.25s ease;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .day-header:hover .day-toggle {
+    color: var(--ink);
+    background: var(--paper-soft);
+    border-color: var(--ink-mute);
+  }
+  section.day[data-collapsed="true"] .day-toggle::before {
+    content: '+';
+  }
+  section.day[data-collapsed="false"] .day-toggle::before {
+    content: '−';
+  }
+  section.day[data-collapsed="true"] > *:not(.day-header) {
+    display: none;
+  }
+  section.day[data-collapsed="true"] {
+    padding-bottom: 40px;
+  }
+  section.day[data-collapsed="true"] .day-header {
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--paper-edge);
+  }
+
+  /* === RESERVATION TAGS === */
+  .res-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 3px 8px;
+    font-weight: 700;
+    margin-left: 10px;
+    vertical-align: 3px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .res-tag.mobile {
+    background: rgba(110, 200, 130, 0.18);
+    color: #4a7a52;
+  }
+  .res-tag.adr {
+    background: rgba(255, 74, 74, 0.15);
+    color: #c43030;
+  }
+  .res-tag.walkup {
+    background: rgba(176, 137, 64, 0.20);
+    color: #8a6a30;
+  }
+  .res-tag.festival {
+    background: rgba(217, 106, 44, 0.15);
+    color: var(--day-epcot);
+  }
+
+  /* === EXPAND CONTROLS === */
+  .expand-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--paper-edge);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .expand-controls-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-mute);
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  .expand-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--paper-edge);
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  .expand-btn:hover {
+    background: var(--cream);
+    color: var(--ink);
+    border-color: var(--ink-mute);
+  }
+
+  @media (max-width: 700px) {
+    .day-header { padding-right: 50px; }
+    .day-toggle { width: 30px; height: 30px; font-size: 18px; top: 16px; }
+    .res-tag { font-size: 8px; padding: 2px 6px; }
+  }
+
   /* Footer */
   footer {
     padding: 60px 0 80px;
@@ -554,6 +681,12 @@
         <div class="day-nav-park">EPCOT</div>
       </a>
     </nav>
+
+    <div class="expand-controls">
+      <span class="expand-controls-label">View:</span>
+      <button class="expand-btn" id="expand-all">Expand all</button>
+      <button class="expand-btn" id="collapse-all">Collapse all</button>
+    </div>
   </header>
 
   <section style="padding: 64px 0; border-bottom: 1px dashed var(--paper-edge);">
@@ -607,7 +740,7 @@
   </section>
 
   <!-- ============== MONDAY HS ============== -->
-  <section class="day" data-day="hs" id="monday">
+  <section class="day" data-day="hs" data-date="2026-06-08" data-collapsed="false" id="monday">
     <div class="day-header">
       <div class="day-meta">
         <span>Monday · <span class="accent">June 8</span></span>
@@ -616,6 +749,7 @@
       </div>
       <h2>Hollywood <em>Studios</em></h2>
       <p class="day-summary">Long day with bookings spread morning to evening. Big midday gap (12:30–6:30) is your friend — use it for lunch, shows, and a real afternoon break. Rise of the Resistance closes the night.</p>
+      <div class="day-toggle"></div>
     </div>
 
     <div class="day-call">
@@ -752,7 +886,7 @@
         <div class="entry-time">12:15 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Lunch</span></div>
-          <div class="entry-action"><em>Lunch — Backlot Express</em></div>
+          <div class="entry-action"><em>Lunch — Backlot Express</em><span class="res-tag mobile">Mobile Order</span></div>
           <div class="entry-detail">Quick service, family-friendly menu, near Star Tours. Mobile order via MDX 20 min before. Sci-Fi Dine-In if you have an ADR. Allow 60+ min — sit, hydrate, breathe.</div>
         </div>
       </div>
@@ -829,7 +963,7 @@
         <div class="entry-time">5:45 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Dinner</span></div>
-          <div class="entry-action"><em>Dinner — Catalina Eddie's or Rosie's All-American Café</em></div>
+          <div class="entry-action"><em>Dinner — Catalina Eddie's or Rosie's All-American Café</em><span class="res-tag mobile">Mobile Order</span></div>
           <div class="entry-detail">Quick service on Sunset Blvd, right by Tower of Terror. Pizza, burgers — kid-friendly. Allow 50 min.</div>
         </div>
       </div>
@@ -917,7 +1051,7 @@
   </section>
 
   <!-- ============== TUESDAY AK ============== -->
-  <section class="day" data-day="ak" id="tuesday">
+  <section class="day" data-day="ak" data-date="2026-06-09" data-collapsed="false" id="tuesday">
     <div class="day-header">
       <div class="day-meta">
         <span>Tuesday · <span class="accent">June 9</span></span>
@@ -926,6 +1060,7 @@
       </div>
       <h2>Animal <em>Kingdom</em></h2>
       <p class="day-summary">Shortest park day with the best timing. Morning LL block (9:35–11:35), Pandora afternoon, walking trails to close. Bonus: you actually got Multi Pass here — gives the day way more structure.</p>
+      <div class="day-toggle"></div>
     </div>
 
     <div class="day-call">
@@ -1053,7 +1188,7 @@
         <div class="entry-time">12:15 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Lunch</span></div>
-          <div class="entry-action"><em>Lunch — Satu'li Canteen (Pandora)</em></div>
+          <div class="entry-action"><em>Lunch — Satu'li Canteen (Pandora)</em><span class="res-tag mobile">Mobile Order</span></div>
           <div class="entry-detail">One of the best meals on property. Bowls with proteins, fresh ingredients, vegetarian options. Mobile order via MDX 30 min ahead. Walk over from Asia takes ~15 min.</div>
         </div>
       </div>
@@ -1157,7 +1292,7 @@
         <div class="entry-time">6:15 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Dinner</span></div>
-          <div class="entry-action"><em>Dinner — Flame Tree Barbecue or off-property</em></div>
+          <div class="entry-action"><em>Dinner — Flame Tree Barbecue or off-property</em><span class="res-tag mobile">Mobile Order</span></div>
           <div class="entry-detail">Flame Tree is BBQ on Discovery Island — ribs, brisket, family-friendly. Or leave park and eat at hotel/Disney Springs — AK is the easiest park to exit early from.</div>
         </div>
       </div>
@@ -1204,7 +1339,7 @@
   </section>
 
   <!-- ============== THURSDAY MK ============== -->
-  <section class="day" data-day="mk" id="thursday">
+  <section class="day" data-day="mk" data-date="2026-06-11" data-collapsed="false" id="thursday">
     <div class="day-header">
       <div class="day-meta">
         <span>Thursday · <span class="accent">June 11</span></span>
@@ -1213,6 +1348,7 @@
       </div>
       <h2>Magic <em>Kingdom</em></h2>
       <p class="day-summary">The big one. Five Lightning Lane bookings spread across the day, fireworks finale. Pacing reset on Wednesday matters here — this is a 14-hour push and worth doing right.</p>
+      <div class="day-toggle"></div>
     </div>
 
     <div class="day-call">
@@ -1340,7 +1476,7 @@
         <div class="entry-time">12:00 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Lunch</span></div>
-          <div class="entry-action"><em>Lunch — Pinocchio Village Haus or Pecos Bill's</em></div>
+          <div class="entry-action"><em>Lunch — Pinocchio Village Haus or Pecos Bill's</em><span class="res-tag mobile">Mobile Order</span></div>
           <div class="entry-detail">Pinocchio is right by Barnstormer (Italian, family-friendly). Pecos Bill is Tex-Mex with a toppings bar — Tom likes it. Mobile order 30 min ahead.</div>
         </div>
       </div>
@@ -1408,7 +1544,7 @@
         <div class="entry-time">6:30 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Dinner</span></div>
-          <div class="entry-action"><em>Dinner — Plaza Restaurant or Cosmic Ray's</em></div>
+          <div class="entry-action"><em>Dinner — Plaza Restaurant or Cosmic Ray's</em><span class="res-tag walkup">Walk-up</span><span class="res-tag mobile">Mobile Order</span></div>
           <div class="entry-detail">Plaza is a sit-down sandwich/comfort food spot at end of Main Street — try walk-up. Cosmic Ray's is quick-service with the Sonny Eclipse animatronic. Allow 60 min.</div>
         </div>
       </div>
@@ -1513,7 +1649,7 @@
   </section>
 
   <!-- ============== FRIDAY EPCOT ============== -->
-  <section class="day" data-day="epcot" id="friday">
+  <section class="day" data-day="epcot" data-date="2026-06-12" data-collapsed="false" id="friday">
     <div class="day-header">
       <div class="day-meta">
         <span>Friday · <span class="accent">June 12</span></span>
@@ -1522,6 +1658,7 @@
       </div>
       <h2>EP<em>COT</em></h2>
       <p class="day-summary">Trip-closing day. Front-half rides until 11 (World Showcase opens then), festival booth grazing in the afternoon, Test Track at 5, Luminous fireworks at 9. The most relaxed pacing of any park day.</p>
+      <div class="day-toggle"></div>
     </div>
 
     <div class="day-call">
@@ -1649,7 +1786,7 @@
         <div class="entry-time">12:45 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Lunch</span></div>
-          <div class="entry-action"><em>Lunch — Festival booths (Mexico → Norway → China)</em></div>
+          <div class="entry-action"><em>Lunch — Festival booths (Mexico → Norway → China)</em><span class="res-tag festival">Festival · No Res</span></div>
           <div class="entry-detail">Flower &amp; Garden Festival booths are the lunch move. Small plates, walk between countries, kids try things. Allow 60 min and don't stress quantity — kids will fill up on snacks all afternoon anyway.</div>
         </div>
       </div>
@@ -1753,7 +1890,7 @@
         <div class="entry-time">6:30 PM</div>
         <div class="entry-body">
           <div><span class="entry-tag meal">Dinner</span></div>
-          <div class="entry-action"><em>Dinner — Festival booths or Le Cellier (Canada)</em></div>
+          <div class="entry-action"><em>Dinner — Festival booths or Le Cellier (Canada)</em><span class="res-tag festival">Festival · No Res</span><span class="res-tag adr">ADR if Le Cellier</span></div>
           <div class="entry-detail">If Le Cellier has a walk-up window, great steakhouse. Otherwise graze the booths — Canadian Cheddar Cheese Soup is mandatory. Allow 60 min.</div>
         </div>
       </div>
@@ -1849,6 +1986,55 @@
   </footer>
 
 </div>
+
+<script>
+  // Toggle individual day on click
+  document.querySelectorAll('.day-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const section = header.closest('section.day');
+      const current = section.getAttribute('data-collapsed');
+      section.setAttribute('data-collapsed', current === 'true' ? 'false' : 'true');
+    });
+  });
+
+  // Expand all / collapse all
+  document.getElementById('expand-all')?.addEventListener('click', () => {
+    document.querySelectorAll('section.day').forEach(s => s.setAttribute('data-collapsed', 'false'));
+  });
+  document.getElementById('collapse-all')?.addEventListener('click', () => {
+    document.querySelectorAll('section.day').forEach(s => s.setAttribute('data-collapsed', 'true'));
+  });
+
+  // Auto-collapse non-today days during the trip
+  (function() {
+    const tripStart = new Date('2026-06-08');
+    const tripEnd = new Date('2026-06-13');
+    tripStart.setHours(0, 0, 0, 0);
+    tripEnd.setHours(23, 59, 59, 999);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (today >= tripStart && today <= tripEnd) {
+      const todayStr = today.getFullYear() + '-' +
+        String(today.getMonth() + 1).padStart(2, '0') + '-' +
+        String(today.getDate()).padStart(2, '0');
+      document.querySelectorAll('section.day').forEach(s => {
+        const date = s.getAttribute('data-date');
+        s.setAttribute('data-collapsed', date === todayStr ? 'false' : 'true');
+      });
+      // If today doesn't match any day (e.g., Wednesday rest day), expand the next park day
+      if (!document.querySelector('section.day[data-collapsed="false"]')) {
+        const allDays = document.querySelectorAll('section.day');
+        for (const s of allDays) {
+          if (s.getAttribute('data-date') > todayStr) {
+            s.setAttribute('data-collapsed', 'false');
+            break;
+          }
+        }
+      }
+    }
+  })();
+</script>
 
 </body>
 </html>
